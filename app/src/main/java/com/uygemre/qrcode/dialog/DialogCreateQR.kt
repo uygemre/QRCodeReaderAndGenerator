@@ -167,16 +167,10 @@ class DialogCreateQR : BottomSheetDialogFragment() {
                 )
                 val latitude = arguments?.getString(PrefConstants.PREF_LOCATION_LATITUDE)
                 val longitude = arguments?.getString(PrefConstants.PREF_LOCATION_LONGITUDE)
-                val bundle = Bundle()
-                latitude?.toFloatOrNull()?.let { bundle.putFloat("LAT", it) }
-                longitude?.toFloatOrNull()?.let { bundle.putFloat("LONG", it) }
-                qrgEncoder = QRGEncoder(
-                    QRGContents.Type.LOCATION,
-                    bundle,
-                    QRGContents.Type.LOCATION,
-                    500
+                img_scan_create_qr.setImageBitmap(
+                    QRCode.from("geo:${latitude?.toFloatOrNull()},${longitude?.toFloatOrNull()}")
+                        .withSize(500, 500).bitmap()
                 )
-                img_scan_create_qr.setImageBitmap(qrgEncoder.bitmap)
             }
             IntentBundleKeyEnum.DETAIL_PHONE.toString() -> {
                 tv_format.text = Html.fromHtml(
