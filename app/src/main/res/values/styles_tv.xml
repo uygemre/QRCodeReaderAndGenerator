@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Regular TextView -->
+    <style name="BaseTextView">
+        <item name="android:textSize">@dimen/material_typography_subheading</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextView.Caption" parent="BaseTextView">
+        <item name="android:textSize">@dimen/material_typography_caption</item>
+    </style>
+
+    <style name="TextView.Body1" parent="BaseTextView">
+        <item name="android:textSize">@dimen/material_typography_body1</item>
+    </style>
+
+    <style name="TextView.Body2" parent="BaseTextView">
+        <item name="android:textSize">@dimen/material_typography_body2</item>
+    </style>
+
+    <style name="TextView.SubHeading" parent="BaseTextView">
+        <item name="android:textSize">@dimen/material_typography_subheading</item>
+    </style>
+
+    <style name="TextView.Heading" parent="BaseTextView">
+        <item name="android:textSize">@dimen/material_typography_heading</item>
+    </style>
+
+    <style name="TextView.Title" parent="BaseTextView">
+        <item name="android:textSize">@dimen/material_typography_title</item>
+    </style>
+
+    <style name="TextView.Display" parent="BaseTextView">
+        <item name="android:textSize">@dimen/material_typography_display</item>
+    </style>
+
+    <style name="TextView.Headline" parent="BaseTextView">
+        <item name="android:textSize">@dimen/material_typography_headline</item>
+    </style>
+
+</resources>

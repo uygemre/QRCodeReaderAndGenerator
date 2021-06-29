@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootBottoSheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_format"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="QR_CODE"
+        android:textColor="@color/black" />
+
+    <ImageView
+        android:id="@+id/img_scan_create_qr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/material_8dp"
+        android:layout_marginBottom="@dimen/material_12dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/material_12dp"
+            android:layout_marginStart="@dimen/material_12dp"
+            android:background="@drawable/shape_radius_16_green"
+            android:drawableTop="@drawable/ic_share"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:foregroundGravity="center"
+            android:text="Share"
+            android:textAllCaps="false" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/material_12dp"
+            android:layout_marginStart="@dimen/material_12dp"
+            android:background="@drawable/shape_radius_16_green"
+            android:drawableTop="@drawable/ic_save"
+            android:text="Save"
+            android:textAllCaps="false"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/adView"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:src="@color/black" />
+
+</LinearLayout>
+
+    <!--
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/material_12dp"
+                android:background="@drawable/shape_radius_16_green"
+                android:drawableLeft="@drawable/ic_search"
+                android:paddingLeft="8dp"
+                android:text="Search"
+                android:textAllCaps="false"
+                android:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/material_12dp"
+                android:background="@drawable/shape_radius_16_green"
+                android:drawableLeft="@drawable/ic_copy"
+                android:paddingLeft="8dp"
+                android:text="Copy"
+                android:textAllCaps="false" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_open"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/material_12dp"
+                android:background="@drawable/shape_radius_16_green"
+                android:drawableLeft="@drawable/ic_open_browser"
+                android:paddingLeft="8dp"
+                android:text="Open"
+                android:textAllCaps="false"
+                android:visibility="visible" />
+
+    -->

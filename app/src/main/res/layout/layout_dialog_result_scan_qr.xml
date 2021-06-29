@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootBottoSheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/material_16dp"
+        android:layout_marginTop="@dimen/material_8dp"
+        android:layout_marginEnd="@dimen/material_16dp"
+        android:gravity="center"
+        android:text="@string/result"
+        android:textColor="@color/black" />
+
+    <ImageView
+        android:id="@+id/img_scan_qr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/material_32dp"
+        android:layout_marginEnd="@dimen/material_32dp"
+        android:layout_marginBottom="@dimen/material_8dp"
+        android:gravity="center"
+        android:text="@string/description"
+        android:textSize="16sp"
+        android:textColor="@color/black" />
+
+    <include
+        android:id="@+id/layout_web_url"
+        layout="@layout/item_web_url"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/layout_document"
+        layout="@layout/item_document"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/layout_contact"
+        layout="@layout/item_contact"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/layout_email"
+        layout="@layout/item_email"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/layout_sms"
+        layout="@layout/item_sms"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/layout_location"
+        layout="@layout/item_location"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/layout_phone"
+        layout="@layout/item_phone"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/layout_wifi"
+        layout="@layout/item_wifi"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/adView"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:src="@color/black" />
+
+</LinearLayout>

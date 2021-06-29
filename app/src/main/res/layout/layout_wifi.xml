@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_ssid"
+        style="@style/MyTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/material_16dp"
+        android:layout_marginTop="@dimen/material_24dp"
+        android:layout_marginEnd="@dimen/material_16dp"
+        android:hint="SSID / Network Name"
+        android:textColorHint="@color/gray"
+        android:translationY="-4dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_ssid"
+            style="@style/TextView.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/material_8dp"
+            android:padding="@dimen/material_16dp"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@drawable/black_cursor"
+            android:textSize="@dimen/material_typography_body1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_password"
+        style="@style/MyTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/material_16dp"
+        android:layout_marginTop="@dimen/material_16dp"
+        android:layout_marginEnd="@dimen/material_16dp"
+        android:hint="Password"
+        android:textColorHint="@color/gray"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_password"
+            style="@style/TextView.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/material_8dp"
+            android:padding="@dimen/material_16dp"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@drawable/black_cursor"
+            android:textSize="@dimen/material_typography_body1"
+            app:passwordToggleEnabled="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <RadioGroup
+            android:id="@+id/rg_authentication"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="@dimen/material_16dp"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_wpa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/material_4dp"
+                android:buttonTint="@color/black"
+                android:checked="true"
+                android:text="WPA/WPA2" />
+
+            <RadioButton
+                android:id="@+id/rb_wep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/material_4dp"
+                android:buttonTint="@color/black"
+                android:text="WEP" />
+
+            <RadioButton
+                android:id="@+id/rb_no_pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/material_4dp"
+                android:buttonTint="@color/black"
+                android:text="No Pass" />
+
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/cb_is_hidden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.5"
+            android:buttonTint="@color/black"
+            android:checked="false"
+            android:text="Hidden" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/material_8dp"
+        android:backgroundTint="@color/forest_green"
+        android:text="Create"
+        android:textAllCaps="false" />
+
+</LinearLayout>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_contact_name"
+        style="@style/MyTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/material_16dp"
+        android:layout_marginTop="@dimen/material_24dp"
+        android:layout_marginEnd="@dimen/material_16dp"
+        android:hint="Name"
+        android:textColorHint="@color/gray"
+        android:translationY="-4dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_contact_name"
+            style="@style/TextView.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/material_8dp"
+            android:padding="@dimen/material_16dp"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@drawable/black_cursor"
+            android:textSize="@dimen/material_typography_body1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_contact_company"
+        style="@style/MyTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/material_16dp"
+        android:layout_marginTop="@dimen/material_16dp"
+        android:layout_marginEnd="@dimen/material_16dp"
+        android:hint="Company"
+        android:textColorHint="@color/gray"
+        android:translationY="-4dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_contact_company"
+            style="@style/TextView.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/material_8dp"
+            android:padding="@dimen/material_16dp"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@drawable/black_cursor"
+            android:textSize="@dimen/material_typography_body1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_contact_address"
+        style="@style/MyTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/material_16dp"
+        android:layout_marginTop="@dimen/material_16dp"
+        android:layout_marginEnd="@dimen/material_16dp"
+        android:hint="Address"
+        android:textColorHint="@color/gray"
+        android:translationY="-4dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_contact_address"
+            style="@style/TextView.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/material_8dp"
+            android:padding="@dimen/material_16dp"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@drawable/black_cursor"
+            android:textSize="@dimen/material_typography_body1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_contact_telephone"
+        style="@style/MyTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/material_16dp"
+        android:layout_marginTop="@dimen/material_16dp"
+        android:layout_marginEnd="@dimen/material_16dp"
+        android:hint="Telephone"
+        android:textColorHint="@color/gray"
+        android:translationY="-4dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_contact_telephone"
+            style="@style/TextView.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/material_8dp"
+            android:padding="@dimen/material_16dp"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@drawable/black_cursor"
+            android:textSize="@dimen/material_typography_body1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_contact_email"
+        style="@style/MyTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/material_16dp"
+        android:layout_marginTop="@dimen/material_16dp"
+        android:layout_marginEnd="@dimen/material_16dp"
+        android:hint="EMail"
+        android:textColorHint="@color/gray"
+        android:translationY="-4dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_contact_email"
+            style="@style/TextView.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/material_8dp"
+            android:padding="@dimen/material_16dp"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@drawable/black_cursor"
+            android:textSize="@dimen/material_typography_body1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_contact_notes"
+        style="@style/MyTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/material_16dp"
+        android:layout_marginTop="@dimen/material_16dp"
+        android:layout_marginEnd="@dimen/material_16dp"
+        android:hint="Notes"
+        android:textColorHint="@color/gray"
+        android:translationY="-4dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_contact_notes"
+            style="@style/TextView.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/material_72dp"
+            android:drawablePadding="@dimen/material_8dp"
+            android:padding="@dimen/material_16dp"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@drawable/black_cursor"
+            android:textSize="@dimen/material_typography_body1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/forest_green"
+        android:layout_marginTop="@dimen/material_8dp"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
