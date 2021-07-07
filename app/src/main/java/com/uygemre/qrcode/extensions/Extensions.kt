@@ -4,9 +4,13 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.content.res.Resources
 import android.net.ConnectivityManager
+import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.uygemre.qrcode.R
@@ -81,3 +85,10 @@ fun <T> Context.openActivity(it: Class<T>, bundle: Bundle) {
     intent.putExtras(bundle)
     startActivity(intent)
 }
+
+fun dp2px(dp: Int): Float = dp * Resources.getSystem().displayMetrics.density
+
+fun isLollipop() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+
+fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View =
+    LayoutInflater.from(context).inflate(layoutId, this, attachToRoot)

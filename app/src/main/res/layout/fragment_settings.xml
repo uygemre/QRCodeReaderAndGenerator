@@ -1,14 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Settings Fragment"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_vibration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/material_16dp">
+
+                <ImageView
+                    android:id="@+id/img_vibration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_vibration" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_vibration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/material_12dp"
+                    android:layout_toEndOf="@id/img_vibration"
+                    android:text="Vibration"
+                    android:theme="@style/SCBSwitch"
+                    app:switchMinWidth="@dimen/material_52dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_sound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/material_16dp">
+
+                <ImageView
+                    android:id="@+id/img_sound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_sound" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_sound"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/material_12dp"
+                    android:layout_toEndOf="@id/img_sound"
+                    android:text="Sound"
+                    android:theme="@style/SCBSwitch"
+                    app:switchMinWidth="@dimen/material_52dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_open_auto_browser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/material_16dp">
+
+                <ImageView
+                    android:id="@+id/img_open_auto_browser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/web" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_open_browser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/material_12dp"
+                    android:layout_toEndOf="@id/img_open_auto_browser"
+                    android:text="Auto open url"
+                    android:theme="@style/SCBSwitch"
+                    app:switchMinWidth="@dimen/material_52dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_auto_copy_clipboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/material_16dp">
+
+                <ImageView
+                    android:id="@+id/img_auto_copy_clipboard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/copy" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_auto_copy_clipboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/material_12dp"
+                    android:layout_toEndOf="@id/img_auto_copy_clipboard"
+                    android:text="Auto copy to clipboard"
+                    android:theme="@style/SCBSwitch"
+                    app:switchMinWidth="@dimen/material_52dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_auto_search_on_web"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/material_16dp">
+
+                <ImageView
+                    android:id="@+id/img_auto_search_on_web"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/search" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_auto_search_on_web"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/material_12dp"
+                    android:layout_toEndOf="@id/img_auto_search_on_web"
+                    android:text="Auto web search"
+                    android:theme="@style/SCBSwitch"
+                    app:switchMinWidth="@dimen/material_52dp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

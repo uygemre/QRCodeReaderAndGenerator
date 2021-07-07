@@ -4,17 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.uygemre.qrcode.activities.DetailActivity
 import com.uygemre.qrcode.R
 import com.uygemre.qrcode.constants.PrefConstants
 import com.uygemre.qrcode.enums.IntentBundleKeyEnum
 import com.uygemre.qrcode.extensions.openActivity
+import com.uygemre.qrcode.helpers.LocalPrefManager
 import kotlinx.android.synthetic.main.fragment_create_qr.*
 
 class CreateQRFragment : Fragment() {
 
     private val bundle: Bundle = Bundle()
+    lateinit var localPrefManager: LocalPrefManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,30 +29,61 @@ class CreateQRFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        localPrefManager = LocalPrefManager(requireContext())
 
-        rv_web_url.setOnClickListener {
+        rl_web_url.setOnClickListener {
             gotoDetailPage(IntentBundleKeyEnum.DETAIL_WEB_URL.toString())
         }
-        rv_document.setOnClickListener {
+        rl_document.setOnClickListener {
             gotoDetailPage(IntentBundleKeyEnum.DETAIL_DOCUMENT.toString())
         }
-        rv_contact.setOnClickListener {
+        rl_contact.setOnClickListener {
             gotoDetailPage(IntentBundleKeyEnum.DETAIL_CONTACT.toString())
         }
-        rv_email.setOnClickListener {
+        rl_email.setOnClickListener {
             gotoDetailPage(IntentBundleKeyEnum.DETAIL_EMAIL.toString())
         }
-        rv_sms.setOnClickListener {
+        rl_sms.setOnClickListener {
             gotoDetailPage(IntentBundleKeyEnum.DETAIL_SMS.toString())
         }
-        rv_location.setOnClickListener {
+        rl_location.setOnClickListener {
             gotoDetailPage(IntentBundleKeyEnum.DETAIL_LOCATION.toString())
         }
-        rv_phone.setOnClickListener {
+        rl_phone.setOnClickListener {
             gotoDetailPage(IntentBundleKeyEnum.DETAIL_PHONE.toString())
         }
-        rv_wifi.setOnClickListener {
+        rl_wifi.setOnClickListener {
             gotoDetailPage(IntentBundleKeyEnum.DETAIL_WIFI.toString())
+        }
+        rl_twitter.setOnClickListener {
+            if (localPrefManager.pull("isPremium", false))
+                gotoDetailPage(IntentBundleKeyEnum.DETAIL_TWITTER.toString())
+            else
+                gotoDetailPage(IntentBundleKeyEnum.DETAIL_PREMIUM_SUBSCRIBE.toString())
+        }
+        rl_whatsapp.setOnClickListener {
+            if (localPrefManager.pull("isPremium", false))
+                gotoDetailPage(IntentBundleKeyEnum.DETAIL_WHATSAPP.toString())
+            else
+                gotoDetailPage(IntentBundleKeyEnum.DETAIL_PREMIUM_SUBSCRIBE.toString())
+        }
+        rl_linkedin.setOnClickListener {
+            if (localPrefManager.pull("isPremium", false))
+                gotoDetailPage(IntentBundleKeyEnum.DETAIL_LINKEDIN.toString())
+            else
+                gotoDetailPage(IntentBundleKeyEnum.DETAIL_PREMIUM_SUBSCRIBE.toString())
+        }
+        rl_youtube.setOnClickListener {
+            if (localPrefManager.pull("isPremium", false))
+                gotoDetailPage(IntentBundleKeyEnum.DETAIL_YOUTUBE.toString())
+            else
+                gotoDetailPage(IntentBundleKeyEnum.DETAIL_PREMIUM_SUBSCRIBE.toString())
+        }
+        rl_instagram.setOnClickListener {
+            if (localPrefManager.pull("isPremium", false))
+                gotoDetailPage(IntentBundleKeyEnum.DETAIL_INSTAGRAM.toString())
+            else
+                gotoDetailPage(IntentBundleKeyEnum.DETAIL_PREMIUM_SUBSCRIBE.toString())
         }
         /*
 

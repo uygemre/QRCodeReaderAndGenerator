@@ -1,9 +1,5 @@
 package com.uygemre.qrcode.enums
 
-/**
- *   Created by Emre UYGUN on 12/5/20
- */
-
 enum class IntentBundleKeyEnum {
     DETAIL_KEY,
     DETAIL_WEB_URL,
@@ -14,5 +10,11 @@ enum class IntentBundleKeyEnum {
     DETAIL_LOCATION,
     DETAIL_PHONE,
     DETAIL_CALENDAR,
-    DETAIL_WIFI
+    DETAIL_WIFI,
+    DETAIL_TWITTER,
+    DETAIL_WHATSAPP,
+    DETAIL_LINKEDIN,
+    DETAIL_YOUTUBE,
+    DETAIL_INSTAGRAM,
+    DETAIL_PREMIUM_SUBSCRIBE
 }

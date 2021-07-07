@@ -13,6 +13,9 @@
     <string name="phone">Phone</string>
     <string name="calendar">Calendar</string>
     <string name="wifi">Wi-Fi</string>
+    <string name="twitter">Twitter</string>
+    <string name="twitter_profile">Twitter Profile</string>
+    <string name="twitter_tweet">Tweet</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="copy_password">Copy\nPassword</string>
@@ -33,4 +36,14 @@
     <string name="subject">Subject</string>
     <string name="message">Message</string>
     <string name="create">Create</string>
+    <string name="create_qr_description">Please continue by selecting the qr code format you want to generate.</string>
+    <string name="cancel">Cancel</string>
+    <string name="accept">Accept</string>
+    <string name="youtube">YouTube</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="instagram">Instagram</string>
+    <string name="youtube_video_id">Video ID</string>
+    <string name="youtube_video_url">Video URL</string>
+    <string name="history">History</string>
 </resources>

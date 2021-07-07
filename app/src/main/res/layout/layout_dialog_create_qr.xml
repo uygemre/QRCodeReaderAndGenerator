@@ -33,13 +33,13 @@
             android:id="@+id/btn_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/material_12dp"
+            android:layout_gravity="center"
             android:layout_marginStart="@dimen/material_12dp"
             android:background="@drawable/shape_radius_16_green"
             android:drawableTop="@drawable/ic_share"
-            android:gravity="center"
-            android:layout_gravity="center"
             android:foregroundGravity="center"
+            android:gravity="center"
+            android:padding="@dimen/material_12dp"
             android:text="Share"
             android:textAllCaps="false" />
 
@@ -47,10 +47,10 @@
             android:id="@+id/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/material_12dp"
             android:layout_marginStart="@dimen/material_12dp"
             android:background="@drawable/shape_radius_16_green"
             android:drawableTop="@drawable/ic_save"
+            android:padding="@dimen/material_12dp"
             android:text="Save"
             android:textAllCaps="false"
             android:visibility="visible" />

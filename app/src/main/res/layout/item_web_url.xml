@@ -43,7 +43,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/ll_share"
+        android:id="@+id/ll_share_web_url"
         android:layout_width="@dimen/material_32dp"
         android:layout_height="@dimen/material_72dp"
         android:layout_marginStart="@dimen/material_8dp"

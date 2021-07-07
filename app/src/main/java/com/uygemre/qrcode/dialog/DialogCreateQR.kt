@@ -10,22 +10,23 @@ import android.os.Bundle
 import android.os.SystemClock
 import android.provider.MediaStore
 import android.text.Html
+import android.text.Spanned
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
-import androidmads.library.qrgenearator.QRGContents
-import androidmads.library.qrgenearator.QRGEncoder
 import androidx.core.graphics.drawable.toBitmap
-import androidx.core.net.MailTo
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.uygemre.qrcode.R
 import com.uygemre.qrcode.constants.PrefConstants
+import com.uygemre.qrcode.constants.PrefConstants.PREF_INSTAGRAM
+import com.uygemre.qrcode.constants.PrefConstants.PREF_LINKEDIN
+import com.uygemre.qrcode.constants.PrefConstants.PREF_YOUTUBE
+import com.uygemre.qrcode.constants.PrefConstants.PREF_YOUTUBE_VIDEO_ID
 import com.uygemre.qrcode.enums.IntentBundleKeyEnum
 import com.uygemre.qrcode.extensions.DateExtensions
 import com.uygemre.qrcode.extensions.isNetworkConnected
@@ -59,7 +60,7 @@ class DialogCreateQR : BottomSheetDialogFragment() {
         setupView()
         saveQRCode()
         btn_share.setOnClickListener {
-            shareDate(img_scan_create_qr)
+            shareQR(img_scan_create_qr)
         }
     }
 
@@ -95,29 +96,19 @@ class DialogCreateQR : BottomSheetDialogFragment() {
 
     @SuppressLint("SetTextI18n")
     private fun setupView() {
-        val qrgEncoder: QRGEncoder?
         when (contentView) {
             IntentBundleKeyEnum.DETAIL_WEB_URL.toString() -> {
-                tv_format.text = Html.fromHtml(
-                    "<b>" + "WEB URL" + "</b>" + "<br>" + "</br>" +
-                            "${DateExtensions.dateDiff8()}, QR_CODE"
-                )
+                tv_format.text = setupFormatText(resources.getString(R.string.webUrl))
                 val webUrl = arguments?.getString(PrefConstants.PREF_WEB_URL)
                 img_scan_create_qr.setImageBitmap(QRCode.from(webUrl).withSize(500, 500).bitmap())
             }
             IntentBundleKeyEnum.DETAIL_DOCUMENT.toString() -> {
-                tv_format.text = Html.fromHtml(
-                    "<b>" + "DOCUMENT" + "</b>" + "<br>" + "</br>" +
-                            "${DateExtensions.dateDiff8()}, QR_CODE"
-                )
+                tv_format.text = setupFormatText(resources.getString(R.string.document))
                 val text = arguments?.getString(PrefConstants.PREF_DOCUMENT)
                 img_scan_create_qr.setImageBitmap(QRCode.from(text).withSize(500, 500).bitmap())
             }
             IntentBundleKeyEnum.DETAIL_EMAIL.toString() -> {
-                tv_format.text = Html.fromHtml(
-                    "<b>" + "E-MAIL" + "</b>" + "<br>" + "</br>" +
-                            "${DateExtensions.dateDiff8()}, QR_CODE"
-                )
+                tv_format.text = setupFormatText(resources.getString(R.string.email))
                 val email = arguments?.getString(PrefConstants.PREF_EMAIL)
                 val subject = arguments?.getString(PrefConstants.PREF_EMAIL_SUBJECT)
                 val message = arguments?.getString(PrefConstants.PREF_EMAIL_MESSAGE)
@@ -127,10 +118,7 @@ class DialogCreateQR : BottomSheetDialogFragment() {
                 )
             }
             IntentBundleKeyEnum.DETAIL_CONTACT.toString() -> {
-                tv_format.text = Html.fromHtml(
-                    "<b>" + "CONTACTL" + "</b>" + "<br>" + "</br>" +
-                            "${DateExtensions.dateDiff8()}, QR_CODE"
-                )
+                tv_format.text = setupFormatText(resources.getString(R.string.contact))
                 val name = arguments?.getString(PrefConstants.PREF_CONTACT_NAME)
                 val phone = arguments?.getString(PrefConstants.PREF_CONTACT_TELEPHONE)
                 val email = arguments?.getString(PrefConstants.PREF_CONTACT_EMAIL)
@@ -149,10 +137,7 @@ class DialogCreateQR : BottomSheetDialogFragment() {
                 img_scan_create_qr.setImageBitmap(QRCode.from(vCard).withSize(500, 500).bitmap())
             }
             IntentBundleKeyEnum.DETAIL_SMS.toString() -> {
-                tv_format.text = Html.fromHtml(
-                    "<b>" + "SMS" + "</b>" + "<br>" + "</br>" +
-                            "${DateExtensions.dateDiff8()}, QR_CODE"
-                )
+                tv_format.text = setupFormatText(resources.getString(R.string.sms))
                 val subject = arguments?.getString(PrefConstants.PREF_SMS_SUBJECT)
                 val number = arguments?.getString(PrefConstants.PREF_SMS_PHONE)
                 val text = "SMSTO:${number}:${subject}"
@@ -161,10 +146,7 @@ class DialogCreateQR : BottomSheetDialogFragment() {
                 )
             }
             IntentBundleKeyEnum.DETAIL_LOCATION.toString() -> {
-                tv_format.text = Html.fromHtml(
-                    "<b>" + "LOCATION" + "</b>" + "<br>" + "</br>" +
-                            "${DateExtensions.dateDiff8()}, QR_CODE"
-                )
+                tv_format.text = setupFormatText(resources.getString(R.string.location))
                 val latitude = arguments?.getString(PrefConstants.PREF_LOCATION_LATITUDE)
                 val longitude = arguments?.getString(PrefConstants.PREF_LOCATION_LONGITUDE)
                 img_scan_create_qr.setImageBitmap(
@@ -173,10 +155,7 @@ class DialogCreateQR : BottomSheetDialogFragment() {
                 )
             }
             IntentBundleKeyEnum.DETAIL_PHONE.toString() -> {
-                tv_format.text = Html.fromHtml(
-                    "<b>" + "PHONE" + "</b>" + "<br>" + "</br>" +
-                            "${DateExtensions.dateDiff8()}, QR_CODE"
-                )
+                tv_format.text = setupFormatText(resources.getString(R.string.phone))
                 val phone = arguments?.getString(PrefConstants.PREF_PHONE)
                 val telephone = Telephone()
                 telephone.telephone = phone
@@ -185,10 +164,7 @@ class DialogCreateQR : BottomSheetDialogFragment() {
                 )
             }
             IntentBundleKeyEnum.DETAIL_WIFI.toString() -> {
-                tv_format.text = Html.fromHtml(
-                    "<b>" + "Wi-Fi" + "</b>" + "<br>" + "</br>" +
-                            "${DateExtensions.dateDiff8()}, QR_CODE"
-                )
+                tv_format.text = setupFormatText(resources.getString(R.string.wifi))
                 val username = arguments?.getString(PrefConstants.PREF_WIFI_NETWORK_NAME)
                 val password = arguments?.getString(PrefConstants.PREF_WIFI_PASSWORD)
                 val authentication = arguments?.getString(PrefConstants.PREF_WIFI_AUTHENTICATION)
@@ -205,10 +181,77 @@ class DialogCreateQR : BottomSheetDialogFragment() {
                 wifi.isHidden = isHidden ?: false
                 img_scan_create_qr.setImageBitmap(QRCode.from(wifi).withSize(500, 500).bitmap())
             }
+            IntentBundleKeyEnum.DETAIL_TWITTER.toString() -> {
+                tv_format.text = setupFormatText(resources.getString(R.string.twitter))
+                val twitter = arguments?.getString(PrefConstants.PREF_TWITTER)
+                val isProfile = arguments?.getBoolean(PrefConstants.PREF_IS_PROFILE)
+                if (isProfile == true)
+                    img_scan_create_qr.setImageBitmap(
+                        QRCode.from("https://www.twitter.com/$twitter").withSize(500, 500).bitmap()
+                    )
+                else
+                    img_scan_create_qr.setImageBitmap(
+                        QRCode.from("https://www.twitter.com/intent/tweet?text=$twitter")
+                            .withSize(500, 500).bitmap()
+                    )
+            }
+            IntentBundleKeyEnum.DETAIL_WHATSAPP.toString() -> {
+                tv_format.text = setupFormatText(resources.getString(R.string.whatsapp))
+                val phone = arguments?.getString(PrefConstants.PREF_WHATSAPP_PHONE)
+                val message = arguments?.getString(PrefConstants.PREF_WHATSAPP_MESSAGE)
+
+                img_scan_create_qr.setImageBitmap(
+                    QRCode.from("https://wa.me/$phone/?text=$message")
+                        .withSize(500, 500).bitmap()
+                )
+            }
+            IntentBundleKeyEnum.DETAIL_LINKEDIN.toString() -> {
+                tv_format.text = setupFormatText(resources.getString(R.string.linkedin))
+                val linkedIn = arguments?.getString(PREF_LINKEDIN)
+                if (linkedIn?.startsWith("https://") == true || linkedIn?.startsWith("http://") == true) {
+                    img_scan_create_qr.setImageBitmap(
+                        QRCode.from(linkedIn).withSize(500, 500).bitmap()
+                    )
+                } else {
+                    img_scan_create_qr.setImageBitmap(
+                        QRCode.from("https://linkedin.com/in/$linkedIn/").withSize(500, 500)
+                            .bitmap()
+                    )
+                }
+            }
+            IntentBundleKeyEnum.DETAIL_YOUTUBE.toString() -> {
+                tv_format.text = setupFormatText(resources.getString(R.string.youtube))
+                val isVideoId = arguments?.getBoolean(PREF_YOUTUBE_VIDEO_ID)
+                val youtube = arguments?.getString(PREF_YOUTUBE)
+                if (isVideoId == true) {
+                    img_scan_create_qr.setImageBitmap(
+                        QRCode.from("https://www.youtube.com/watch?v=$youtube").withSize(500, 500)
+                            .bitmap()
+                    )
+                } else {
+                    img_scan_create_qr.setImageBitmap(
+                        QRCode.from(youtube).withSize(500, 500).bitmap()
+                    )
+                }
+            }
+            IntentBundleKeyEnum.DETAIL_INSTAGRAM.toString() -> {
+                tv_format.text = setupFormatText(resources.getString(R.string.instagram))
+                val instagram = arguments?.getString(PREF_INSTAGRAM)
+                img_scan_create_qr.setImageBitmap(
+                    QRCode.from("https://instagram.com/$instagram/").withSize(500, 500).bitmap()
+                )
+            }
         }
     }
 
-    private fun shareDate(image: ImageView?) {
+    private fun setupFormatText(text: String): Spanned {
+        return Html.fromHtml(
+            "<b>" + text + "</b>" + "<br>" + "</br>" +
+                    "${DateExtensions.dateDiff8()}, QR_CODE"
+        )
+    }
+
+    private fun shareQR(image: ImageView?) {
         if (requireContext().isNetworkConnected()) {
             if (SystemClock.elapsedRealtime() - sharedLastClickTime < 1000) {
                 return
@@ -239,7 +282,7 @@ class DialogCreateQR : BottomSheetDialogFragment() {
                 context?.contentResolver,
                 img_scan_create_qr.drawable.toBitmap(),
                 "MY_QR_CODE",
-                "qwerty"
+                null
             )
         }
     }
