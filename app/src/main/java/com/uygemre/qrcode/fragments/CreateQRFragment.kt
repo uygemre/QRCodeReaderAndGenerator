@@ -4,8 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.uygemre.qrcode.activities.DetailActivity
 import com.uygemre.qrcode.R
 import com.uygemre.qrcode.constants.PrefConstants
@@ -17,7 +21,8 @@ import kotlinx.android.synthetic.main.fragment_create_qr.*
 class CreateQRFragment : Fragment() {
 
     private val bundle: Bundle = Bundle()
-    lateinit var localPrefManager: LocalPrefManager
+    private var mInterstitialAd: InterstitialAd? = null
+    private lateinit var localPrefManager: LocalPrefManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +35,17 @@ class CreateQRFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         localPrefManager = LocalPrefManager(requireContext())
+
+        MobileAds.initialize(requireContext())
+        InterstitialAd.load(requireContext(), "ca-app-pub-3940256099942544/1033173712", AdRequest.Builder().build(), object : InterstitialAdLoadCallback() {
+            override fun onAdLoaded(p0: InterstitialAd) {
+                mInterstitialAd = p0
+                mInterstitialAd?.show(requireActivity())
+            }
+            override fun onAdFailedToLoad(p0: LoadAdError) {
+                mInterstitialAd = null
+            }
+        })
 
         rl_web_url.setOnClickListener {
             gotoDetailPage(IntentBundleKeyEnum.DETAIL_WEB_URL.toString())
@@ -56,43 +72,50 @@ class CreateQRFragment : Fragment() {
             gotoDetailPage(IntentBundleKeyEnum.DETAIL_WIFI.toString())
         }
         rl_twitter.setOnClickListener {
+            /*
             if (localPrefManager.pull("isPremium", false))
                 gotoDetailPage(IntentBundleKeyEnum.DETAIL_TWITTER.toString())
             else
                 gotoDetailPage(IntentBundleKeyEnum.DETAIL_PREMIUM_SUBSCRIBE.toString())
+            */
+            gotoDetailPage(IntentBundleKeyEnum.DETAIL_TWITTER.toString())
         }
         rl_whatsapp.setOnClickListener {
+            /*
             if (localPrefManager.pull("isPremium", false))
                 gotoDetailPage(IntentBundleKeyEnum.DETAIL_WHATSAPP.toString())
             else
                 gotoDetailPage(IntentBundleKeyEnum.DETAIL_PREMIUM_SUBSCRIBE.toString())
+            */
+            gotoDetailPage(IntentBundleKeyEnum.DETAIL_WHATSAPP.toString())
         }
         rl_linkedin.setOnClickListener {
+            /*
             if (localPrefManager.pull("isPremium", false))
                 gotoDetailPage(IntentBundleKeyEnum.DETAIL_LINKEDIN.toString())
             else
                 gotoDetailPage(IntentBundleKeyEnum.DETAIL_PREMIUM_SUBSCRIBE.toString())
+            */
+            gotoDetailPage(IntentBundleKeyEnum.DETAIL_LINKEDIN.toString())
         }
         rl_youtube.setOnClickListener {
+            /*
             if (localPrefManager.pull("isPremium", false))
                 gotoDetailPage(IntentBundleKeyEnum.DETAIL_YOUTUBE.toString())
             else
                 gotoDetailPage(IntentBundleKeyEnum.DETAIL_PREMIUM_SUBSCRIBE.toString())
+            */
+            gotoDetailPage(IntentBundleKeyEnum.DETAIL_YOUTUBE.toString())
         }
         rl_instagram.setOnClickListener {
+            /*
             if (localPrefManager.pull("isPremium", false))
                 gotoDetailPage(IntentBundleKeyEnum.DETAIL_INSTAGRAM.toString())
             else
                 gotoDetailPage(IntentBundleKeyEnum.DETAIL_PREMIUM_SUBSCRIBE.toString())
+            */
+            gotoDetailPage(IntentBundleKeyEnum.DETAIL_INSTAGRAM.toString())
         }
-        /*
-
-rv_calendar.setOnClickListener {
-gotoDetailPage(IntentBundleKeyEnum.DETAIL_CALENDAR.toString(), IntentBundleKeyEnum.DETAIL_CALENDAR.toString())
-}
-
-
-*/
     }
 
     private fun gotoDetailPage(detailPage: String?) {

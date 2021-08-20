@@ -87,12 +87,6 @@ class DetailFragment : Fragment() {
             IntentBundleKeyEnum.DETAIL_INSTAGRAM.toString() -> {
                 return inflater.inflate(R.layout.layout_instagram, container, false)
             }
-
-            /*
-IntentBundleKeyEnum.DETAIL_CALENDAR.toString() -> {
-return inflater.inflate(R.layout.layout_calendar, container, false)
-}
-*/
             else -> return layoutInflater.inflate(R.layout.fragment_detail, container, false)
         }
     }

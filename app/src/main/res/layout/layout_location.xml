@@ -14,7 +14,7 @@
         android:layout_marginStart="@dimen/material_16dp"
         android:layout_marginTop="@dimen/material_24dp"
         android:layout_marginEnd="@dimen/material_16dp"
-        android:hint="Latitude"
+        android:hint="@string/latitude"
         android:textColorHint="@color/gray"
         android:translationY="-4dp">
 
@@ -38,7 +38,7 @@
         android:layout_marginStart="@dimen/material_16dp"
         android:layout_marginTop="@dimen/material_16dp"
         android:layout_marginEnd="@dimen/material_16dp"
-        android:hint="Longitude"
+        android:hint="@string/longitude"
         android:textColorHint="@color/gray"
         android:translationY="-4dp">
 
@@ -61,7 +61,7 @@
         android:backgroundTint="@color/forest_green"
         android:layout_marginTop="@dimen/material_8dp"
         android:textAllCaps="false"
-        android:text="Create"
+        android:text="@string/create"
         android:layout_gravity="center"/>
 
 </LinearLayout>

@@ -4,12 +4,10 @@ import android.Manifest
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,21 +15,29 @@ import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.uygemre.qrcode.R
+import com.uygemre.qrcode.constants.PrefConstants
 import com.uygemre.qrcode.database.AppDatabase
 import com.uygemre.qrcode.database.QRCodeDTO
 import com.uygemre.qrcode.dialog.DialogResultScanQR
 import com.uygemre.qrcode.extensions.DateExtensions
-import com.uygemre.qrcode.extensions.visibile
+import com.uygemre.qrcode.helpers.LocalPrefManager
 import kotlinx.android.synthetic.main.fragment_scan_qr.*
-import kotlinx.android.synthetic.main.layout_dialog_result_scan_qr.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class ScanQRFragment : Fragment() {
 
+    private lateinit var dialogResultScanQR: DialogResultScanQR
+    lateinit var localPrefManager: LocalPrefManager
+
+    private var mInterstitialAd: InterstitialAd? = null
     private var codeScanner: CodeScanner? = null
-    lateinit var dialogResultScanQR: DialogResultScanQR
     private val dialog = DialogResultScanQR()
     private val bundle = Bundle()
     private var mPermissionGranted = false
@@ -51,6 +57,27 @@ class ScanQRFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        localPrefManager = LocalPrefManager(requireContext())
+        MobileAds.initialize(requireContext())
+
+        InterstitialAd.load(
+            requireContext(),
+            "ca-app-pub-3940256099942544/1033173712",
+            AdRequest.Builder().build(),
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(p0: InterstitialAd) {
+                    mInterstitialAd = p0
+                    if (localPrefManager.pull(PrefConstants.PREF_SCAN_AD, false)) {
+                        localPrefManager.push(PrefConstants.PREF_SCAN_AD, false)
+                    } else {
+                        mInterstitialAd?.show(requireActivity())
+                    }
+                }
+
+                override fun onAdFailedToLoad(p0: LoadAdError) {
+                    mInterstitialAd = null
+                }
+            })
         appDatabase = AppDatabase.getInstance(requireContext().applicationContext)
         dialogResultScanQR = DialogResultScanQR()
 
@@ -64,15 +91,17 @@ class ScanQRFragment : Fragment() {
             }
             setQrFormat(it.text)
             GlobalScope.launch {
-                appDatabase?.qrCodeDao()?.insert(QRCodeDTO(
-                    id = 0,
-                    description = qrDescription,
-                    date = DateExtensions.dateDiff8(),
-                    format = qrFormat,
-                    image = qrImage,
-                    text = it.text,
-                    barcodeFormat = it.barcodeFormat.toString()
-                ))
+                appDatabase?.qrCodeDao()?.insert(
+                    QRCodeDTO(
+                        id = 0,
+                        description = qrDescription,
+                        date = DateExtensions.dateDiff8(),
+                        format = qrFormat,
+                        image = qrImage,
+                        text = it.text,
+                        barcodeFormat = it.barcodeFormat.toString()
+                    )
+                )
             }
         }
         checkPermission()
@@ -158,8 +187,6 @@ class ScanQRFragment : Fragment() {
         } else {
             mPermissionGranted = true
         }
-
-
     }
 
     override fun onRequestPermissionsResult(
@@ -197,16 +224,16 @@ class ScanQRFragment : Fragment() {
 
     private fun showSettingsDialog() {
         val builder = AlertDialog.Builder(requireContext())
-            .setMessage("Lütfen ayarlardan kamera izni veriniz.")
+            .setMessage(getString(R.string.give_camera_permission))
             .setCancelable(false)
             .setNegativeButton(
-                "Cancel"
+                getString(R.string.cancel)
             ) { dialog, _ ->
                 mPermissionGranted = false
                 dialog?.cancel()
             }
             .setPositiveButton(
-                "Settings"
+                getString(R.string.settings)
             ) { _, _ ->
                 val intent = Intent(ACTION_APPLICATION_DETAILS_SETTINGS)
                 val uri = Uri.fromParts("package", context?.packageName, null)
@@ -219,15 +246,15 @@ class ScanQRFragment : Fragment() {
     private fun showDialog() {
         val builder = AlertDialog.Builder(requireContext())
             .setCancelable(false)
-            .setMessage("Kamera izni vermeniz gerekmektedir.")
+            .setMessage(getString(R.string.give_camera_permission))
             .setNegativeButton(
-                "Cancel"
+                getString(R.string.cancel)
             ) { dialog, _ ->
                 mPermissionGranted = false
                 dialog?.cancel()
             }
             .setPositiveButton(
-                "Accept"
+                getString(R.string.accept)
             ) { _, _ ->
                 requestPermissions(arrayOf(Manifest.permission.CAMERA), 100)
             }

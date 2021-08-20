@@ -51,19 +51,6 @@
     <dimen name="material_component_button_text_size">14pt</dimen>
     <dimen name="material_component_button_dense_text_size">13pt</dimen>
 
-
-    <!-- Structure -->
-    <dimen name="material_layout_app_bar_height">56dp</dimen>
-    <dimen name="material_layout_app_bar_horizontal_padding">16dp</dimen>
-    <dimen name="material_layout_app_bar_icon_padding">16dp</dimen>
-    <dimen name="material_layout_app_bar_title_left_padding">72dp</dimen>
-    <dimen name="material_layout_app_bar_title_bottom_padding">20dp</dimen>
-
-    <dimen name="pp_margin_default">20dp</dimen>
-    <dimen name="pp_padding_default">13dp</dimen>
-    <dimen name="pp_loader_size">45dp</dimen>
-    <dimen name="pp_margin_end">5dp</dimen>
-
     <dimen name="cardElevation">2dp</dimen>
     <dimen name="cardRadius">2dp</dimen>
 </resources>

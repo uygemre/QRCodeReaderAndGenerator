@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <include layout="@layout/layout_toolbar" />
@@ -88,7 +87,7 @@
         android:textAllCaps="false"
         android:backgroundTint="@color/forest_green"
         android:layout_marginTop="@dimen/material_8dp"
-        android:text="Create"
+        android:text="@string/create"
         android:layout_gravity="center"/>
 
 </LinearLayout>

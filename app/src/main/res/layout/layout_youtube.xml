@@ -14,7 +14,7 @@
         android:layout_marginStart="@dimen/material_16dp"
         android:layout_marginTop="@dimen/material_24dp"
         android:layout_marginEnd="@dimen/material_16dp"
-        android:hint="YouTube Video ID"
+        android:hint="@string/youtube_video_id"
         android:textColorHint="@color/gray"
         android:translationY="-4dp">
 

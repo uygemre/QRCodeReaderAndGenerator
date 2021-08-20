@@ -15,40 +15,16 @@ abstract class AppDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): AppDatabase? {
             if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.applicationContext,
-                        AppDatabase::class.java, "appdatabase")
-                        .allowMainThreadQueries()
-                        .fallbackToDestructiveMigration()
-                        .build()
-            }
-
-            return INSTANCE
-        }
-
-        fun destroyInstance() {
-            INSTANCE = null
-        }
-    }
-}
-
-/*
-    companion object {
-        private var instance: AppDatabase? = null
-
-        @Synchronized
-        fun getInstance(context: Context): AppDatabase {
-            if (instance == null) {
-                instance = Room.databaseBuilder(
+                INSTANCE = Room.databaseBuilder(
                     context.applicationContext,
-                    AppDatabase::class.java,
-                    "qrcodedatabase"
+                    AppDatabase::class.java, "appdatabase"
                 )
+                    .allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
                     .build()
             }
 
-            return instance!!
+            return INSTANCE
         }
     }
-
- */
+}

@@ -6,6 +6,8 @@
     <color name="colorAccent">#D81B60</color>
     <color name="gray">#808080</color>
     <color name="forest_green">#228B22</color>
+    <color name="forest_green_trans">#66228B22</color>
+    <color name="settings_green">#4D228B22</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
@@ -35,6 +37,8 @@
     <color name="lochmaraapprox">#087EC8</color>
     <color name="gold">#f7d000</color>
     <color name="blue_card_count">#ff1fa1f3</color>
+    <color name="premium_subscribe_button">#FA8A29</color>
+
 
     <color name="premium_gold">#92642d</color>
     <color name="premium_gold_light">#b99b76</color>

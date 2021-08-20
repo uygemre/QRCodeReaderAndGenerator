@@ -311,48 +311,6 @@
 
             </RelativeLayout>
 
-            <!--<View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginLeft="@dimen/material_24dp"
-                android:layout_marginRight="@dimen/material_24dp"
-                android:background="@color/gray" />
-
-            <RelativeLayout
-                android:id="@+id/rv_calendar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/material_24dp"
-                android:layout_marginRight="@dimen/material_24dp"
-                android:paddingTop="@dimen/material_12dp"
-                android:paddingBottom="@dimen/material_12dp">
-
-                <ImageView
-                    android:id="@+id/img_calendar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_calendar" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/material_8dp"
-                    android:layout_toEndOf="@id/img_calendar"
-                    android:text="@string/calendar"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/material_typography_subheading" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_next_gray_and_white" />
-
-            </RelativeLayout>-->
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"

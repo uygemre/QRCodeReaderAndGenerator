@@ -14,6 +14,49 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/settings_green"
+                android:padding="@dimen/material_4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/material_12dp"
+                    android:text="@string/language"
+                    android:textColor="@color/forest_green"
+                    android:textStyle="bold"
+                    android:theme="@style/SCBSwitch" />
+
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/spinners_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/material_12dp"
+                android:prompt="@string/language_options"
+                android:spinnerMode="dialog" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/material_8dp"
+                android:background="@color/settings_green"
+                android:padding="@dimen/material_4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/material_12dp"
+                    android:text="@string/settings"
+                    android:textColor="@color/forest_green"
+                    android:textStyle="bold"
+                    android:theme="@style/SCBSwitch" />
+
+            </LinearLayout>
+
             <RelativeLayout
                 android:id="@+id/rl_vibration"
                 android:layout_width="match_parent"
@@ -35,7 +78,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_12dp"
                     android:layout_toEndOf="@id/img_vibration"
-                    android:text="Vibration"
+                    android:text="@string/vibration"
                     android:theme="@style/SCBSwitch"
                     app:switchMinWidth="@dimen/material_52dp" />
 
@@ -62,7 +105,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_12dp"
                     android:layout_toEndOf="@id/img_sound"
-                    android:text="Sound"
+                    android:text="@string/sound"
                     android:theme="@style/SCBSwitch"
                     app:switchMinWidth="@dimen/material_52dp" />
 
@@ -89,7 +132,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_12dp"
                     android:layout_toEndOf="@id/img_open_auto_browser"
-                    android:text="Auto open url"
+                    android:text="@string/auto_open_url"
                     android:theme="@style/SCBSwitch"
                     app:switchMinWidth="@dimen/material_52dp" />
 
@@ -116,7 +159,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_12dp"
                     android:layout_toEndOf="@id/img_auto_copy_clipboard"
-                    android:text="Auto copy to clipboard"
+                    android:text="@string/auto_copy_to_clipboard"
                     android:theme="@style/SCBSwitch"
                     app:switchMinWidth="@dimen/material_52dp" />
 
@@ -143,11 +186,29 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_12dp"
                     android:layout_toEndOf="@id/img_auto_search_on_web"
-                    android:text="Auto web search"
+                    android:text="@string/auto_web_search"
                     android:theme="@style/SCBSwitch"
                     app:switchMinWidth="@dimen/material_52dp" />
 
             </RelativeLayout>
+
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/material_8dp"
+                android:background="@color/settings_green"
+                android:padding="@dimen/material_4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/material_12dp"
+                    android:text="@string/general"
+                    android:textColor="@color/forest_green"
+                    android:textStyle="bold"
+                    android:theme="@style/SCBSwitch" />
+
+            </LinearLayout>-->
 
         </LinearLayout>
 

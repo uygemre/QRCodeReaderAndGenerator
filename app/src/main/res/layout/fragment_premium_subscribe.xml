@@ -1,14 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <include layout="@layout/layout_toolbar" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Premium Subscribe Fragment" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true">
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/premium_subscribe_logo" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/material_16dp"
+                android:layout_marginTop="@dimen/material_16dp"
+                android:layout_marginEnd="@dimen/material_16dp"
+                android:layout_marginBottom="@dimen/material_8dp"
+                android:text="@string/dev_text_body"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/ll_subscribe_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="8">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/material_4dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="@dimen/material_16dp"
+                    app:cardElevation="@dimen/material_4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_pay_monthly"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@color/caribbean_green"
+                            android:gravity="center"
+                            android:paddingStart="@dimen/material_16dp"
+                            android:paddingTop="@dimen/material_8dp"
+                            android:paddingEnd="@dimen/material_16dp"
+                            android:paddingBottom="@dimen/material_8dp"
+                            android:text="@string/monthly"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_monthly_price"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/material_8dp"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/material_8dp"
+                            android:text="12,00$"
+                            android:textColor="@color/black"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="@dimen/material_4dp"
+                            android:gravity="center"
+                            android:text="@string/per_month"
+                            android:textSize="14sp" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_monthly_select"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/material_8dp"
+                            android:layout_marginTop="@dimen/material_16dp"
+                            android:layout_marginEnd="@dimen/material_8dp"
+                            android:layout_marginBottom="@dimen/material_8dp"
+                            android:background="@drawable/shape_subscribe_selected"
+                            android:gravity="center"
+                            android:text="@string/unselect"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/material_8dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="@dimen/material_16dp"
+                    app:cardElevation="@dimen/material_4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_pay_annual"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@color/caribbean_green"
+                            android:gravity="center"
+                            android:paddingStart="@dimen/material_16dp"
+                            android:paddingTop="@dimen/material_8dp"
+                            android:paddingEnd="@dimen/material_16dp"
+                            android:paddingBottom="@dimen/material_8dp"
+                            android:text="@string/annual"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_annual_price"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/material_8dp"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/material_8dp"
+                            android:text="75,00$"
+                            android:textColor="@color/black"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="@dimen/material_4dp"
+                            android:gravity="center"
+                            android:text="@string/per_years"
+                            android:textSize="14sp" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_annual_select"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/material_8dp"
+                            android:layout_marginTop="@dimen/material_16dp"
+                            android:layout_marginEnd="@dimen/material_8dp"
+                            android:layout_marginBottom="@dimen/material_8dp"
+                            android:background="@drawable/shape_subscribe_unselected"
+                            android:text="@string/select"
+                            android:textAllCaps="false"
+                            android:textColor="@color/caribbean_green" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/material_16dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnSubscribe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/material_8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_radius_16_caribbean_green"
+                    android:padding="@dimen/material_12dp"
+                    android:text="@string/subscribe"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_restore_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/material_8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_radius_16_gray"
+                    android:padding="@dimen/material_12dp"
+                    android:text="@string/restore"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/material_8dp"
+                android:text="@string/dev_text_body"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

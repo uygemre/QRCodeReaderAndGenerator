@@ -14,7 +14,7 @@
         android:layout_marginStart="@dimen/material_16dp"
         android:layout_marginTop="@dimen/material_24dp"
         android:layout_marginEnd="@dimen/material_16dp"
-        android:hint="Twitter Profile"
+        android:hint="@string/twitter_profile"
         android:textColorHint="@color/gray"
         android:translationY="-4dp">
 
@@ -48,7 +48,7 @@
             android:layout_margin="@dimen/material_4dp"
             android:buttonTint="@color/black"
             android:checked="true"
-            android:text="Twitter Profile" />
+            android:text="@string/twitter_profile" />
 
         <RadioButton
             android:id="@+id/rb_twitter_tweet"
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/material_4dp"
             android:buttonTint="@color/black"
-            android:text="Tweet" />
+            android:text="@string/tweet" />
 
     </RadioGroup>
 

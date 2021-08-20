@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">QRCode</string>
+    <string name="dev_text_body" translatable="false">Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500 lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, </string>
 
     <string name="scan_qr">Scan QR</string>
     <string name="create_qr">Create QR</string>
@@ -16,8 +17,6 @@
     <string name="twitter">Twitter</string>
     <string name="twitter_profile">Twitter Profile</string>
     <string name="twitter_tweet">Tweet</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="copy_password">Copy\nPassword</string>
     <string name="open">Open</string>
     <string name="share">Share</string>
@@ -34,7 +33,7 @@
     <string name="result">Result</string>
     <string name="description">Description</string>
     <string name="subject">Subject</string>
-    <string name="message">Message</string>
+    <string name="message" translatable="false">Message</string>
     <string name="create">Create</string>
     <string name="create_qr_description">Please continue by selecting the qr code format you want to generate.</string>
     <string name="cancel">Cancel</string>
@@ -46,4 +45,71 @@
     <string name="youtube_video_id">Video ID</string>
     <string name="youtube_video_url">Video URL</string>
     <string name="history">History</string>
+    <string name="save">Save</string>
+    <string name="vibration">Vibration</string>
+    <string name="sound">Sound</string>
+    <string name="auto_open_url">Auto open url</string>
+    <string name="auto_copy_to_clipboard">Auto copy to clipboard</string>
+    <string name="auto_web_search">Auto web search</string>
+    <string name="name">Name</string>
+    <string name="company">Company</string>
+    <string name="address">Address</string>
+    <string name="telephone">Telephone</string>
+    <string name="notes">Notes</string>
+    <string name="qr_code">QR_CODE</string>
+    <string name="instagram_user_name">Instagram Username</string>
+    <string name="linkedin_profile_name_or_url">LinkedIn Profile Name or Url</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <!--<string name="twitter_profile">Twitter Profile</string>-->
+    <string name="tweet">Tweet</string>
+    <string name="https">https://</string>
+    <string name="ssid_network_name">SSID / Network Name</string>
+    <string name="password">Password</string>
+    <string name="wpa_wpa2">WPA/WPA2</string>
+    <string name="wep">WEP</string>
+    <string name="hidden">Hidden</string>
+    <string name="no_pass">No Pass</string>
+    <string name="select">Select</string>
+    <string name="unselect">Unselect</string>
+
+    <string name="result_web_url">WEB URL</string>
+    <string name="result_contact">CONTACT</string>
+    <string name="result_e_mail">E-MAIL</string>
+    <string name="result_sms">SMS</string>
+    <string name="result_location">LOCATION</string>
+    <string name="result_phone">PHONE</string>
+    <string name="result_wifi">WI-FI</string>
+    <string name="result_document">DOCUMENT</string>
+    <string name="language">Language</string>
+    <string name="language_options">Language Options</string>
+
+    <string name="description_vibration">Turn on/off mobile vibration</string>
+    <string name="description_sound">Turn on/off mobile sound</string>
+    <string name="description_auto_copy_to_clipboard">Turn on/off auto copy to clipboard</string>
+    <string name="description_auto_web_search">Turn on/off auto web search</string>
+    <string name="description_auto_open_url">Turn on/off auto open url</string>
+    <string name="general">General</string>
+    <string name="premium">Premium</string>
+    <string name="monthly">Monthly</string>
+    <string name="annual">Annual</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="restore">Restore</string>
+    <string name="per_month">per Month</string>
+    <string name="per_years">per Years</string>
+    <string name="save_qr_code_toast">The QR code has been saved in your gallery.</string>
+    <string name="fill_the_blanks">Please fill the blanks.</string>
+    <string name="no_internet_connection">No Internet connection!</string>
+    <string name="okay">Okay</string>
+    <string name="give_camera_permission">Please give camera permission in settings.</string>
+
+    <string-array name="Languages">
+        <item>English</item>
+        <item>Turkish</item>
+        <item>Italian</item>
+        <item>German</item>
+        <item>Spanish</item>
+        <item>Hindi</item>
+        <item>Chinese (Simplified)</item>
+    </string-array>
 </resources>

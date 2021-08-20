@@ -17,7 +17,7 @@ import com.uygemre.qrcode.R
 
 fun TextInputEditText.checkNull(layout: TextInputLayout): Boolean {
     return if (this.text.isNullOrEmpty()) {
-        layout.error = "Please fill the blanks"
+        layout.error = layout.context.resources.getString(R.string.fill_the_blanks)
         layout.setErrorTextColor(ColorStateList.valueOf(resources.getColor(R.color.red)))
         false
     } else {
@@ -31,18 +31,18 @@ fun List<TextInputEditText?>?.multipleInputEditText(
     layout2: TextInputLayout
 ): Boolean {
     return if (this?.getOrNull(0)?.text.isNullOrEmpty() && !this?.getOrNull(1)?.text.isNullOrEmpty()) {
-        layout1.error = "Please fill the blanks"
+        layout1.error = layout1.context.resources.getString(R.string.fill_the_blanks)
         layout1.setErrorTextColor(ColorStateList.valueOf(this?.getOrNull(0)?.resources?.getColor(R.color.red)!!))
         layout2.isErrorEnabled = false
         false
     } else if (!this?.getOrNull(0)?.text.isNullOrEmpty() && this?.getOrNull(1)?.text.isNullOrEmpty()) {
-        layout2.error = "Please fill the blanks"
+        layout2.error = layout2.context.resources.getString(R.string.fill_the_blanks)
         layout2.setErrorTextColor(ColorStateList.valueOf(this?.getOrNull(1)?.resources?.getColor(R.color.red)!!))
         layout1.isErrorEnabled = false
         false
     } else if (this?.getOrNull(0)?.text.isNullOrEmpty() && this?.getOrNull(1)?.text.isNullOrEmpty()) {
-        layout1.error = "Please fill the blanks"
-        layout2.error = "Please fill the blanks"
+        layout1.error = layout1.context.resources.getString(R.string.fill_the_blanks)
+        layout2.error = layout2.context.resources.getString(R.string.fill_the_blanks)
         layout1.setErrorTextColor(ColorStateList.valueOf(this?.getOrNull(0)?.resources?.getColor(R.color.red)!!))
         layout2.setErrorTextColor(ColorStateList.valueOf(this.getOrNull(1)?.resources?.getColor(R.color.red)!!))
         false
@@ -61,9 +61,9 @@ fun Context.isNetworkConnected(): Boolean {
 
 fun Context.showNoInternetDialog() {
     val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-    builder.setTitle("İnternet Bağlantınız Yok!")
+    builder.setTitle(getString(R.string.no_internet_connection))
     builder.setPositiveButton(
-        "Tamam"
+        getString(R.string.okay)
     ) { _, i -> }
     builder.show()
 }

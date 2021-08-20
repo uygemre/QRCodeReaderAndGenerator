@@ -15,7 +15,7 @@
         android:layout_marginStart="@dimen/material_16dp"
         android:layout_marginTop="@dimen/material_24dp"
         android:layout_marginEnd="@dimen/material_16dp"
-        android:hint="SSID / Network Name"
+        android:hint="@string/ssid_network_name"
         android:textColorHint="@color/gray"
         android:translationY="-4dp">
 
@@ -39,7 +39,7 @@
         android:layout_marginStart="@dimen/material_16dp"
         android:layout_marginTop="@dimen/material_16dp"
         android:layout_marginEnd="@dimen/material_16dp"
-        android:hint="Password"
+        android:hint="@string/password"
         android:textColorHint="@color/gray"
         app:passwordToggleEnabled="true">
 
@@ -80,7 +80,7 @@
                 android:layout_margin="@dimen/material_4dp"
                 android:buttonTint="@color/black"
                 android:checked="true"
-                android:text="WPA/WPA2" />
+                android:text="@string/wpa_wpa2" />
 
             <RadioButton
                 android:id="@+id/rb_wep"
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/material_4dp"
                 android:buttonTint="@color/black"
-                android:text="WEP" />
+                android:text="@string/wep" />
 
             <RadioButton
                 android:id="@+id/rb_no_pass"
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/material_4dp"
                 android:buttonTint="@color/black"
-                android:text="No Pass" />
+                android:text="@string/no_pass" />
 
         </RadioGroup>
 
@@ -108,7 +108,7 @@
             android:layout_weight="1.5"
             android:buttonTint="@color/black"
             android:checked="false"
-            android:text="Hidden" />
+            android:text="@string/hidden" />
 
     </LinearLayout>
 
@@ -119,7 +119,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/material_8dp"
         android:backgroundTint="@color/forest_green"
-        android:text="Create"
+        android:text="@string/create"
         android:textAllCaps="false" />
 
 </LinearLayout>

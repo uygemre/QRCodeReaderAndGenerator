@@ -5,7 +5,6 @@ object PrefConstants {
     const val PREF_CONTENT_VIEW = "PREF_CONTENT_VIEW"
     const val PREF_WEB_URL = "PREF_WEB_URL"
     const val PREF_DOCUMENT = "PREF_DOCUMENT"
-    const val PREF_CONTACT = "PREF_CONTACT"
     const val PREF_CONTACT_NAME = "PREF_CONTACT_NAME"
     const val PREF_CONTACT_COMPANY = "PREF_CONTACT_COMPANY"
     const val PREF_CONTACT_ADDRESS = "PREF_CONTACT_ADDRESS"
@@ -37,4 +36,6 @@ object PrefConstants {
     const val PREF_AUTO_SEARCH_ON_WEB = "PREF_AUTO_SEARCH_ON_WEB"
     const val PREF_VIBRATION = "PREF_VIBRATION"
     const val PREF_SOUND = "PREF_SOUND"
+    const val PREF_LANGUAGE = "PREF_LANGUAGE"
+    const val PREF_SCAN_AD = "PREF_SCAN_AD"
 }

@@ -1,13 +1,8 @@
 package com.uygemre.qrcode.database
 
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.android.parcel.Parcelize
-
-// Created by Emre UYGUN on 7/1/21
-// Copyriht © Demiroren Teknoloji. All rights reserved.
 
 @Entity(tableName = "qrcodedatabase")
 data class QRCodeDTO(

@@ -17,7 +17,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -32,6 +35,7 @@ import com.uygemre.qrcode.extensions.DateExtensions
 import com.uygemre.qrcode.extensions.isNetworkConnected
 import com.uygemre.qrcode.extensions.showNoInternetDialog
 import kotlinx.android.synthetic.main.layout_dialog_create_qr.*
+import kotlinx.android.synthetic.main.layout_dialog_create_qr.adView
 import net.glxn.qrgen.android.QRCode
 import net.glxn.qrgen.core.scheme.*
 import java.io.ByteArrayOutputStream
@@ -39,7 +43,7 @@ import java.io.ByteArrayOutputStream
 class DialogCreateQR : BottomSheetDialogFragment() {
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
-    var sharedLastClickTime = 0L
+    private var sharedLastClickTime = 0L
     private var contentView: String? = ""
 
     override fun onCreateView(
@@ -57,6 +61,8 @@ class DialogCreateQR : BottomSheetDialogFragment() {
             contentView = it?.getString(PrefConstants.PREF_CONTENT_VIEW)
         }
 
+        MobileAds.initialize(requireContext())
+        adView.loadAd(AdRequest.Builder().build())
         setupView()
         saveQRCode()
         btn_share.setOnClickListener {
@@ -284,6 +290,7 @@ class DialogCreateQR : BottomSheetDialogFragment() {
                 "MY_QR_CODE",
                 null
             )
+            Toast.makeText(requireContext(), getString(R.string.save_qr_code_toast), Toast.LENGTH_LONG).show()
         }
     }
 }

@@ -7,6 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.zxing.BarcodeFormat
 import com.uygemre.qrcode.R
 import com.uygemre.qrcode.activities.DetailActivity
@@ -25,9 +30,10 @@ import kotlinx.coroutines.launch
 
 class HistoryFragment : Fragment(), OnItemClickListener {
 
-    lateinit var qrCodeDao: QRCodeDao
-    lateinit var recyclerViewAdapter: RecyclerViewAdapter
+    private lateinit var qrCodeDao: QRCodeDao
+    private lateinit var recyclerViewAdapter: RecyclerViewAdapter
     private val bundle: Bundle = Bundle()
+    private var mInterstitialAd: InterstitialAd? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,8 +48,19 @@ class HistoryFragment : Fragment(), OnItemClickListener {
 
         qrCodeDao = AppDatabase.getInstance(requireContext())?.qrCodeDao()!!
 
-        rv_history.layoutManager = LinearLayoutManager(requireContext())
+        MobileAds.initialize(requireContext())
+        InterstitialAd.load(requireContext(), "ca-app-pub-3940256099942544/1033173712", AdRequest.Builder().build(), object : InterstitialAdLoadCallback() {
+            override fun onAdLoaded(p0: InterstitialAd) {
+                mInterstitialAd = p0
+                mInterstitialAd?.show(requireActivity())
+            }
+            override fun onAdFailedToLoad(p0: LoadAdError) {
+                mInterstitialAd = null
+            }
+        })
+
         recyclerViewAdapter = RecyclerViewAdapter(qrCodeDao.getAll().reversed(), this)
+        rv_history.layoutManager = LinearLayoutManager(requireContext())
         rv_history.adapter = recyclerViewAdapter
     }
 

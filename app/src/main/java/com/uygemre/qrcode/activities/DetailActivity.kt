@@ -63,12 +63,6 @@ class DetailActivity : AppCompatActivity() {
                 IntentBundleKeyEnum.DETAIL_PREMIUM_SUBSCRIBE.toString() -> {
                     navigateToFragment(PremiumSubscribeFragment())
                 }
-                /*
-                IntentBundleKeyEnum.DETAIL_CALENDAR.toString() -> {
-                    navigateToFragment(DetailFragment.newInstance(it.extras))
-                }
-
-                */
             }
         }
     }

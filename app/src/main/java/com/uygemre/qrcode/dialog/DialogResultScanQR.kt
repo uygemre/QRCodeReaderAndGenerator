@@ -4,27 +4,24 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.app.SearchManager
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.net.Uri
-import android.net.wifi.WifiConfiguration
-import android.net.wifi.WifiManager
 import android.os.*
 import android.provider.Contacts
 import android.provider.ContactsContract
+import android.provider.Settings
 import android.text.Html
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -45,18 +42,17 @@ import kotlinx.android.synthetic.main.item_web_url.*
 import kotlinx.android.synthetic.main.item_wifi.*
 import kotlinx.android.synthetic.main.layout_dialog_result_scan_qr.*
 import net.glxn.qrgen.android.QRCode
-
+import android.content.Intent
 
 class DialogResultScanQR : BottomSheetDialogFragment() {
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
+    private lateinit var localPrefManager: LocalPrefManager
     var sharedLastClickTime = 0L
-    lateinit var localPrefManager: LocalPrefManager
 
     private var intent = Intent()
     private var text: String? = ""
 
-    /////////////////////////////////////////////
     private var contactName: String? = ""
     private var contactCompany: String? = ""
     private var contactAddress: String? = ""
@@ -65,23 +61,18 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
     private var contactUrl: String? = ""
     private var contactNotes: String? = ""
 
-    /////////////////////////////////////////////
     private var sendEmail: String? = ""
     private var sendEmailSubject: String? = ""
     private var sendEmailMessage: String? = ""
 
-    /////////////////////////////////////////////
     private var smsPhone: String? = ""
     private var smsMessage: String? = ""
 
-    /////////////////////////////////////////////
     private var latitude: String? = ""
     private var longitude: String? = ""
 
-    /////////////////////////////////////////////
     private var phone: String? = ""
 
-    /////////////////////////////////////////////
     private var wifiSsid: String? = ""
     private var wifiPassword: String? = ""
 
@@ -99,6 +90,9 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
 
         localPrefManager = LocalPrefManager(requireContext())
 
+        MobileAds.initialize(requireContext())
+        adView.loadAd(AdRequest.Builder().build())
+
         setupView()
         openBrowserOnClick()
         searchInBrowserOnClick()
@@ -111,12 +105,12 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
         shareOnClick()
         addContactOnClick()
         addPhoneContactOnClick()
+        connectOnClick()
+
         if (localPrefManager.pull(PrefConstants.PREF_VIBRATION, false))
             vibrate()
         if (localPrefManager.pull(PrefConstants.PREF_SOUND, false))
             soundBeep()
-
-        //connectOnClick()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -169,9 +163,10 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
         when {
             text?.startsWith("https://") == true || text?.startsWith("http://") == true -> {
                 tv_result.text = Html.fromHtml(
-                    "<b>" + "WEB URL" + "</b>" + "<br>" + "</br>" +
+                    "<b>" + resources.getString(R.string.result_web_url) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
+
                 layout_web_url.visibile()
                 tv_description.text = text
                 if (isOpenBrowserAuto) {
@@ -181,7 +176,7 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
             }
             text?.startsWith("MECARD") == true || text?.startsWith("BEGIN:VCARD") == true -> {
                 tv_result.text = Html.fromHtml(
-                    "<b>" + "CONTACT" + "</b>" + "<br>" + "</br>" +
+                    "<b>" + resources.getString(R.string.result_contact) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
                 layout_contact.visibile()
@@ -196,7 +191,7 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
             }
             text?.startsWith("mailto") == true || text?.startsWith("MAILTO") == true -> {
                 tv_result.text = Html.fromHtml(
-                    "<b>" + "E-MAIL" + "</b>" + "<br>" + "</br>" +
+                    "<b>" + resources.getString(R.string.result_e_mail) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
 
@@ -206,7 +201,7 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
             }
             text?.startsWith("SMSTO:") == true || text?.startsWith("sms:") == true -> {
                 tv_result.text = Html.fromHtml(
-                    "<b>" + "SMS" + "</b>" + "<br>" + "</br>" +
+                    "<b>" + resources.getString(R.string.result_sms) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
                 layout_sms.visibile()
@@ -215,7 +210,7 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
             }
             text?.startsWith("geo") == true || text?.startsWith("GEO") == true -> {
                 tv_result.text = Html.fromHtml(
-                    "<b>" + "LOCATION" + "</b>" + "<br>" + "</br>" +
+                    "<b>" + resources.getString(R.string.result_location) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
                 tv_description.text = setupLocationDescription(text)
@@ -224,7 +219,7 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
             }
             text?.startsWith("tel:") == true -> {
                 tv_result.text = Html.fromHtml(
-                    "<b>" + "PHONE" + "</b>" + "<br>" + "</br>" +
+                    "<b>" + resources.getString(R.string.result_phone) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
                 layout_phone.visibile()
@@ -233,7 +228,7 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
             }
             text?.startsWith("WIFI") == true -> {
                 tv_result.text = Html.fromHtml(
-                    "<b>" + "WI-FI" + "</b>" + "<br>" + "</br>" +
+                    "<b>" + resources.getString(R.string.result_wifi) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
                 tv_description.text = setupWifiDescription(text)
@@ -242,7 +237,7 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
             }
             else -> {
                 tv_result.text = Html.fromHtml(
-                    "<b>" + "DOCUMENT" + "</b>" + "<br>" + "</br>" +
+                    "<b>" + resources.getString(R.string.result_document) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
                 layout_document.visibile()
@@ -265,30 +260,59 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
 
     fun setupVCardDescription(text: String?): String {
         return if (text?.startsWith("BEGIN:VCARD") == true) {
-            return text.replace("BEGIN:VCARD", "")
-                .replace("VERSION:3.0", "")
+            return text.replace("BEGIN:VCARD\n", "")
+                .replace("VERSION:3.0\n", "")
                 .replace("N:", "")
                 .replace("N:;", "")
                 .replace("FN:", "")
+                .replace("TITLE:", "")
+                .replace("ORG:", "")
                 .replace("URL:", "")
                 .replace("ORG:", "")
-                .replace("TITLE:", "")
-                .replace("TEL;TYPE=voice,home,pref:", "")
-                .replace("TEL;TYPE=voice,work,pref:", "")
-                .replace("TEL;TYPE=voice,cell,pref:", "")
-                .replace("TEL;TYPE=fax,home,pref:", "")
-                .replace("TEL;TYPE=fax,work,pref:", "")
-                .replace("TEL;TYPE=CELL:", "")
-                .replace("TEL;TYPE=FAX:", "")
+                .replace("EMAIL;TYPE=INTERNET:", "")
                 .replace("TEL:", "")
-                .replace("ADR:;;", "")
-                .replace("ADR:", "")
-                .replace("EMAIL;", "")
-                .replace("BDAY:", "")
-                .replace("EMAIL:", "")
-                .replace("TYPE=INTERNET:", "")
+                .replace("TEL;TYPE=voice,work,pref:", "")
+                .replace("TEL;TYPE=voice,home,pref:", "")
                 .replace("TEL;TYPE=voice,cell,pref:", "")
+                .replace("TEL;TYPE=fax,work,pref:", "")
+                .replace("TEL;TYPE=fax,home,pref:", "")
+                .replace("ADR:", "")
+                .replace("ADR:;;", "")
+                .replace(";;", "")
                 .replace("END:VCARD", "")
+                .replace(";", " ")
+                .replace("\n\n", "\n")
+            /*
+            return text.replace("BEGIN:VCARD\n", "")
+                .replace("VERSION:3.0\n", "")
+                .replace("N", "")
+                .replace("N:;", "")
+                .replace("FN", "")
+                .replace("URL", "")
+                .replace("ORG", "")
+                .replace("TITLE", "")
+                .replace("NOTE", "")
+                .replace("TEL;TYPE=voice,home,pref", "")
+                .replace("TEL;TYPE=voice,work,pref", "")
+                .replace("TEL;TYPE=voice,cell,pref", "")
+                .replace("TEL;TYPE=fax,home,pref", "")
+                .replace("TEL;TYPE=fax,work,pref", "")
+                .replace("TEL;TYPE=CELL", "")
+                .replace("TEL;TYPE=FAX", "")
+                .replace("TEL", "")
+                .replace("ADR:;;", "")
+                .replace("ADR", "")
+                .replace("EMAIL;", "")
+                .replace("BDAY", "")
+                .replace("EMAIL", "")
+                .replace("TYPE=INTERNET", "")
+                .replace("TEL;TYPE=voice,cell,pref", "")
+                .replace("END:VCARD", "")
+                .replace(";", " ")
+                .replace(":", "")
+                .replace("\n\n", "\n")
+
+             */
         } else
             text ?: ""
     }
@@ -654,31 +678,7 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
 
     private fun connectOnClick() {
         ll_wifi_connect.setOnClickListener {
-            val wifiConfiguration = WifiConfiguration()
-            wifiConfiguration.SSID = String.format("\"%s\"", wifiSsid)
-            wifiConfiguration.preSharedKey = String.format("\"%s\"", wifiPassword)
-
-
-            wifiConfiguration.status = WifiConfiguration.Status.DISABLED;
-            wifiConfiguration.priority = 40;
-            wifiConfiguration.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
-            wifiConfiguration.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
-            wifiConfiguration.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);
-            wifiConfiguration.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
-            wifiConfiguration.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
-            wifiConfiguration.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40);
-            wifiConfiguration.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP104);
-            wifiConfiguration.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);
-            wifiConfiguration.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
-
-            val wifiManager =
-                requireActivity().applicationContext.getSystemService(Context.WIFI_SERVICE) as? WifiManager?
-            val networkId = wifiManager?.addNetwork(wifiConfiguration)
-            wifiManager?.disconnect()
-            wifiManager?.enableNetwork(networkId!!, true)
-            wifiManager?.reconnect()
-            //wifiManager?.isWifiEnabled = true
-            Log.d("networkId", networkId.toString())
+            startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
         }
     }
 
@@ -690,6 +690,15 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
             copyToClipboard(text)
         }
         ll_copy_contact.setOnClickListener {
+            when {
+                text?.contains("VCARD") == true -> {
+                    copyToClipboard(setupVCardDescription(text))
+                }
+                text?.contains("MECARD") == true -> {
+                    copyToClipboard(setMeCardDescription(text))
+                }
+                else -> share(text)
+            }
         }
         ll_copy_email.setOnClickListener {
             copyToClipboard(setupEMailDescription(text))
@@ -706,6 +715,9 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
         ll_copy_wifi.setOnClickListener {
             copyToClipboard(setupWifiDescription(text))
         }
+        tv_copy_password.setOnClickListener {
+            copyToClipboard(wifiPassword)
+        }
     }
 
     private fun shareOnClick() {
@@ -716,7 +728,15 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
             share(text)
         }
         ll_share_contact.setOnClickListener {
-
+            when {
+                text?.contains("VCARD") == true -> {
+                    share(setupVCardDescription(text))
+                }
+                text?.contains("MECARD") == true -> {
+                    share(setMeCardDescription(text))
+                }
+                else -> share(text)
+            }
         }
         ll_share_email.setOnClickListener {
             share(setupEMailDescription(text))
