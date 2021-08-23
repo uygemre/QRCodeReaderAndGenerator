@@ -9,7 +9,6 @@ enum class IntentBundleKeyEnum {
     DETAIL_SMS,
     DETAIL_LOCATION,
     DETAIL_PHONE,
-    DETAIL_CALENDAR,
     DETAIL_WIFI,
     DETAIL_TWITTER,
     DETAIL_WHATSAPP,

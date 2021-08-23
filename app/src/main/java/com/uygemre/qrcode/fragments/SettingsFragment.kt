@@ -36,7 +36,7 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         MobileAds.initialize(requireContext())
-        InterstitialAd.load(requireContext(), "ca-app-pub-3940256099942544/1033173712", AdRequest.Builder().build(), object : InterstitialAdLoadCallback() {
+        InterstitialAd.load(requireContext(), "ca-app-pub-7295215165419770/5915515669", AdRequest.Builder().build(), object : InterstitialAdLoadCallback() {
             override fun onAdLoaded(p0: InterstitialAd) {
                 mInterstitialAd = p0
                 mInterstitialAd?.show(requireActivity())

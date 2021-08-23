@@ -98,4 +98,5 @@
     <string name="no_internet_connection">Nessuna connessione internet!</string>
     <string name="okay">va bene</string>
     <string name="give_camera_permission">Si prega di concedere l\'autorizzazione alla fotocamera nelle impostazioni.</string>
+    <string name="copied_clipboard">Copiato negli appunti</string>
 </resources>

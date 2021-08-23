@@ -8,25 +8,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-import com.google.zxing.BarcodeFormat
 import com.uygemre.qrcode.R
-import com.uygemre.qrcode.activities.DetailActivity
-import com.uygemre.qrcode.constants.PrefConstants
 import com.uygemre.qrcode.database.AppDatabase
 import com.uygemre.qrcode.database.QRCodeDTO
 import com.uygemre.qrcode.database.QRCodeDao
 import com.uygemre.qrcode.dialog.DialogResultScanQR
-import com.uygemre.qrcode.enums.IntentBundleKeyEnum
-import com.uygemre.qrcode.extensions.openActivity
 import com.uygemre.qrcode.recyclerview.OnItemClickListener
 import com.uygemre.qrcode.recyclerview.RecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_history.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class HistoryFragment : Fragment(), OnItemClickListener {
 
@@ -49,15 +43,7 @@ class HistoryFragment : Fragment(), OnItemClickListener {
         qrCodeDao = AppDatabase.getInstance(requireContext())?.qrCodeDao()!!
 
         MobileAds.initialize(requireContext())
-        InterstitialAd.load(requireContext(), "ca-app-pub-3940256099942544/1033173712", AdRequest.Builder().build(), object : InterstitialAdLoadCallback() {
-            override fun onAdLoaded(p0: InterstitialAd) {
-                mInterstitialAd = p0
-                mInterstitialAd?.show(requireActivity())
-            }
-            override fun onAdFailedToLoad(p0: LoadAdError) {
-                mInterstitialAd = null
-            }
-        })
+        mInterstitialAd?.show(requireActivity())
 
         recyclerViewAdapter = RecyclerViewAdapter(qrCodeDao.getAll().reversed(), this)
         rv_history.layoutManager = LinearLayoutManager(requireContext())
@@ -72,7 +58,15 @@ class HistoryFragment : Fragment(), OnItemClickListener {
     }
 
     override fun goDetailItemOnClicked(qrCodeDTO: QRCodeDTO) {
-        openDialog(text = qrCodeDTO.text ?: "", barcodeFormat = qrCodeDTO.barcodeFormat ?: "")
+        mInterstitialAd?.show(requireActivity())
+        mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+            override fun onAdDismissedFullScreenContent() {
+                super.onAdDismissedFullScreenContent()
+                openDialog(text = qrCodeDTO.text ?: "", barcodeFormat = qrCodeDTO.barcodeFormat ?: "")
+            }
+        }
+        if (mInterstitialAd == null)
+            openDialog(text = qrCodeDTO.text ?: "", barcodeFormat = qrCodeDTO.barcodeFormat ?: "")
     }
 
     private fun openDialog(text: String, barcodeFormat: String) {
@@ -81,5 +75,25 @@ class HistoryFragment : Fragment(), OnItemClickListener {
         bundle.putString("barcodeFormat", barcodeFormat)
         dialog.arguments = bundle
         dialog.show(childFragmentManager, "dialog")
+    }
+
+    private fun loadInterstitialAd() {
+        InterstitialAd.load(
+            requireContext(),
+            "ca-app-pub-7295215165419770/5915515669",
+            AdRequest.Builder().build(),
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(p0: InterstitialAd) {
+                    mInterstitialAd = p0
+                }
+                override fun onAdFailedToLoad(p0: LoadAdError) {
+                    mInterstitialAd = null
+                }
+            })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadInterstitialAd()
     }
 }

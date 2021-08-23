@@ -98,4 +98,5 @@
     <string name="no_internet_connection">没有互联网连接！</string>
     <string name="okay">好的</string>
     <string name="give_camera_permission">请在设置中授予相机权限。</string>
+    <string name="copied_clipboard">复制到剪贴板</string>
 </resources>

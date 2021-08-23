@@ -6,6 +6,8 @@
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.35555555555555557" />
         <entry key="app/src/main/res/layout/item_wifi.xml" value="0.35555555555555557" />
         <entry key="app/src/main/res/layout/layout_contact.xml" value="0.35555555555555557" />
+        <entry key="app/src/main/res/layout/layout_dialog_create_qr.xml" value="0.30833333333333335" />
+        <entry key="app/src/main/res/layout/layout_dialog_result_scan_qr.xml" value="0.3527777777777778" />
       </map>
     </option>
   </component>

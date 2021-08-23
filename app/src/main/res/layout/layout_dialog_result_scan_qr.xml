@@ -96,7 +96,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/material_8dp"
                 ads:adSize="LARGE_BANNER"
-                ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+                ads:adUnitId="ca-app-pub-7295215165419770/7278173573" />
 
         </LinearLayout>
 

@@ -33,7 +33,7 @@
     <string name="result">Result</string>
     <string name="description">Description</string>
     <string name="subject">Subject</string>
-    <string name="message" translatable="false">Message</string>
+    <string name="message">Message</string>
     <string name="create">Create</string>
     <string name="create_qr_description">Please continue by selecting the qr code format you want to generate.</string>
     <string name="cancel">Cancel</string>
@@ -102,6 +102,7 @@
     <string name="no_internet_connection">No Internet connection!</string>
     <string name="okay">Okay</string>
     <string name="give_camera_permission">Please give camera permission in settings.</string>
+    <string name="copied_clipboard">Copied to clipboard</string>
 
     <string-array name="Languages">
         <item>English</item>

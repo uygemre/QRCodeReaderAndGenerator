@@ -98,4 +98,5 @@
     <string name="no_internet_connection">İnternet bağlantısı yok!</string>
     <string name="okay">Tamam</string>
     <string name="give_camera_permission">Lütfen ayarlarda kamera izni verin.</string>
+    <string name="copied_clipboard">Panoya kopyalandı</string>
 </resources>

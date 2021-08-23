@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "515113593439",
+    "project_id": "qrcodereader-adef4",
+    "storage_bucket": "qrcodereader-adef4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:515113593439:android:17a98befd619bbe85049ea",
+        "android_client_info": {
+          "package_name": "com.uygemre.qrcode"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "515113593439-voalsucgm7oachlv2aqk9nof6htiu6qi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8NnyvLKFfW7wYvviTvhxukUrVrlc7-jU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "515113593439-voalsucgm7oachlv2aqk9nof6htiu6qi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

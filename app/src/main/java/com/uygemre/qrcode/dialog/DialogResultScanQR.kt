@@ -30,7 +30,7 @@ import com.uygemre.qrcode.constants.PrefConstants
 import com.uygemre.qrcode.extensions.DateExtensions
 import com.uygemre.qrcode.extensions.isNetworkConnected
 import com.uygemre.qrcode.extensions.showNoInternetDialog
-import com.uygemre.qrcode.extensions.visibile
+import com.uygemre.qrcode.extensions.visible
 import com.uygemre.qrcode.helpers.LocalPrefManager
 import kotlinx.android.synthetic.main.item_contact.*
 import kotlinx.android.synthetic.main.item_document.*
@@ -43,12 +43,17 @@ import kotlinx.android.synthetic.main.item_wifi.*
 import kotlinx.android.synthetic.main.layout_dialog_result_scan_qr.*
 import net.glxn.qrgen.android.QRCode
 import android.content.Intent
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 class DialogResultScanQR : BottomSheetDialogFragment() {
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
     private lateinit var localPrefManager: LocalPrefManager
     var sharedLastClickTime = 0L
+    private var mInterstitialAd: InterstitialAd? = null
 
     private var intent = Intent()
     private var text: String? = ""
@@ -84,6 +89,11 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
         return inflater.inflate(R.layout.layout_dialog_result_scan_qr, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+        loadInterstitialAd()
+    }
+
     @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -91,8 +101,8 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
         localPrefManager = LocalPrefManager(requireContext())
 
         MobileAds.initialize(requireContext())
-        adView.loadAd(AdRequest.Builder().build())
 
+        adView.loadAd(AdRequest.Builder().build())
         setupView()
         openBrowserOnClick()
         searchInBrowserOnClick()
@@ -145,6 +155,21 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
         return displayMetrics.heightPixels
     }
 
+    private fun loadInterstitialAd() {
+        InterstitialAd.load(
+            requireContext(),
+            "ca-app-pub-7295215165419770/5915515669",
+            AdRequest.Builder().build(),
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(p0: InterstitialAd) {
+                    mInterstitialAd = p0
+                }
+                override fun onAdFailedToLoad(p0: LoadAdError) {
+                    mInterstitialAd = null
+                }
+            })
+    }
+
     @SuppressLint("SetTextI18n")
     private fun setupView() {
         text = arguments?.getString("text")
@@ -167,7 +192,7 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
 
-                layout_web_url.visibile()
+                layout_web_url.visible()
                 tv_description.text = text
                 if (isOpenBrowserAuto) {
                     intent = Intent(Intent.ACTION_VIEW, Uri.parse(text))
@@ -179,7 +204,7 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
                     "<b>" + resources.getString(R.string.result_contact) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
-                layout_contact.visibile()
+                layout_contact.visible()
 
                 if (text?.startsWith("MECARD") == true) {
                     tv_description.text = setMeCardDescription(text)
@@ -196,7 +221,7 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
                 )
 
                 tv_description.text = setupEMailDescription(text)
-                layout_email.visibile()
+                layout_email.visible()
                 separateEMail(text)
             }
             text?.startsWith("SMSTO:") == true || text?.startsWith("sms:") == true -> {
@@ -204,7 +229,7 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
                     "<b>" + resources.getString(R.string.result_sms) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
-                layout_sms.visibile()
+                layout_sms.visible()
                 tv_description.text = setupSmsDescription(text)
                 separateSms(text)
             }
@@ -215,14 +240,14 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
                 )
                 tv_description.text = setupLocationDescription(text)
                 separateLocation(text)
-                layout_location.visibile()
+                layout_location.visible()
             }
             text?.startsWith("tel:") == true -> {
                 tv_result.text = Html.fromHtml(
                     "<b>" + resources.getString(R.string.result_phone) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
-                layout_phone.visibile()
+                layout_phone.visible()
                 phone = text?.replace("tel:", "")
                 tv_description.text = text?.replace("tel:", "")
             }
@@ -233,14 +258,14 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
                 )
                 tv_description.text = setupWifiDescription(text)
                 separateWifi(text)
-                layout_wifi.visibile()
+                layout_wifi.visible()
             }
             else -> {
                 tv_result.text = Html.fromHtml(
                     "<b>" + resources.getString(R.string.result_document) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
-                layout_document.visibile()
+                layout_document.visible()
                 tv_description.text = "$text"
                 if (isAutoSearchOnWeb) {
                     intent = Intent(Intent.ACTION_WEB_SEARCH)
@@ -591,6 +616,7 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
         )
         val clip = ClipData.newPlainText("Copy", text)
         clipboard?.setPrimaryClip(clip)
+        Toast.makeText(requireContext(), getString(R.string.copied_clipboard), Toast.LENGTH_SHORT).show()
     }
 
     private fun share(text: String?) {
@@ -607,7 +633,7 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
             }
             ContextCompat.startActivity(
                 requireContext(),
-                Intent.createChooser(intent, "Seçiniz"),
+                Intent.createChooser(intent, getString(R.string.select)),
                 null
             )
         } else {

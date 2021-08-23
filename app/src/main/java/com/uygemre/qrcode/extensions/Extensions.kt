@@ -68,16 +68,8 @@ fun Context.showNoInternetDialog() {
     builder.show()
 }
 
-fun View.gone() {
-    visibility = View.GONE
-}
-
-fun View.visibile() {
+fun View.visible() {
     visibility = View.VISIBLE
-}
-
-fun View.inVisibile() {
-    visibility = View.INVISIBLE
 }
 
 fun <T> Context.openActivity(it: Class<T>, bundle: Bundle) {

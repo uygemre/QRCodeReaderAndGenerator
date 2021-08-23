@@ -6,6 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.material.textfield.TextInputEditText
 import com.uygemre.qrcode.R
 import com.uygemre.qrcode.constants.PrefConstants
@@ -37,6 +42,7 @@ class DetailFragment : Fragment() {
     private var contentView: String? = ""
     private var isHidden: Boolean? = false
     private var wifiAuthentication: String? = ""
+    private var mInterstitialAd: InterstitialAd? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -107,7 +113,7 @@ class DetailFragment : Fragment() {
                 IntentBundleKeyEnum.DETAIL_WEB_URL.toString() -> {
                     bundle.putString(
                         PrefConstants.PREF_WEB_URL,
-                        edt_web_url.text.toString().toLowerCase(Locale.ROOT)
+                        edt_web_url.text.toString().lowercase(Locale.ROOT)
                     )
                     bundle.putString(
                         PrefConstants.PREF_CONTENT_VIEW,
@@ -119,7 +125,7 @@ class DetailFragment : Fragment() {
                 IntentBundleKeyEnum.DETAIL_DOCUMENT.toString() -> {
                     bundle.putString(
                         PrefConstants.PREF_DOCUMENT,
-                        edt_document.text.toString().toLowerCase()
+                        edt_document.text.toString().lowercase()
                     )
                     bundle.putString(
                         PrefConstants.PREF_CONTENT_VIEW,
@@ -131,7 +137,7 @@ class DetailFragment : Fragment() {
                 IntentBundleKeyEnum.DETAIL_EMAIL.toString() -> {
                     bundle.putString(
                         PrefConstants.PREF_EMAIL,
-                        edt_email.text.toString().toLowerCase(Locale.getDefault())
+                        edt_email.text.toString().lowercase(Locale.getDefault())
                     )
                     bundle.putString(
                         PrefConstants.PREF_EMAIL_SUBJECT,
@@ -163,15 +169,15 @@ class DetailFragment : Fragment() {
                     )
                     bundle.putString(
                         PrefConstants.PREF_CONTACT_NAME,
-                        edt_contact_name.text.toString().toLowerCase(Locale.getDefault())
+                        edt_contact_name.text.toString().lowercase(Locale.getDefault())
                     )
                     bundle.putString(
                         PrefConstants.PREF_CONTACT_EMAIL,
-                        edt_contact_email.text.toString().toLowerCase(Locale.getDefault())
+                        edt_contact_email.text.toString().lowercase(Locale.getDefault())
                     )
                     bundle.putString(
                         PrefConstants.PREF_CONTACT_TELEPHONE,
-                        edt_contact_telephone.text.toString().toLowerCase(Locale.getDefault())
+                        edt_contact_telephone.text.toString().lowercase(Locale.getDefault())
                     )
                     bundle.putString(
                         PrefConstants.PREF_CONTENT_VIEW,
@@ -222,7 +228,7 @@ class DetailFragment : Fragment() {
                     )
                     bundle.putString(
                         PrefConstants.PREF_PHONE,
-                        edt_phone.text.toString().toLowerCase(Locale.getDefault())
+                        edt_phone.text.toString().lowercase(Locale.getDefault())
                     )
 
                     isNull = edt_phone.checkNull(til_phone)
@@ -365,19 +371,29 @@ class DetailFragment : Fragment() {
             }
 
             if (isNull) {
-                dialog.arguments = bundle
-                dialog.show(childFragmentManager, "dialog")
-                list.clear()
+                mInterstitialAd?.show(requireActivity())
+                mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+                    override fun onAdDismissedFullScreenContent() {
+                        super.onAdDismissedFullScreenContent()
+                        dialog.arguments = bundle
+                        dialog.show(childFragmentManager, "dialog")
+                        list.clear()
+                    }
+                }
+                if (mInterstitialAd == null) {
+                    dialog.arguments = bundle
+                    dialog.show(childFragmentManager, "dialog")
+                    list.clear()
+                }
             }
         }
-
         btn_back.setOnClickListener {
             activity?.onBackPressed()
         }
     }
 
     private fun checkTwitterRadioButton() {
-        rg_twitter?.setOnCheckedChangeListener { group, checkedId ->
+        rg_twitter?.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.rb_twitter_profile -> {
                     til_twitter.hint = resources.getString(R.string.twitter_profile)
@@ -390,7 +406,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun checkYouTubeRadioButton() {
-        rg_youtube?.setOnCheckedChangeListener { group, checkedId ->
+        rg_youtube?.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.rb_youtube_video_id -> {
                     til_youtube.hint = resources.getString(R.string.youtube_video_id)
@@ -531,6 +547,26 @@ class DetailFragment : Fragment() {
                 )
             }
         }
+    }
+
+    private fun loadInterstitialAd() {
+        InterstitialAd.load(
+            requireContext(),
+            "ca-app-pub-7295215165419770/5915515669",
+            AdRequest.Builder().build(),
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(p0: InterstitialAd) {
+                    mInterstitialAd = p0
+                }
+                override fun onAdFailedToLoad(p0: LoadAdError) {
+                    mInterstitialAd = null
+                }
+            })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadInterstitialAd()
     }
 
     companion object {

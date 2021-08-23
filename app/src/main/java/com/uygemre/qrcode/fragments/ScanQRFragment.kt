@@ -7,6 +7,8 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS
 import android.view.LayoutInflater
 import android.view.View
@@ -15,9 +17,7 @@ import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.uygemre.qrcode.R
@@ -54,30 +54,25 @@ class ScanQRFragment : Fragment() {
         return layoutInflater.inflate(R.layout.fragment_scan_qr, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        localPrefManager = LocalPrefManager(requireContext())
-        MobileAds.initialize(requireContext())
-
+    private fun loadInterstitialAd() {
         InterstitialAd.load(
             requireContext(),
-            "ca-app-pub-3940256099942544/1033173712",
+            "ca-app-pub-7295215165419770/5915515669",
             AdRequest.Builder().build(),
             object : InterstitialAdLoadCallback() {
                 override fun onAdLoaded(p0: InterstitialAd) {
                     mInterstitialAd = p0
-                    if (localPrefManager.pull(PrefConstants.PREF_SCAN_AD, false)) {
-                        localPrefManager.push(PrefConstants.PREF_SCAN_AD, false)
-                    } else {
-                        mInterstitialAd?.show(requireActivity())
-                    }
                 }
-
                 override fun onAdFailedToLoad(p0: LoadAdError) {
                     mInterstitialAd = null
                 }
             })
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        localPrefManager = LocalPrefManager(requireContext())
         appDatabase = AppDatabase.getInstance(requireContext().applicationContext)
         dialogResultScanQR = DialogResultScanQR()
 
@@ -87,7 +82,15 @@ class ScanQRFragment : Fragment() {
                 bundle.putString("text", it.text)
                 bundle.putString("barcodeFormat", it.barcodeFormat.toString())
                 dialog.arguments = bundle
-                dialog.show(childFragmentManager, "dialog")
+                mInterstitialAd?.show(requireActivity())
+                mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+                    override fun onAdDismissedFullScreenContent() {
+                        super.onAdDismissedFullScreenContent()
+                        dialog.show(childFragmentManager, "dialog")
+                    }
+                }
+                if (mInterstitialAd == null)
+                    dialog.show(childFragmentManager, "dialog")
             }
             setQrFormat(it.text)
             GlobalScope.launch {
@@ -212,6 +215,7 @@ class ScanQRFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        loadInterstitialAd()
         if (mPermissionGranted) {
             codeScanner?.startPreview()
         }

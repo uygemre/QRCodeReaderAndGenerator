@@ -98,4 +98,5 @@
     <string name="no_internet_connection">¡Sin conexión a Internet!</string>
     <string name="okay">Okey</string>
     <string name="give_camera_permission">Conceda permiso a la cámara en la configuración.</string>
+    <string name="copied_clipboard">Copiado al portapapeles</string>
 </resources>

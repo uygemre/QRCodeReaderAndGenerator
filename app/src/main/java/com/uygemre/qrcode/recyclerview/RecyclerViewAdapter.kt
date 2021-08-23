@@ -2,12 +2,9 @@ package com.uygemre.qrcode.recyclerview
 
 import android.annotation.SuppressLint
 import android.graphics.Outline
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView

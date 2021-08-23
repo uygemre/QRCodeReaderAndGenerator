@@ -290,7 +290,11 @@ class DialogCreateQR : BottomSheetDialogFragment() {
                 "MY_QR_CODE",
                 null
             )
-            Toast.makeText(requireContext(), getString(R.string.save_qr_code_toast), Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.save_qr_code_toast),
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 }
