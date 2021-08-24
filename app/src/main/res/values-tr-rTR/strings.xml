@@ -99,4 +99,6 @@
     <string name="okay">Tamam</string>
     <string name="give_camera_permission">Lütfen ayarlarda kamera izni verin.</string>
     <string name="copied_clipboard">Panoya kopyalandı</string>
+    <string name="premium_description">Uygulama içerisindeki reklamlardan sıkıldınız mı? Twitter ya da WhatsApp Qr kodu oluşturmak mı istiyorsunuz? Premium abone olduğunuz takdirde uygulama içerisindeki reklamlardan kurtulmuş olacaksınız. Ayrıca Twitter, YouTube, Instagram, LinkedIn ve WhatsApp qr kodu oluşturabileceksiniz. Cüzi bir miktar karşılığında tüm bunlara sahip olabilirsiniz. Üstelik aylık ve yıllık seçenekleriyle, istediğiniz planı seçerek.</string>
+    <string name="premium_subtext">Ödeme, Google Play hesabınız üzerinden yapılacaktır. Aboneliğiniz, abonelik süresinin bitiminden 24 saat önce hesabınızdaki otomatik yenileme ödeme seçeneği kapatılmadığı sürece otomatik olarak yenilenecektir. Aboneliğinizi Google Play hesabınız üzerinden iptal edebilirsiniz.</string>
 </resources>

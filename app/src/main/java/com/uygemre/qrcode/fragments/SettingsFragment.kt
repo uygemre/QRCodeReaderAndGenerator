@@ -203,8 +203,8 @@ class SettingsFragment : Fragment() {
                         language.indexOf("Italian")
                     }
                     "en" -> {
-                        localPrefManager.push(PrefConstants.PREF_LANGUAGE, "Italian")
-                        language.indexOf("Italian")
+                        localPrefManager.push(PrefConstants.PREF_LANGUAGE, "English")
+                        language.indexOf("English")
                     }
                     "es" -> {
                         localPrefManager.push(PrefConstants.PREF_LANGUAGE, "Spanish")

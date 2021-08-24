@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QRCode</string>
+    <string name="app_name">QR Code Reader and Generator</string>
     <string name="dev_text_body" translatable="false">Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500 lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, </string>
 
     <string name="scan_qr">Scan QR</string>
@@ -103,7 +103,9 @@
     <string name="okay">Okay</string>
     <string name="give_camera_permission">Please give camera permission in settings.</string>
     <string name="copied_clipboard">Copied to clipboard</string>
-
+    <string name="premium_description">\t\tTired of ads in the app? Want to generate Twitter or WhatsApp Qr code? If you subscribe to premium, you will get rid of the ads in the application. You will also be able to generate qr code for Twitter, YouTube, Instagram, LinkedIn and WhatsApp. You can have all of these for a small amount. Moreover, by choosing the plan you want, with monthly and yearly options.</string>
+    <string name="premium_subtext">\t\tPayment will be made through your Google Play account. Your subscription will be automatically renewed unless the auto-renew payment option in your account is turned off 24 hours before the end of the subscription period. You can cancel your subscription via your Google Play account.</string>
+    
     <string-array name="Languages">
         <item>English</item>
         <item>Turkish</item>

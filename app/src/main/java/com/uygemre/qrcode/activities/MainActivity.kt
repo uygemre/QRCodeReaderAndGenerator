@@ -1,5 +1,6 @@
 package com.uygemre.qrcode.activities
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -11,55 +12,30 @@ import com.uygemre.qrcode.fragments.HistoryFragment
 import com.uygemre.qrcode.fragments.ScanQRFragment
 import com.uygemre.qrcode.fragments.SettingsFragment
 import com.uygemre.qrcode.helpers.LocalPrefManager
+import com.uygemre.qrcode.helpers.MyContextWrapper
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var localPrefManager: LocalPrefManager
+    private var languageCode = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        localPrefManager = LocalPrefManager(this)
         setupBottomBarView()
     }
 
-    private fun setLocales() {
-        val locale: Locale = when (localPrefManager.pull(PrefConstants.PREF_LANGUAGE, "")) {
-            "English" -> {
-                Locale.ENGLISH
-            }
-            "Turkish" -> {
-                Locale("tr", "TR")
-            }
-            "German" -> {
-                Locale.GERMAN
-            }
-            "Italian" -> {
-                Locale.ITALIAN
-            }
-            "Spanish" -> {
-                Locale("ES", "es")
-            }
-            "Chinese (Simplified)" -> {
-                Locale.SIMPLIFIED_CHINESE
-            }
-            "Hindi" -> {
-                Locale("hi", "IN")
-            }
-            "" -> {
-                Locale.getDefault()
-            }
-            else -> Locale.getDefault()
+    private fun setupLanguageCode() {
+        languageCode = when (localPrefManager.pull(PrefConstants.PREF_LANGUAGE, "")) {
+            "Turkish" -> "tr"
+            "English" -> "en"
+            "Spanish" -> "es"
+            "Italian" -> "it"
+            "Chinese (Simplified)" -> "zh"
+            "Hindi" -> "hi"
+            else -> "en"
         }
-
-        Locale.setDefault(locale)
-        val configuration = resources.configuration
-        configuration.locale = locale
-        configuration.setLayoutDirection(locale)
-        resources.updateConfiguration(configuration, resources.displayMetrics)
     }
 
     private fun setupBottomBarView() {
@@ -100,11 +76,10 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener(bottomNavBarClickListener)
     }
 
-    override fun onResume() {
-        super.onResume()
-        setLocales()
-        bottomNavigationView.menu.clear()
-        bottomNavigationView.inflateMenu(R.menu.bottom_main_menu)
+    override fun attachBaseContext(newBase: Context?) {
+        localPrefManager = newBase?.let { LocalPrefManager(it) }!!
+        setupLanguageCode()
+        super.attachBaseContext(newBase.let { MyContextWrapper.wrap(it, languageCode) })
     }
 
     override fun onStop() {

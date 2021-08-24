@@ -7,8 +7,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +19,6 @@ import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.uygemre.qrcode.R
-import com.uygemre.qrcode.constants.PrefConstants
 import com.uygemre.qrcode.database.AppDatabase
 import com.uygemre.qrcode.database.QRCodeDTO
 import com.uygemre.qrcode.dialog.DialogResultScanQR

@@ -72,13 +72,11 @@ class CreateQRFragment : Fragment() {
             gotoDetailPage(IntentBundleKeyEnum.DETAIL_WIFI.toString())
         }
         rl_twitter.setOnClickListener {
-            /*
             if (localPrefManager.pull("isPremium", false))
                 gotoDetailPage(IntentBundleKeyEnum.DETAIL_TWITTER.toString())
             else
                 gotoDetailPage(IntentBundleKeyEnum.DETAIL_PREMIUM_SUBSCRIBE.toString())
-            */
-            gotoDetailPage(IntentBundleKeyEnum.DETAIL_TWITTER.toString())
+            //gotoDetailPage(IntentBundleKeyEnum.DETAIL_TWITTER.toString())
         }
         rl_whatsapp.setOnClickListener {
             /*

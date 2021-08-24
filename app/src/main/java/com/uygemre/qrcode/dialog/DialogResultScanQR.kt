@@ -43,7 +43,6 @@ import kotlinx.android.synthetic.main.item_wifi.*
 import kotlinx.android.synthetic.main.layout_dialog_result_scan_qr.*
 import net.glxn.qrgen.android.QRCode
 import android.content.Intent
-import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
