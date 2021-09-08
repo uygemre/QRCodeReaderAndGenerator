@@ -101,4 +101,7 @@
     <string name="copied_clipboard">Copiato negli appunti</string>
     <string name="premium_description">Stanco degli annunci nell\'app? Vuoi generare il codice QR di Twitter o WhatsApp? Se ti abboni a premium, eliminerai gli annunci nell\'applicazione. Sarai anche in grado di generare codice qr per Twitter, YouTube, Instagram, LinkedIn e WhatsApp. Puoi avere tutto questo per una piccola quantità. Inoltre, scegliendo il piano che desideri, con opzioni mensili e annuali.</string>
     <string name="premium_subtext">Il pagamento verrà effettuato tramite il tuo account Google Play. Il tuo abbonamento verrà rinnovato automaticamente a meno che l\'opzione di pagamento con rinnovo automatico nel tuo account non venga disattivata 24 ore prima della fine del periodo di abbonamento. Puoi annullare l\'abbonamento tramite il tuo account Google Play.</string>
+    <string name="premium_select_package">Seleziona il pacchetto che desideri acquistare.</string>
+    <string name="restore_is_successful">Il ripristino ha esito positivo.</string>
+    <string name="restore_is_failed">Il ripristino è fallito!</string>
 </resources>

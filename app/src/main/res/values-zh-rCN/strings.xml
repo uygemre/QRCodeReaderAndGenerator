@@ -101,4 +101,7 @@
     <string name="copied_clipboard">复制到剪贴板</string>
     <string name="premium_description">厌倦了应用程序中的广告？ 想要生成 Twitter 或 WhatsApp 二维码？ 如果您订阅高级版，您将摆脱应用程序中的广告。 您还可以为 Twitter、YouTube、Instagram、LinkedIn 和 WhatsApp 生成二维码。 您只需少量即可拥有所有这些。 此外，通过选择您想要的计划，每月和每年的选项。</string>
     <string name="premium_subtext">付款将通过您的 Google Play 帐户进行。 除非在订阅期结束前 24 小时关闭您帐户中的自动续订付款选项，否则您的订阅将自动续订。 您可以通过您的 Google Play 帐户取消订阅。</string>
+    <string name="premium_select_package">请选择您要购买的套餐。</string>
+    <string name="restore_is_successful">还原成功。</string>
+    <string name="restore_is_failed">还原失败！</string>
 </resources>

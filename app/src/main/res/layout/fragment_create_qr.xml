@@ -393,6 +393,7 @@
                     android:visibility="gone" />
 
                 <ImageView
+                    android:id="@+id/iv_twitter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -442,6 +443,7 @@
                     android:visibility="gone" />
 
                 <ImageView
+                    android:id="@+id/iv_whatsapp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -491,6 +493,7 @@
                     android:visibility="gone" />
 
                 <ImageView
+                    android:id="@+id/iv_linkedIn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -540,6 +543,7 @@
                     android:visibility="gone" />
 
                 <ImageView
+                    android:id="@+id/iv_youtube"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -589,6 +593,7 @@
                     android:visibility="gone" />
 
                 <ImageView
+                    android:id="@+id/iv_instagram"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"

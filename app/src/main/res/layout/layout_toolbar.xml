@@ -39,7 +39,7 @@
                 android:layout_marginStart="@dimen/material_4dp"
                 android:gravity="center_vertical"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                android:textColor="@color/mine_shaft"
+                android:textColor="@color/black"
                 android:textSize="@dimen/material_typography_body1"
                 tools:text="Text" />
 

@@ -101,4 +101,7 @@
     <string name="copied_clipboard">Panoya kopyalandı</string>
     <string name="premium_description">Uygulama içerisindeki reklamlardan sıkıldınız mı? Twitter ya da WhatsApp Qr kodu oluşturmak mı istiyorsunuz? Premium abone olduğunuz takdirde uygulama içerisindeki reklamlardan kurtulmuş olacaksınız. Ayrıca Twitter, YouTube, Instagram, LinkedIn ve WhatsApp qr kodu oluşturabileceksiniz. Cüzi bir miktar karşılığında tüm bunlara sahip olabilirsiniz. Üstelik aylık ve yıllık seçenekleriyle, istediğiniz planı seçerek.</string>
     <string name="premium_subtext">Ödeme, Google Play hesabınız üzerinden yapılacaktır. Aboneliğiniz, abonelik süresinin bitiminden 24 saat önce hesabınızdaki otomatik yenileme ödeme seçeneği kapatılmadığı sürece otomatik olarak yenilenecektir. Aboneliğinizi Google Play hesabınız üzerinden iptal edebilirsiniz.</string>
+    <string name="restore_is_successful">Geri yükleme başarılı.</string>
+    <string name="restore_is_failed">Geri yükleme başarısız!</string>
+    <string name="premium_select_package">Lütfen satın almak istediğiniz paketi seçiniz.</string>
 </resources>

@@ -52,4 +52,7 @@ class LocalPrefManager(context: Context) {
     fun remove(key: String) {
         sharedPreferences.edit().remove(key).apply()
     }
+
+    fun isPremium(key: String = PrefConstants.PREF_IS_PREMIUM, defaultValue: Boolean = false): Boolean =
+        sharedPreferences.getBoolean(key, defaultValue)
 }

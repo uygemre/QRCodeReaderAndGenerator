@@ -38,4 +38,7 @@ object PrefConstants {
     const val PREF_SOUND = "PREF_SOUND"
     const val PREF_LANGUAGE = "PREF_LANGUAGE"
     const val PREF_SCAN_AD = "PREF_SCAN_AD"
+    const val PREF_IS_PREMIUM = "PREF_IS_PREMIUM"
+    const val INTERSTITIAL_AD_PRODUCT_KEY = "ca-app-pub-7295215165419770/5915515669"
+    const val INTERSTITIAL_AD_TEST_KEY = "ca-app-pub-3940256099942544/1033173712"
 }

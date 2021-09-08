@@ -8,6 +8,8 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+import android.text.Spanned
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +21,7 @@ import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.uygemre.qrcode.R
+import com.uygemre.qrcode.constants.PrefConstants
 import com.uygemre.qrcode.database.AppDatabase
 import com.uygemre.qrcode.database.QRCodeDTO
 import com.uygemre.qrcode.dialog.DialogResultScanQR
@@ -31,7 +34,7 @@ import kotlinx.coroutines.launch
 class ScanQRFragment : Fragment() {
 
     private lateinit var dialogResultScanQR: DialogResultScanQR
-    lateinit var localPrefManager: LocalPrefManager
+    private lateinit var localPrefManager: LocalPrefManager
 
     private var mInterstitialAd: InterstitialAd? = null
     private var codeScanner: CodeScanner? = null
@@ -54,7 +57,7 @@ class ScanQRFragment : Fragment() {
     private fun loadInterstitialAd() {
         InterstitialAd.load(
             requireContext(),
-            "ca-app-pub-7295215165419770/5915515669",
+            PrefConstants.INTERSTITIAL_AD_PRODUCT_KEY,
             AdRequest.Builder().build(),
             object : InterstitialAdLoadCallback() {
                 override fun onAdLoaded(p0: InterstitialAd) {
@@ -79,16 +82,22 @@ class ScanQRFragment : Fragment() {
                 bundle.putString("text", it.text)
                 bundle.putString("barcodeFormat", it.barcodeFormat.toString())
                 dialog.arguments = bundle
-                mInterstitialAd?.show(requireActivity())
-                mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
-                    override fun onAdDismissedFullScreenContent() {
-                        super.onAdDismissedFullScreenContent()
-                        dialog.show(childFragmentManager, "dialog")
+                if (!localPrefManager.isPremium()) {
+                    if (!DialogResultScanQR().isVisible)
+                        mInterstitialAd?.show(requireActivity())
+                    mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+                        override fun onAdDismissedFullScreenContent() {
+                            super.onAdDismissedFullScreenContent()
+                            if (!DialogResultScanQR().isVisible)
+                                dialog.show(childFragmentManager, "dialog")
+                        }
                     }
+                } else {
+                    if (!DialogResultScanQR().isVisible)
+                        dialog.show(childFragmentManager, "dialog")
                 }
-                if (mInterstitialAd == null)
-                    dialog.show(childFragmentManager, "dialog")
             }
+
             setQrFormat(it.text)
             GlobalScope.launch {
                 appDatabase?.qrCodeDao()?.insert(
@@ -138,6 +147,11 @@ class ScanQRFragment : Fragment() {
                 qrFormat = resources.getString(R.string.email)
                 qrImage = R.drawable.email
                 qrDescription = dialogResultScanQR.setupEMailDescription(text)
+            }
+            text.startsWith("MATMSG") -> {
+                qrFormat = getString(R.string.email)
+                qrImage = R.drawable.email
+                qrDescription = dialogResultScanQR.setupEmailWithSubjectAndMessage(text)
             }
             text.startsWith("SMSTO:") || text.startsWith("sms:") -> {
                 qrFormat = resources.getString(R.string.sms)

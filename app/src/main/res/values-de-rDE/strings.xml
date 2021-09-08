@@ -101,4 +101,7 @@
     <string name="copied_clipboard">In die Zwischenablage kopiert</string>
     <string name="premium_description">Keine Lust mehr auf Werbung in der App? Möchten Sie Twitter- oder WhatsApp-Qr-Code generieren? Wenn Sie Premium abonnieren, werden Sie die Anzeigen in der Anwendung los. Sie können auch QR-Codes für Twitter, YouTube, Instagram, LinkedIn und WhatsApp generieren. All dies können Sie für einen kleinen Betrag haben. Darüber hinaus wählen Sie den gewünschten Plan mit monatlichen und jährlichen Optionen.</string>
     <string name="premium_subtext">Die Zahlung erfolgt über Ihr Google Play-Konto. Ihr Abonnement wird automatisch verlängert, es sei denn, die Zahlungsoption für die automatische Verlängerung in Ihrem Konto wird 24 Stunden vor Ablauf des Abonnementzeitraums deaktiviert. Sie können Ihr Abonnement über Ihr Google Play-Konto kündigen.</string>
+    <string name="premium_select_package">Bitte wählen Sie das Paket aus, das Sie kaufen möchten.</string>
+    <string name="restore_is_successful">Wiederherstellung ist erfolgreich.</string>
+    <string name="restore_is_failed">Wiederherstellung ist fehlgeschlagen!</string>
 </resources>

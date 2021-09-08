@@ -48,6 +48,7 @@
                 android:weightSum="8">
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_monthly"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/material_4dp"
@@ -117,6 +118,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_annual"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/material_8dp"
@@ -195,7 +197,7 @@
                 android:weightSum="4">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnSubscribe"
+                    android:id="@+id/btn_subscribe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/material_8dp"
@@ -207,7 +209,7 @@
                     android:textColor="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_restore_back"
+                    android:id="@+id/btn_restore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/material_8dp"

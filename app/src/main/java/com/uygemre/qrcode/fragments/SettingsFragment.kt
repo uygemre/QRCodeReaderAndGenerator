@@ -10,11 +10,14 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.uygemre.qrcode.R
+import com.uygemre.qrcode.activities.DetailActivity
 import com.uygemre.qrcode.constants.PrefConstants
+import com.uygemre.qrcode.enums.IntentBundleKeyEnum
+import com.uygemre.qrcode.extensions.openActivity
+import com.uygemre.qrcode.helpers.AdHelper
 import com.uygemre.qrcode.helpers.LocalPrefManager
 import kotlinx.android.synthetic.main.fragment_settings.*
 import java.util.*
@@ -22,7 +25,6 @@ import java.util.*
 class SettingsFragment : Fragment() {
 
     lateinit var localPrefManager: LocalPrefManager
-    private var mInterstitialAd: InterstitialAd? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,17 +36,6 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        MobileAds.initialize(requireContext())
-        InterstitialAd.load(requireContext(), "ca-app-pub-7295215165419770/5915515669", AdRequest.Builder().build(), object : InterstitialAdLoadCallback() {
-            override fun onAdLoaded(p0: InterstitialAd) {
-                mInterstitialAd = p0
-                mInterstitialAd?.show(requireActivity())
-            }
-            override fun onAdFailedToLoad(p0: LoadAdError) {
-                mInterstitialAd = null
-            }
-        })
 
         localPrefManager = LocalPrefManager(requireContext())
         switchOnCheckedChanged()
@@ -60,7 +51,6 @@ class SettingsFragment : Fragment() {
 
         spinners_language.adapter = adapter
         spinners_language.setSelection(setupSpinner(language))
-
         spinners_language.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -83,10 +73,27 @@ class SettingsFragment : Fragment() {
                     startActivity(intent)
                 }
             }
-
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
+
+        rl_get_premium.setOnClickListener {
+            requireActivity().openActivity(DetailActivity::class.java, Bundle().apply {
+                putString(
+                    IntentBundleKeyEnum.DETAIL_KEY.toString(),
+                    IntentBundleKeyEnum.DETAIL_PREMIUM_SUBSCRIBE.toString()
+                )
+            })
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        AdHelper.loadAndShowInterstitialAd(
+            requireContext(),
+            requireActivity(),
+            localPrefManager.isPremium()
+        )
     }
 
     private fun switchOnCheckedChanged() {
@@ -167,6 +174,7 @@ class SettingsFragment : Fragment() {
                     R.string.description_auto_open_url
                 )
             )
+        tv_get_premium.text = Html.fromHtml("<b>" + getString(R.string.premium) + "</b>")
     }
 
     private fun setupSpinner(language: Array<String>): Int {

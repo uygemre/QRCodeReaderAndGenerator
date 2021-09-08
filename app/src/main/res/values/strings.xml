@@ -105,7 +105,11 @@
     <string name="copied_clipboard">Copied to clipboard</string>
     <string name="premium_description">\t\tTired of ads in the app? Want to generate Twitter or WhatsApp Qr code? If you subscribe to premium, you will get rid of the ads in the application. You will also be able to generate qr code for Twitter, YouTube, Instagram, LinkedIn and WhatsApp. You can have all of these for a small amount. Moreover, by choosing the plan you want, with monthly and yearly options.</string>
     <string name="premium_subtext">\t\tPayment will be made through your Google Play account. Your subscription will be automatically renewed unless the auto-renew payment option in your account is turned off 24 hours before the end of the subscription period. You can cancel your subscription via your Google Play account.</string>
-    
+    <string name="premium_select_package">Please select the package you want to buy.</string>
+    <string name="restore_is_successful">Restore is successful.</string>
+    <string name="restore_is_failed">Restore is failed!</string>
+    <string name="restore_is_already_have">You have already subscription.</string>
+
     <string-array name="Languages">
         <item>English</item>
         <item>Turkish</item>

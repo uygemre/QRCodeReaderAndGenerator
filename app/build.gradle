@@ -6,6 +6,9 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+def billingVersion = "4.0.0"
+def inAppUpdates = "1.10.0"
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -14,7 +17,7 @@ android {
         applicationId "com.uygemre.qrcode"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 1
+        versionCode 9
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -81,4 +84,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads:20.2.0'
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation platform('com.google.firebase:firebase-bom:28.4.0')
+
+    //Google Billing
+    implementation "com.android.billingclient:billing:$billingVersion"
+    implementation "com.google.android.play:core:$inAppUpdates"
 }

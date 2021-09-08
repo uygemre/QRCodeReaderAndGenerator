@@ -3,15 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/circular_green_mini.xml" value="0.3802083333333333" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3564102564102564" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3564102564102564" />
+        <entry key="app/src/main/res/drawable/ic_next_gray_and_white.xml" value="0.37435897435897436" />
         <entry key="app/src/main/res/layout/fragment_create_qr.xml" value="0.35846153846153844" />
         <entry key="app/src/main/res/layout/fragment_premium_subscribe.xml" value="0.2265625" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.35555555555555557" />
+        <entry key="app/src/main/res/layout/item_contact.xml" value="0.33240740740740743" />
         <entry key="app/src/main/res/layout/item_wifi.xml" value="0.35555555555555557" />
         <entry key="app/src/main/res/layout/layout_contact.xml" value="0.35555555555555557" />
         <entry key="app/src/main/res/layout/layout_dialog_create_qr.xml" value="0.30833333333333335" />
         <entry key="app/src/main/res/layout/layout_dialog_result_scan_qr.xml" value="0.3527777777777778" />
+        <entry key="app/src/main/res/layout/layout_toolbar.xml" value="0.21041666666666667" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3564102564102564" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3564102564102564" />
       </map>

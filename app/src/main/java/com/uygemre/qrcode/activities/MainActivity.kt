@@ -2,8 +2,11 @@ package com.uygemre.qrcode.activities
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.android.billingclient.api.Purchase
+import com.android.billingclient.api.SkuDetails
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.uygemre.qrcode.R
 import com.uygemre.qrcode.constants.PrefConstants
@@ -12,18 +15,22 @@ import com.uygemre.qrcode.fragments.HistoryFragment
 import com.uygemre.qrcode.fragments.ScanQRFragment
 import com.uygemre.qrcode.fragments.SettingsFragment
 import com.uygemre.qrcode.helpers.LocalPrefManager
-import com.uygemre.qrcode.helpers.MyContextWrapper
+import com.uygemre.qrcode.helpers.LocaleHelper
+import com.uygemre.qrcode.helpers.PurchaseHelper
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var localPrefManager: LocalPrefManager
     private var languageCode = ""
+    private var purchaseHelper: PurchaseHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupBottomBarView()
+        purchaseHelper = PurchaseHelper(this, purchaseHelperListener)
+        purchaseHelper?.setupPurchase()
     }
 
     private fun setupLanguageCode() {
@@ -34,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             "Italian" -> "it"
             "Chinese (Simplified)" -> "zh"
             "Hindi" -> "hi"
-            else -> "en"
+            else -> ""
         }
     }
 
@@ -76,14 +83,29 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener(bottomNavBarClickListener)
     }
 
+    private val purchaseHelperListener = object : PurchaseHelper.PurchaseHelperListener {
+        override fun getProductList(products: List<SkuDetails>) {}
+        override fun getAlreadyExistProductList(alreadyProducts: List<Purchase>?) {
+            Log.d("alreadyProducts", alreadyProducts.toString())
+            if (!alreadyProducts.isNullOrEmpty())
+                localPrefManager.push(PrefConstants.PREF_IS_PREMIUM, true)
+            else
+                localPrefManager.push(PrefConstants.PREF_IS_PREMIUM, false)
+        }
+        override fun purchaseSuccess() {}
+        override fun purchaseFailed(responseCode: Int?) {
+            Log.d("responseCode", responseCode.toString())
+            if (responseCode == 0 || responseCode == 7) {
+                localPrefManager.push(PrefConstants.PREF_IS_PREMIUM, true)
+            } else {
+                localPrefManager.push(PrefConstants.PREF_IS_PREMIUM, false)
+            }
+        }
+    }
+
     override fun attachBaseContext(newBase: Context?) {
         localPrefManager = newBase?.let { LocalPrefManager(it) }!!
         setupLanguageCode()
-        super.attachBaseContext(newBase.let { MyContextWrapper.wrap(it, languageCode) })
-    }
-
-    override fun onStop() {
-        super.onStop()
-        localPrefManager.push(PrefConstants.PREF_SCAN_AD, true)
+        super.attachBaseContext(newBase.let { LocaleHelper.wrap(it, languageCode) })
     }
 }

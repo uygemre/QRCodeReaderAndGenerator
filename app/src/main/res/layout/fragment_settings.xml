@@ -192,7 +192,7 @@
 
             </RelativeLayout>
 
-            <!--<LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/material_8dp"
@@ -208,7 +208,34 @@
                     android:textStyle="bold"
                     android:theme="@style/SCBSwitch" />
 
-            </LinearLayout>-->
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_get_premium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/material_16dp">
+
+                <ImageView
+                    android:id="@+id/iv_get_premium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_premium" />
+
+                <TextView
+                    android:id="@+id/tv_get_premium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/material_12dp"
+                    android:layout_toEndOf="@id/iv_get_premium"
+                    android:text="@string/premium"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
