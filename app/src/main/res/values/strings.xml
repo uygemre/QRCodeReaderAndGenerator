@@ -72,6 +72,7 @@
     <string name="no_pass">No Pass</string>
     <string name="select">Select</string>
     <string name="unselect">Unselect</string>
+    <string name="encryption">Encryiption</string>
 
     <string name="result_web_url">WEB URL</string>
     <string name="result_contact">CONTACT</string>
@@ -109,6 +110,13 @@
     <string name="restore_is_successful">Restore is successful.</string>
     <string name="restore_is_failed">Restore is failed!</string>
     <string name="restore_is_already_have">You have already subscription.</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="rate_us">Rate us</string>
+    <string name="rate_us_description">Please support our work by your rating</string>
+    <string name="share_with_friends">Share with friends</string>
+    <string name="share_with_friends_description">Share this app with your friends</string>
+    <string name="settings_share_text">Hey check out my app at:</string>
 
     <string-array name="Languages">
         <item>English</item>

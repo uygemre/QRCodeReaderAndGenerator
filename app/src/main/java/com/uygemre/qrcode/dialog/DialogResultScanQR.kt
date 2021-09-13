@@ -27,10 +27,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.uygemre.qrcode.R
 import com.uygemre.qrcode.constants.PrefConstants
-import com.uygemre.qrcode.extensions.DateExtensions
-import com.uygemre.qrcode.extensions.isNetworkConnected
-import com.uygemre.qrcode.extensions.showNoInternetDialog
-import com.uygemre.qrcode.extensions.visible
 import com.uygemre.qrcode.helpers.LocalPrefManager
 import kotlinx.android.synthetic.main.item_contact.*
 import kotlinx.android.synthetic.main.item_document.*
@@ -44,15 +40,27 @@ import kotlinx.android.synthetic.main.layout_dialog_result_scan_qr.*
 import net.glxn.qrgen.android.QRCode
 import android.content.Intent
 import android.text.Spanned
+import androidx.annotation.RequiresApi
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.uygemre.qrcode.database.AppDatabase
+import com.uygemre.qrcode.database.QRCodeDTO
+import com.uygemre.qrcode.extensions.*
+import com.uygemre.qrcode.fragments.ScanQRFragment
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class DialogResultScanQR : BottomSheetDialogFragment() {
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
     private lateinit var localPrefManager: LocalPrefManager
     private var sharedLastClickTime = 0L
+    private var appDatabase: AppDatabase? = null
+
+    private var qrFormat: String? = ""
+    private var qrDescription: String? = ""
+    private var qrImage: Int? = 0
 
     private var intent = Intent()
     private var text: String? = ""
@@ -95,10 +103,10 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         localPrefManager = LocalPrefManager(requireContext())
-
         MobileAds.initialize(requireContext())
-
         adView.loadAd(AdRequest.Builder().build())
+        appDatabase = AppDatabase.getInstance(requireContext().applicationContext)
+
         setupView()
         openBrowserOnClick()
         searchInBrowserOnClick()
@@ -117,6 +125,61 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
             vibrate()
         if (localPrefManager.pull(PrefConstants.PREF_SOUND, false))
             soundBeep()
+    }
+
+    private fun setQrFormat(text: String) {
+        when {
+            text.startsWith("https://") || text.startsWith("http://") -> {
+                qrFormat = resources.getString(R.string.webUrl)
+                qrImage = R.drawable.ic_web_url
+                qrDescription = text
+            }
+            text.startsWith("MECARD") -> {
+                qrFormat = resources.getString(R.string.contact)
+                qrImage = R.drawable.contact
+                qrDescription = setMeCardDescription(text)
+            }
+            text.startsWith("BEGIN:VCARD") -> {
+                qrFormat = resources.getString(R.string.contact)
+                qrImage = R.drawable.contact
+                qrDescription = setupVCardDescription(text)
+            }
+            text.startsWith("mailto") || text.startsWith("MAILTO") -> {
+                qrFormat = resources.getString(R.string.email)
+                qrImage = R.drawable.email
+                qrDescription = setupEMailDescription(text)
+            }
+            text.startsWith("MATMSG") -> {
+                qrFormat = getString(R.string.email)
+                qrImage = R.drawable.email
+                qrDescription = setupEmailWithSubjectAndMessage(text)
+            }
+            text.startsWith("SMSTO:") || text.startsWith("sms:") -> {
+                qrFormat = resources.getString(R.string.sms)
+                qrImage = R.drawable.ic_sms
+                qrDescription = setupSmsDescription(text)
+            }
+            text.startsWith("geo") || text.startsWith("GEO") -> {
+                qrFormat = resources.getString(R.string.location)
+                qrImage = R.drawable.ic_location
+                qrDescription = setupLocationDescription(text)
+            }
+            text.startsWith("tel:") -> {
+                qrFormat = resources.getString(R.string.phone)
+                qrImage = R.drawable.ic_phone
+                qrDescription = text.replace("tel:", "")
+            }
+            text.startsWith("WIFI") -> {
+                qrFormat = resources.getString(R.string.wifi)
+                qrImage = R.drawable.ic_wifi
+                qrDescription = setupWifiDescription(text)
+            }
+            else -> {
+                qrFormat = resources.getString(R.string.document)
+                qrImage = R.drawable.ic_document
+                qrDescription = text
+            }
+        }
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -155,6 +218,21 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
     private fun setupView() {
         text = arguments?.getString("text")
         val barcodeFormat = arguments?.getString("barcodeFormat")
+        text?.let { setQrFormat(it) }
+        GlobalScope.launch {
+            appDatabase?.qrCodeDao()?.insert(
+                QRCodeDTO(
+                    id = 0,
+                    description = qrDescription,
+                    date = DateExtensions.dateDiff8(),
+                    format = qrFormat,
+                    image = qrImage,
+                    text = text,
+                    barcodeFormat = barcodeFormat.toString()
+                )
+            )
+        }
+
         val isOpenBrowserAuto = localPrefManager.pull(
             PrefConstants.PREF_IS_OPEN_BROWSER_AUTO,
             false
@@ -180,29 +258,28 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
                     startActivity(intent)
                 }
             }
-            text?.startsWith("MECARD") == true || text?.startsWith("BEGIN:VCARD") == true -> {
+            text?.startsWith("MECARD") == true -> {
                 tv_result.text = Html.fromHtml(
                     "<b>" + resources.getString(R.string.result_contact) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
+                tv_description.text = Html.fromHtml(setMeCardDescription(text))
                 layout_contact.visible()
-
-                if (text?.startsWith("MECARD") == true) {
-                    tv_description.text = setMeCardDescription(text)
-                    separateMeCard(text ?: "")
-                } else if (text?.startsWith("BEGIN:VCARD") == true) {
-                    tv_description.text = setupVCardDescription(text)
-                    separateVCard(text ?: "")
-                }
+            }
+            text?.startsWith("BEGIN:VCARD") == true -> {
+                tv_result.text = Html.fromHtml(
+                    "<b>" + resources.getString(R.string.result_contact) + "</b>" + "<br>" + "</br>" +
+                            "${DateExtensions.dateDiff8()}, $barcodeFormat"
+                )
+                tv_description.text = Html.fromHtml(setupVCardDescription(text))
+                layout_contact.visible()
             }
             text?.startsWith("mailto") == true || text?.startsWith("MAILTO") == true -> {
                 tv_result.text = Html.fromHtml(
                     "<b>" + resources.getString(R.string.result_e_mail) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
-
-                separateEMail(text)
-                tv_description.text = setupEMailDescription(text)
+                tv_description.text = Html.fromHtml(setupEMailDescription(text))
                 layout_email.visible()
             }
             text?.startsWith("MATMSG") == true -> {
@@ -210,9 +287,7 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
                     "<b>" + resources.getString(R.string.result_e_mail) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
-
-                separateEmailWithParameters(text)
-                tv_description.text = setupEmailWithSubjectAndMessage(text)
+                tv_description.text = Html.fromHtml(setupEmailWithSubjectAndMessage(text))
                 layout_email.visible()
             }
             text?.startsWith("SMSTO:") == true || text?.startsWith("sms:") == true -> {
@@ -220,17 +295,15 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
                     "<b>" + resources.getString(R.string.result_sms) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
+                tv_description.text = Html.fromHtml(setupSmsDescription(text))
                 layout_sms.visible()
-                tv_description.text = setupSmsDescription(text)
-                separateSms(text)
             }
             text?.startsWith("geo") == true || text?.startsWith("GEO") == true -> {
                 tv_result.text = Html.fromHtml(
                     "<b>" + resources.getString(R.string.result_location) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
-                tv_description.text = setupLocationDescription(text)
-                separateLocation(text)
+                tv_description.text = Html.fromHtml(setupLocationDescription(text))
                 layout_location.visible()
             }
             text?.startsWith("tel:") == true -> {
@@ -240,16 +313,14 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
                 )
                 layout_phone.visible()
                 phone = text?.replace("tel:", "")
-                tv_description.text = text?.replace("tel:", "")
+                tv_description.text = phone
             }
             text?.startsWith("WIFI") == true -> {
                 tv_result.text = Html.fromHtml(
                     "<b>" + resources.getString(R.string.result_wifi) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
-                separateWifiWithParameters(text)
-                //separateWifi(text)
-                tv_description.text = setupWifiDescription(text)
+                tv_description.text = Html.fromHtml(setupWifiDescription(text))
                 layout_wifi.visible()
             }
             else -> {
@@ -257,14 +328,13 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
                     "<b>" + resources.getString(R.string.result_document) + "</b>" + "<br>" + "</br>" +
                             "${DateExtensions.dateDiff8()}, $barcodeFormat"
                 )
+                tv_description.text = text
                 layout_document.visible()
-                tv_description.text = "$text"
                 if (isAutoSearchOnWeb) {
                     intent = Intent(Intent.ACTION_WEB_SEARCH)
                     intent.putExtra(SearchManager.QUERY, text)
                     startActivity(intent)
                 }
-
             }
         }
 
@@ -279,32 +349,18 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
         }
     }
 
-    fun setupVCardDescription(text: String?): String {
-        return if (text?.startsWith("BEGIN:VCARD") == true) {
-            return text.replace("BEGIN:VCARD\n", "")
-                .replace("VERSION:3.0\n", "")
-                .replace("N:", "")
-                .replace("N:;", "")
-                .replace("FN:", "")
-                .replace("TITLE:", "")
-                .replace("ORG:", "")
-                .replace("URL:", "")
-                .replace("ORG:", "")
-                .replace("EMAIL;TYPE=INTERNET:", "")
-                .replace("TEL:", "")
-                .replace("TEL;TYPE=voice,work,pref:", "")
-                .replace("TEL;TYPE=voice,home,pref:", "")
-                .replace("TEL;TYPE=voice,cell,pref:", "")
-                .replace("TEL;TYPE=fax,work,pref:", "")
-                .replace("TEL;TYPE=fax,home,pref:", "")
-                .replace("ADR:", "")
-                .replace("ADR:;;", "")
-                .replace(";;", "")
-                .replace("END:VCARD", "")
-                .replace(";", " ")
-                .replace("\n\n", "\n")
-        } else
-            text ?: ""
+    private fun setupVCardDescription(text: String?): String {
+        text?.let { _text -> separateVCard(_text) }
+        return (if (contactName?.isNotEmpty() == true) boldString(getString(R.string.name), contactName) else "") +
+                (if (contactCompany?.isNotEmpty() == true) boldString(getString(R.string.company), contactCompany) else "") +
+                (if (contactTelephone?.isNotEmpty() == true) boldString(getString(R.string.telephone), contactTelephone) else "") +
+                (if (contactEMail?.isNotEmpty() == true) boldString(getString(R.string.email), contactEMail) else "") +
+                (if (contactAddress?.isNotEmpty() == true) boldString(getString(R.string.address), contactAddress) else "") +
+                (if (contactNotes?.isNotEmpty() == true) boldString(getString(R.string.notes), contactNotes) else "")
+    }
+
+    private fun boldString(first: String, second: String?): String {
+        return "<b>$first: </b>$second<br></br>"
     }
 
     private fun separateEMail(text: String?) {
@@ -424,69 +480,24 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
         else ""
     }
 
-    private fun separateWifi(text: String?) {
-        if (text?.startsWith("WIFI:S:") == true && text.contains(";;")) {
-            val str = text.replace("WIFI:S:", "")
-                .replace(";;", "")
-            wifiSsid = str.substring(0, str.indexOf(";"))
-            wifiPassword = str.substring(str.indexOf("P:") + 2, str.lastIndex + 1)
-        } else if (text?.startsWith("WIFI:S:") == true && !text.contains(";;")) {
-            var str = text.replace("WIFI:S:", "")
-            wifiSsid = str.substring(0, str.indexOf(";"))
-            if (text.contains("H:false") || text.contains("H:true")) {
-                str = str.replace("H:false;", "")
-                    .replace("H:true;", "")
-                wifiPassword = str.substring(str.indexOf("P:"), str.lastIndex)
-                wifiPassword = wifiPassword?.replace("P:", "")
-            } else {
-                wifiPassword = str.substring(str.indexOf("P:"), str.lastIndex + 1)
-                wifiPassword = wifiPassword?.replace("P:", "")
-            }
-        } else if (text?.startsWith("WIFI:T:") == true) {
-            var str = text.replace("WIFI:T:", "")
-            val t = str.substring(0, str.indexOf("S:"))
-            str = str.replace(t, "").replace("S:", "")
-            wifiSsid = str.substring(0, str.indexOf(";"))
-            if (text.contains("H:false") || text.contains("H:true")) {
-                str = str.replace("H:false;", "")
-                    .replace("H:true;", "")
-                wifiPassword = str.substring(str.indexOf("P:"), str.lastIndex)
-                wifiPassword = wifiPassword?.replace("P:", "")
-            } else {
-                wifiPassword = str.substring(str.indexOf("P:"), str.lastIndex + 1)
-                wifiPassword = wifiPassword?.replace("P:", "")
-            }
-        }
+    private fun setupLocationDescription(text: String?): String {
+        text?.let { _text -> separateLocation(_text) }
+        return (if (latitude?.isNotEmpty() == true) boldString(getString(R.string.latitude), latitude) else "") +
+                (if (longitude?.isNotEmpty() == true) boldString(getString(R.string.longitude), longitude) else "")
     }
 
-    fun setupLocationDescription(text: String?): String {
-        return text?.replace("geo:", "")
-            ?.replace("GEO:", "")
-            ?.replace(",", "\n") ?: ""
-    }
-
-    fun setupWifiDescription(text: String?): String {
+    private fun setupWifiDescription(text: String?): String {
         separateWifiWithParameters(text)
-        return (if (wifiSsid?.isNotEmpty() == true) "SSID: $wifiSsid\n" else "") +
-                (if (wifiPassword?.isNotEmpty() == true) "Password: $wifiPassword\n" else "") +
-                (if (wifiEncryption?.isNotEmpty() == true) "Encryption: $wifiEncryption\n" else "") +
-                (if (wifiIsHidden?.isNotEmpty() == true) "Hidden: $wifiIsHidden" else "")
-    }
-/*
-    fun wifiHistory(): String {
-        separateWifiWithParameters(text)
-        return (if (wifiSsid?.isNotEmpty() == true) "SSID: $wifiSsid\n" else "") +
-                (if (wifiPassword?.isNotEmpty() == true) "Password: $wifiPassword\n" else "") +
-                (if (wifiEncryption?.isNotEmpty() == true) "Encryption: $wifiEncryption\n" else "") +
-                (if (wifiIsHidden?.isNotEmpty() == true) "Hidden: $wifiIsHidden" else "")
+        return (if (wifiSsid?.isNotEmpty() == true) boldString(getString(R.string.ssid_network_name), smsPhone) else "") +
+                (if (wifiPassword?.isNotEmpty() == true) boldString(getString(R.string.password), smsPhone) else "") +
+                (if (wifiEncryption?.isNotEmpty() == true) boldString(getString(R.string.encryption), smsPhone) else "") +
+                (if (wifiIsHidden?.isNotEmpty() == true) boldString(getString(R.string.hidden), smsPhone) else "")
     }
 
- */
-
-    fun setupSmsDescription(text: String?): String {
+    private fun setupSmsDescription(text: String?): String {
         separateSms(text)
-        return (if (smsPhone?.isNotEmpty() == true) "Phone: $smsPhone\n" else "") +
-                (if (smsMessage?.isNotEmpty() == true) "Message: $smsMessage\n" else "")
+        return (if (smsPhone?.isNotEmpty() == true) boldString(getString(R.string.phone), smsPhone) else "") +
+                (if (smsMessage?.isNotEmpty() == true) boldString(getString(R.string.message), smsMessage) else "")
     }
 
     private fun getParameters(
@@ -569,60 +580,29 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
         else ""
     }
 
-    fun setMeCardDescription(text: String?): String {
+    private fun setMeCardDescription(text: String?): String {
         text?.let { separateMeCard(it) }
-        return (if (contactName?.isNotEmpty() == true) "Name: $contactName\n" else "") +
-                (if (contactTelephone?.isNotEmpty() == true) "Telephone: $contactTelephone\n" else "") +
-                (if (contactAddress?.isNotEmpty() == true) "Address: $contactAddress\n" else "") +
-                (if (contactUrl?.isNotEmpty() == true) "Website: $contactUrl\n" else "") +
-                (if (contactCompany?.isNotEmpty() == true) "Company: $contactCompany\n" else "") +
-                (if (contactNotes?.isNotEmpty() == true) "Notes: $contactNotes\n" else "") +
-                (if (contactEMail?.isNotEmpty() == true) "Email: $contactEMail\n" else "")
-        /*
-        return text?.replace("MECARD:", "")
-            ?.replace("N:", "")
-            ?.replace("ORG:", "")
-            ?.replace("ADR:", "")
-            ?.replace("EMAIL:", "")
-            ?.replace("TEL:", "")
-            ?.replace("NICKNAME:", "")
-            ?.replace("BDAY:", "")
-            ?.replace("No:", "")
-            ?.replace("NOTE:", "")
-            ?.replace(";;", "")
-            ?.replace(";", "\n") ?: ""
-
-         */
+        return (if (contactName?.isNotEmpty() == true) boldString(getString(R.string.name), contactName) else "") +
+                (if (contactTelephone?.isNotEmpty() == true) boldString(getString(R.string.telephone), contactTelephone) else "") +
+                (if (contactAddress?.isNotEmpty() == true) boldString(getString(R.string.address), contactAddress) else "") +
+                (if (contactUrl?.isNotEmpty() == true) boldString(getString(R.string.webUrl), contactUrl) else "") +
+                (if (contactCompany?.isNotEmpty() == true) boldString(getString(R.string.company), contactCompany) else "") +
+                (if (contactNotes?.isNotEmpty() == true) boldString(getString(R.string.notes), contactNotes) else "") +
+                (if (contactEMail?.isNotEmpty() == true) boldString(getString(R.string.email), contactEMail) else "")
     }
 
-    fun setupEMailDescription(text: String?): String {
+    private fun setupEMailDescription(text: String?): String {
         separateEMail(text)
-        return (if (sendEmail?.isNotEmpty() == true) "EMail: $sendEmail\n" else "") +
-                (if (sendEmailSubject?.isNotEmpty() == true) "Subject: $sendEmailSubject\n" else "") +
-                (if (sendEmailMessage?.isNotEmpty() == true) "Message: $sendEmailMessage\n" else "")
-        /*
-        return text?.replace("mailto:", "")
-            ?.replace("MAILTO:", "")
-            ?.replace("?subject=", "\n")
-            ?.replace("&subject=", "\n")
-            ?.replace("?body=", "\n")
-            ?.replace("&body=", "\n") ?: ""
-
-         */
+        return (if (sendEmail?.isNotEmpty() == true) boldString(getString(R.string.email), sendEmail) else "") +
+                (if (sendEmailSubject?.isNotEmpty() == true) boldString(getString(R.string.subject), sendEmailSubject) else "") +
+                (if (sendEmailMessage?.isNotEmpty() == true) boldString(getString(R.string.message), sendEmailMessage) else "")
     }
 
-    fun setupEmailWithSubjectAndMessage(text: String?): String {
-        /*
-        return text?.replace("MATMSG:TO:", "")
-            ?.replace(";", "")
-            ?.replace("SUB:", "")
-            ?.replace("BODY:", "") ?: ""
-
-         */
+    private fun setupEmailWithSubjectAndMessage(text: String?): String {
         separateEmailWithParameters(text)
-        return (if (sendEmail?.isNotEmpty() == true) "EMail: $sendEmail\n" else "") +
-                (if (sendEmailSubject?.isNotEmpty() == true) "Subject: $sendEmailSubject\n" else "") +
-                (if (sendEmailMessage?.isNotEmpty() == true) "Message: $sendEmailMessage\n" else "")
+        return (if (sendEmail?.isNotEmpty() == true) boldString(getString(R.string.email), sendEmail) else "") +
+                (if (sendEmailSubject?.isNotEmpty() == true) boldString(getString(R.string.subject), sendEmailSubject) else "") +
+                (if (sendEmailMessage?.isNotEmpty() == true) boldString(getString(R.string.message), sendEmailMessage) else "")
     }
 
     private fun copyToClipboard(text: String?) {

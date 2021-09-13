@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">QRCode</string>
+    <string name="app_name">QR Code Reader and Generator</string>
     <string name="scan_qr">स्कैन क्यूआर</string>
     <string name="create_qr">क्यूआर बनाएं</string>
     <string name="settings">समायोजन</string>
@@ -104,4 +104,13 @@
     <string name="premium_select_package">कृपया वह पैकेज चुनें जिसे आप खरीदना चाहते हैं।</string>
     <string name="restore_is_successful">पुनर्स्थापना सफल है।</string>
     <string name="restore_is_failed">पुनर्स्थापना विफल!</string>
+    <string name="encryption">कूटलेखन</string>
+    <string name="restore_is_already_have">आपके पास पहले से ही सदस्यता है।</string>
+    <string name="privacy_policy">गोपनीयता नीति</string>
+    <string name="terms_and_conditions">नियम और शर्तें</string>
+    <string name="rate_us">हमें रेटिंग दें</string>
+    <string name="rate_us_description">कृपया अपनी रेटिंग से हमारे काम का समर्थन करें</string>
+    <string name="share_with_friends">दोस्तों के साथ बांटें</string>
+    <string name="share_with_friends_description">इस ऐप को अपने दोस्तों के साथ साझा करें</string>
+    <string name="settings_share_text">अरे मेरा ऐप यहां देखें:</string>
 </resources>

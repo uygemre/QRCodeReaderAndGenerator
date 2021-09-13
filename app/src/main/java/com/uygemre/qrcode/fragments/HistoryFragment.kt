@@ -30,7 +30,6 @@ class HistoryFragment : Fragment(), OnItemClickListener {
     private lateinit var qrCodeDao: QRCodeDao
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
     private lateinit var localPrefManager: LocalPrefManager
-    private val bundle: Bundle = Bundle()
     private var mInterstitialAd: InterstitialAd? = null
 
     override fun onCreateView(
@@ -46,6 +45,7 @@ class HistoryFragment : Fragment(), OnItemClickListener {
 
         localPrefManager = LocalPrefManager(requireContext())
         qrCodeDao = AppDatabase.getInstance(requireContext())?.qrCodeDao()!!
+        loadInterstitialAd()
 
         recyclerViewAdapter = RecyclerViewAdapter(qrCodeDao.getAll().reversed(), this)
         rv_history.layoutManager = LinearLayoutManager(requireContext())
@@ -75,9 +75,10 @@ class HistoryFragment : Fragment(), OnItemClickListener {
 
     private fun openDialog(text: String, barcodeFormat: String) {
         val dialog = DialogResultScanQR()
-        bundle.putString("text", text)
-        bundle.putString("barcodeFormat", barcodeFormat)
-        dialog.arguments = bundle
+        dialog.arguments = Bundle().apply {
+            putString("text", text)
+            putString("barcodeFormat", barcodeFormat)
+        }
         dialog.show(childFragmentManager, "dialog")
     }
 
@@ -97,11 +98,5 @@ class HistoryFragment : Fragment(), OnItemClickListener {
                     mInterstitialAd = null
                 }
             })
-    }
-
-    override fun onResume() {
-        super.onResume()
-        loadInterstitialAd()
-        AdHelper.loadAndShowInterstitialAd(requireContext(), requireActivity(), localPrefManager.isPremium())
     }
 }

@@ -1,5 +1,8 @@
 package com.uygemre.qrcode.fragments
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Html
 import android.view.LayoutInflater
@@ -38,6 +41,11 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         localPrefManager = LocalPrefManager(requireContext())
+        AdHelper.loadAndShowInterstitialAd(
+            requireContext(),
+            requireActivity(),
+            localPrefManager.isPremium()
+        )
         switchOnCheckedChanged()
         switchIsChecked()
         setupSwitchText()
@@ -73,6 +81,7 @@ class SettingsFragment : Fragment() {
                     startActivity(intent)
                 }
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
@@ -85,15 +94,40 @@ class SettingsFragment : Fragment() {
                 )
             })
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        AdHelper.loadAndShowInterstitialAd(
-            requireContext(),
-            requireActivity(),
-            localPrefManager.isPremium()
-        )
+        rl_privacy_policy.setOnClickListener {
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://www.app-privacy-policy.com/live.php?token=YQy2xj9bJjAKNxPENEYOHJBjeaSk7qGn")
+            )
+            startActivity(intent)
+        }
+        rl_rate_us.setOnClickListener {
+            try {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("market://details?id=com.uygemre.qrcode")
+                    )
+                )
+            } catch (e: ActivityNotFoundException) {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://play.google.com/store/apps/details?id=com.uygemre.qrcode")
+                    )
+                )
+            }
+        }
+        rl_share_with_friends.setOnClickListener {
+            startActivity(Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(
+                    Intent.EXTRA_TEXT,
+                    "${getString(R.string.settings_share_text)} https://play.google.com/store/apps/details?id=com.uygemre.qrcode"
+                )
+                type = "text/plain"
+            })
+        }
     }
 
     private fun switchOnCheckedChanged() {

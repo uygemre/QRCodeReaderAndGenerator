@@ -30,8 +30,8 @@ class CreateQRFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        MobileAds.initialize(requireContext())
         localPrefManager = LocalPrefManager(requireContext())
+        MobileAds.initialize(requireContext())
         AdHelper.loadAndShowInterstitialAd(
             requireContext(),
             requireActivity(),

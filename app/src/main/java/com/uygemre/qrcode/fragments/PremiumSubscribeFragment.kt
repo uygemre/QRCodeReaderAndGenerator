@@ -51,7 +51,6 @@ class PremiumSubscribeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         localPrefManager = LocalPrefManager(requireContext())
-        //setupView()
         firstSelect()
         selectButtons()
     }

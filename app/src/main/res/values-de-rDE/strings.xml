@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">QRCode</string>
+    <string name="app_name">QR Code Reader and Generator</string>
     <string name="description">Beschreibung</string>
     <string name="address">Adresse</string>
     <string name="call">Anruf</string>
@@ -104,4 +104,14 @@
     <string name="premium_select_package">Bitte wählen Sie das Paket aus, das Sie kaufen möchten.</string>
     <string name="restore_is_successful">Wiederherstellung ist erfolgreich.</string>
     <string name="restore_is_failed">Wiederherstellung ist fehlgeschlagen!</string>
+    <string name="encryption">Verschlüsselung</string>
+    <string name="restore_is_already_have">Sie haben bereits ein Abonnement.</string>
+    <string name="privacy_policy">Datenschutz-Bestimmungen</string>
+    <string name="terms_and_conditions">Geschäftsbedingungen</string>
+    <string name="rate_us">Bewerten Sie uns</string>
+    <string name="rate_us_description">Bitte unterstützen Sie unsere Arbeit durch Ihre Bewertung</string>
+    <string name="share_with_friends">Mit Freunden teilen</string>
+    <string name="share_with_friends_description">Teile diese App mit deinen Freunden</string>
+    <string name="settings_share_text">Hey, sieh dir meine App an unter:</string>
+    <string name="project_id" translatable="false">qrcodereader-adef4</string>
 </resources>

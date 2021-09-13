@@ -2,6 +2,7 @@ package com.uygemre.qrcode.recyclerview
 
 import android.annotation.SuppressLint
 import android.graphics.Outline
+import android.text.Html
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
@@ -68,7 +69,7 @@ class RecyclerViewAdapter(
                 img_qr.setImageResource(item.image ?: 0)
                 tv_qr_format.text = item.format
                 tv_qr_date.text = item.date
-                tv_qr_description.text = item.description
+                tv_qr_description.text = Html.fromHtml(item.description)
                 img_delete.setOnClickListener {
                     clickListener.deleteItemOnClicked(item, position)
                 }

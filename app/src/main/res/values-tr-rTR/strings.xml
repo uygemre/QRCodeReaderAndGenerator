@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">QRCode</string>
+    <string name="app_name">QR Code Reader and Generator</string>
     <string name="email">E-Posta</string>
     <string name="document">Düz Metin</string>
     <string name="contact">Kişi</string>
@@ -104,4 +104,13 @@
     <string name="restore_is_successful">Geri yükleme başarılı.</string>
     <string name="restore_is_failed">Geri yükleme başarısız!</string>
     <string name="premium_select_package">Lütfen satın almak istediğiniz paketi seçiniz.</string>
+    <string name="encryption">Şifreleme</string>
+    <string name="restore_is_already_have">Zaten aboneliğiniz var.</string>
+    <string name="privacy_policy">Gizlilik Politikası</string>
+    <string name="terms_and_conditions">Şartlar ve Koşullar</string>
+    <string name="rate_us">Bizi değerlendirin</string>
+    <string name="rate_us_description">Lütfen çalışmamızı derecelendirmenizle destekleyin</string>
+    <string name="share_with_friends">Arkadaşlarınla paylaş</string>
+    <string name="share_with_friends_description">Bu uygulamayı arkadaşlarınızla paylaşın</string>
+    <string name="settings_share_text">Hey, şu adresteki uygulamama göz atın:</string>
 </resources>

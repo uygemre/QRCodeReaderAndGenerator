@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">QRCode</string>
+    <string name="app_name">QR Code Reader and Generator</string>
     <string name="scan_qr">Escanear QR</string>
     <string name="create_qr">Crear QR</string>
     <string name="settings">Ajustes</string>
@@ -104,4 +104,13 @@
     <string name="premium_select_package">Seleccione el paquete que desea comprar.</string>
     <string name="restore_is_successful">La restauración se ha realizado correctamente.</string>
     <string name="restore_is_failed">¡La restauración ha fallado!</string>
+    <string name="encryption">Cifrado</string>
+    <string name="restore_is_already_have">Ya tienes suscripción.</string>
+    <string name="privacy_policy">Política de privacidad</string>
+    <string name="terms_and_conditions">Términos y Condiciones</string>
+    <string name="rate_us">Nos califica</string>
+    <string name="rate_us_description">Por favor apoye nuestro trabajo con su calificación</string>
+    <string name="share_with_friends">Compartir con amigos</string>
+    <string name="share_with_friends_description">Comparte esta aplicación con tus amigos</string>
+    <string name="settings_share_text">Oye, mira mi aplicación en:</string>
 </resources>

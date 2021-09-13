@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">QRCode</string>
+    <string name="app_name">QR Code Reader and Generator</string>
     <string name="scan_qr">扫描二维码</string>
     <string name="create_qr">创建二维码</string>
     <string name="settings">设置</string>
@@ -104,4 +104,13 @@
     <string name="premium_select_package">请选择您要购买的套餐。</string>
     <string name="restore_is_successful">还原成功。</string>
     <string name="restore_is_failed">还原失败！</string>
+    <string name="encryption">加密</string>
+    <string name="restore_is_already_have">您已经订阅了。</string>
+    <string name="privacy_policy">隐私政策</string>
+    <string name="terms_and_conditions">条款和条件</string>
+    <string name="rate_us">评价我们</string>
+    <string name="rate_us_description">请通过您的评分支持我们的工作</string>
+    <string name="share_with_friends">和朋友分享</string>
+    <string name="share_with_friends_description">与您的朋友分享这个应用程序</string>
+    <string name="settings_share_text">嘿，看看我的应用程序：</string>
 </resources>
