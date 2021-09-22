@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
     id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 def billingVersion = "4.0.0"
@@ -15,10 +16,10 @@ android {
 
     defaultConfig {
         applicationId "com.uygemre.qrcode"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
-        versionCode 11
-        versionName "1.0"
+        versionCode 13
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -84,6 +85,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads:20.2.0'
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation platform('com.google.firebase:firebase-bom:28.4.0')
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
 
     //Google Billing
     implementation "com.android.billingclient:billing:$billingVersion"

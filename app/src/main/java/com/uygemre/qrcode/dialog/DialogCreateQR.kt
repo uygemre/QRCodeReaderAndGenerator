@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Bundle
-import android.os.SystemClock
+import android.os.*
 import android.provider.MediaStore
 import android.text.Html
 import android.text.Spanned
@@ -38,7 +38,8 @@ import kotlinx.android.synthetic.main.layout_dialog_create_qr.*
 import kotlinx.android.synthetic.main.layout_dialog_create_qr.adView
 import net.glxn.qrgen.android.QRCode
 import net.glxn.qrgen.core.scheme.*
-import java.io.ByteArrayOutputStream
+import java.io.*
+import androidx.core.content.FileProvider
 
 class DialogCreateQR : BottomSheetDialogFragment() {
 
@@ -264,19 +265,32 @@ class DialogCreateQR : BottomSheetDialogFragment() {
             }
             sharedLastClickTime = SystemClock.elapsedRealtime()
 
-            val intent = Intent(Intent.ACTION_SEND).setType("image/*")
             val bitmap = image?.drawable?.toBitmap()
-            val bytes = ByteArrayOutputStream()
-            bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-            val path = MediaStore.Images.Media.insertImage(
-                requireContext().contentResolver,
-                bitmap,
-                "MY_QR_CODE",
-                null
-            )
-            val uri = Uri.parse(path)
-            intent.putExtra(Intent.EXTRA_STREAM, uri)
-            startActivity(intent)
+
+            try {
+                val cachePath = File(requireContext().cacheDir, "images")
+                cachePath.mkdirs()
+                val stream = FileOutputStream("$cachePath/image.png")
+                bitmap?.compress(Bitmap.CompressFormat.PNG, 100, stream)
+                stream.close()
+
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+
+            val imagePath = File(requireContext().cacheDir, "images")
+            val newFile = File(imagePath, "image.png")
+            val contentUri: Uri? =
+                FileProvider.getUriForFile(requireContext(), "com.uygemre.qrcode.fileprovider", newFile)
+
+            if (contentUri != null) {
+                val shareIntent = Intent()
+                shareIntent.action = Intent.ACTION_SEND
+                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                shareIntent.setDataAndType(contentUri, requireContext().contentResolver.getType(contentUri))
+                shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri)
+                startActivity(shareIntent)
+            }
         } else {
             requireContext().showNoInternetDialog()
         }
@@ -284,17 +298,50 @@ class DialogCreateQR : BottomSheetDialogFragment() {
 
     private fun saveQRCode() {
         btn_save.setOnClickListener {
-            MediaStore.Images.Media.insertImage(
-                context?.contentResolver,
-                img_scan_create_qr.drawable.toBitmap(),
-                "MY_QR_CODE",
-                null
-            )
-            Toast.makeText(
-                requireContext(),
-                getString(R.string.save_qr_code_toast),
-                Toast.LENGTH_LONG
-            ).show()
+            if (requireActivity().checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                Handler().postDelayed({
+                    MediaStore.Images.Media.insertImage(
+                        requireContext().contentResolver,
+                        img_scan_create_qr.drawable.toBitmap(),
+                        "MY_QR_CODE",
+                        null
+                    )
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.save_qr_code_toast),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }, 1000)
+            } else {
+                requestPermissions(arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            100 -> {
+                if (grantResults.getOrNull(0) == PackageManager.PERMISSION_GRANTED) {
+                    Handler().postDelayed({
+                        MediaStore.Images.Media.insertImage(
+                            requireContext().contentResolver,
+                            img_scan_create_qr.drawable.toBitmap(),
+                            "MY_QR_CODE",
+                            null
+                        )
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.save_qr_code_toast),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }, 1000)
+                }
+            }
         }
     }
 }

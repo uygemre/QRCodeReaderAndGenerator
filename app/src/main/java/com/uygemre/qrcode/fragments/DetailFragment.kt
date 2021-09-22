@@ -390,7 +390,7 @@ class DetailFragment : Fragment() {
             }
         }
         btn_back.setOnClickListener {
-            activity?.onBackPressed()
+            requireActivity().onBackPressed()
         }
     }
 
@@ -850,15 +850,10 @@ class DetailFragment : Fragment() {
                         list.clear()
                     }
                 }
-                if (mInterstitialAd == null) {
-                    dialog.arguments = bundle
-                    dialog.show(childFragmentManager, "dialog")
-                    list.clear()
-                }
             }
         }
         btn_back.setOnClickListener {
-            activity?.onBackPressed()
+            requireActivity().onBackPressed()
         }
     }
 

@@ -19,7 +19,7 @@ class LocaleHelper(base: Context?) : ContextWrapper(base) {
             } else {
                 getSystemLocaleLegacy(config)
             }
-            if (language != "" && !sysLocale?.language.equals(language)) {
+            if (language != "" && !sysLocale.language.equals(language)) {
                 val locale = Locale(language)
                 Locale.setDefault(locale)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
