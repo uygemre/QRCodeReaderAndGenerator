@@ -104,7 +104,8 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
 
         localPrefManager = LocalPrefManager(requireContext())
         MobileAds.initialize(requireContext())
-        adView.loadAd(AdRequest.Builder().build())
+        if (!localPrefManager.isPremium())
+            adView.loadAd(AdRequest.Builder().build())
         appDatabase = AppDatabase.getInstance(requireContext().applicationContext)
 
         setupView()
@@ -131,52 +132,52 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
         when {
             text.startsWith("https://") || text.startsWith("http://") -> {
                 qrFormat = resources.getString(R.string.webUrl)
-                qrImage = R.drawable.ic_web_url
+                qrImage = R.drawable.ic_web_url_white
                 qrDescription = text
             }
             text.startsWith("MECARD") -> {
                 qrFormat = resources.getString(R.string.contact)
-                qrImage = R.drawable.contact
+                qrImage = R.drawable.ic_contact_black
                 qrDescription = setMeCardDescription(text)
             }
             text.startsWith("BEGIN:VCARD") -> {
                 qrFormat = resources.getString(R.string.contact)
-                qrImage = R.drawable.contact
+                qrImage = R.drawable.ic_contact_black
                 qrDescription = setupVCardDescription(text)
             }
             text.startsWith("mailto") || text.startsWith("MAILTO") -> {
                 qrFormat = resources.getString(R.string.email)
-                qrImage = R.drawable.email
+                qrImage = R.drawable.ic_mail_white
                 qrDescription = setupEMailDescription(text)
             }
             text.startsWith("MATMSG") -> {
                 qrFormat = getString(R.string.email)
-                qrImage = R.drawable.email
+                qrImage = R.drawable.ic_mail_white
                 qrDescription = setupEmailWithSubjectAndMessage(text)
             }
             text.startsWith("SMSTO:") || text.startsWith("sms:") -> {
                 qrFormat = resources.getString(R.string.sms)
-                qrImage = R.drawable.ic_sms
+                qrImage = R.drawable.ic_sms_new
                 qrDescription = setupSmsDescription(text)
             }
             text.startsWith("geo") || text.startsWith("GEO") -> {
                 qrFormat = resources.getString(R.string.location)
-                qrImage = R.drawable.ic_location
+                qrImage = R.drawable.ic_location_new
                 qrDescription = setupLocationDescription(text)
             }
             text.startsWith("tel:") -> {
                 qrFormat = resources.getString(R.string.phone)
-                qrImage = R.drawable.ic_phone
+                qrImage = R.drawable.ic_phone_new
                 qrDescription = text.replace("tel:", "")
             }
             text.startsWith("WIFI") -> {
                 qrFormat = resources.getString(R.string.wifi)
-                qrImage = R.drawable.ic_wifi
+                qrImage = R.drawable.ic_wifi_new
                 qrDescription = setupWifiDescription(text)
             }
             else -> {
                 qrFormat = resources.getString(R.string.document)
-                qrImage = R.drawable.ic_document
+                qrImage = R.drawable.ic_document_white
                 qrDescription = text
             }
         }
@@ -242,7 +243,7 @@ class DialogResultScanQR : BottomSheetDialogFragment() {
             false
         )
         val isAutoSearchOnWeb = localPrefManager.pull(PrefConstants.PREF_AUTO_SEARCH_ON_WEB, false)
-        img_scan_qr.setImageBitmap(QRCode.from(text).withSize(500, 500).bitmap())
+        img_scan_qr.setImageBitmap(QRCode.from(text).withSize(600, 600).bitmap())
 
         when {
             text?.startsWith("https://") == true || text?.startsWith("http://") == true -> {

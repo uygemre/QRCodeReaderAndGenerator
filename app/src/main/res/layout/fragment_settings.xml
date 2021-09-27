@@ -25,6 +25,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/material_12dp"
                     android:text="@string/language"
+                    android:fontFamily="@font/montserrat_bold"
                     android:textColor="@color/forest_green"
                     android:textStyle="bold"
                     android:theme="@style/SCBSwitch" />
@@ -37,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/material_12dp"
                 android:prompt="@string/language_options"
+                android:theme="@style/SpinnerTheme"
                 android:spinnerMode="dialog" />
 
             <LinearLayout
@@ -52,6 +54,7 @@
                     android:layout_marginStart="@dimen/material_12dp"
                     android:text="@string/settings"
                     android:textColor="@color/forest_green"
+                    android:fontFamily="@font/montserrat_bold"
                     android:textStyle="bold"
                     android:theme="@style/SCBSwitch" />
 
@@ -69,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_vibration" />
+                    android:src="@drawable/ic_vibration_news" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switch_vibration"
@@ -78,6 +81,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_12dp"
                     android:layout_toEndOf="@id/img_vibration"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/vibration"
                     android:theme="@style/SCBSwitch"
                     app:switchMinWidth="@dimen/material_52dp" />
@@ -96,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_sound" />
+                    android:src="@drawable/ic_sound_new" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switch_sound"
@@ -105,6 +109,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_12dp"
                     android:layout_toEndOf="@id/img_sound"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/sound"
                     android:theme="@style/SCBSwitch"
                     app:switchMinWidth="@dimen/material_52dp" />
@@ -123,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/web" />
+                    android:src="@drawable/ic_web_url_news" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switch_open_browser"
@@ -132,6 +137,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_12dp"
                     android:layout_toEndOf="@id/img_open_auto_browser"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/auto_open_url"
                     android:theme="@style/SCBSwitch"
                     app:switchMinWidth="@dimen/material_52dp" />
@@ -150,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/copy" />
+                    android:src="@drawable/ic_copy_new" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switch_auto_copy_clipboard"
@@ -159,6 +165,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_12dp"
                     android:layout_toEndOf="@id/img_auto_copy_clipboard"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/auto_copy_to_clipboard"
                     android:theme="@style/SCBSwitch"
                     app:switchMinWidth="@dimen/material_52dp" />
@@ -177,7 +184,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/search" />
+                    android:src="@drawable/ic_search_new" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switch_auto_search_on_web"
@@ -186,6 +193,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_12dp"
                     android:layout_toEndOf="@id/img_auto_search_on_web"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/auto_web_search"
                     android:theme="@style/SCBSwitch"
                     app:switchMinWidth="@dimen/material_52dp" />
@@ -204,6 +212,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/material_12dp"
                     android:text="@string/general"
+                    android:fontFamily="@font/montserrat_bold"
                     android:textColor="@color/forest_green"
                     android:textStyle="bold"
                     android:theme="@style/SCBSwitch" />
@@ -222,7 +231,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_premium" />
+                    android:src="@drawable/ic_premium_new" />
 
                 <TextView
                     android:id="@+id/tv_get_premium"
@@ -232,6 +241,7 @@
                     android:layout_marginStart="@dimen/material_12dp"
                     android:layout_toEndOf="@id/iv_get_premium"
                     android:text="@string/premium"
+                    android:fontFamily="@font/montserrat_bold"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -249,7 +259,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_privacy_policy" />
+                    android:src="@drawable/ic_privacy_policy_new" />
 
                 <LinearLayout
                     android:id="@+id/ll_privacy_policy"
@@ -266,6 +276,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/privacy_policy"
                         android:textColor="@color/black"
+                        android:fontFamily="@font/montserrat_semi_bold"
                         android:textStyle="bold" />
 
                     <TextView
@@ -273,6 +284,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/terms_and_conditions"
+                        android:fontFamily="@font/montserrat_medium"
                         android:textColor="@color/black" />
 
                 </LinearLayout>
@@ -291,7 +303,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_rate_us" />
+                    android:src="@drawable/ic_rate_us_new" />
 
                 <LinearLayout
                     android:id="@+id/ll_rate_us"
@@ -307,6 +319,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/rate_us"
+                        android:fontFamily="@font/montserrat_semi_bold"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
@@ -314,6 +327,7 @@
                         android:id="@+id/tv_rate_us_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_medium"
                         android:text="@string/rate_us_description"
                         android:textColor="@color/black" />
 
@@ -333,7 +347,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_share_settings" />
+                    android:src="@drawable/ic_share_settings_new" />
 
                 <LinearLayout
                     android:id="@+id/ll_share_with_friends"
@@ -349,6 +363,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/share_with_friends"
+                        android:fontFamily="@font/montserrat_semi_bold"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
@@ -356,6 +371,7 @@
                         android:id="@+id/tv_share_with_friends_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_medium"
                         android:text="@string/share_with_friends_description"
                         android:textColor="@color/black" />
 

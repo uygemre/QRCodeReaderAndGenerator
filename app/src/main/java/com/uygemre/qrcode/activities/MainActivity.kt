@@ -2,7 +2,6 @@ package com.uygemre.qrcode.activities
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.android.billingclient.api.Purchase
@@ -22,11 +21,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var localPrefManager: LocalPrefManager
-    private var languageCode = ""
     private var purchaseHelper: PurchaseHelper? = null
+    private var languageCode = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
         setupBottomBarView()
         purchaseHelper = PurchaseHelper(this, purchaseHelperListener)
@@ -86,7 +86,6 @@ class MainActivity : AppCompatActivity() {
     private val purchaseHelperListener = object : PurchaseHelper.PurchaseHelperListener {
         override fun getProductList(products: List<SkuDetails>) {}
         override fun getAlreadyExistProductList(alreadyProducts: List<Purchase>?) {
-            Log.d("alreadyProducts", alreadyProducts.toString())
             if (!alreadyProducts.isNullOrEmpty())
                 localPrefManager.push(PrefConstants.PREF_IS_PREMIUM, true)
             else
@@ -94,12 +93,10 @@ class MainActivity : AppCompatActivity() {
         }
         override fun purchaseSuccess() {}
         override fun purchaseFailed(responseCode: Int?) {
-            Log.d("responseCode", responseCode.toString())
-            if (responseCode == 0 || responseCode == 7) {
+            if (responseCode == 0 || responseCode == 7)
                 localPrefManager.push(PrefConstants.PREF_IS_PREMIUM, true)
-            } else {
+            else
                 localPrefManager.push(PrefConstants.PREF_IS_PREMIUM, false)
-            }
         }
     }
 

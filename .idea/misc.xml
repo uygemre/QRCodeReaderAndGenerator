@@ -3,23 +3,124 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/black_cursor.xml" value="0.3619791666666667" />
         <entry key="app/src/main/res/drawable-v24/circular_green_mini.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable-v24/ic_arrow_back.xml" value="0.3619791666666667" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3564102564102564" />
+        <entry key="app/src/main/res/drawable-v24/ic_next_gray_and_white.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable-v24/ic_sharee.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable-v24/ic_web.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable-v24/item_bottom.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable-v24/item_middle.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable-v24/item_top.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable-v24/item_top_bottom.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable-v24/premium_subscribe_top_border_white.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable-v24/shape_bottom_sheet.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable-v24/shape_radius_16_caribbean_green.xml" value="0.3619791666666667" />
         <entry key="app/src/main/res/drawable-v24/shape_radius_16_gray.xml" value="0.3564102564102564" />
+        <entry key="app/src/main/res/drawable-v24/shape_radius_16_green.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable-v24/shape_recyclerview.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable-v24/shape_subscribe_selected.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable-v24/shape_subscribe_unselected.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/black_cursor.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/circular_green_mini.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable/ic_arrow_back.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_browser_white.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable/ic_call_white.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable/ic_contact_black.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable/ic_contact_white.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable/ic_copy_new.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_copy_white.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable/ic_create_qr_fragment.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_delete_new.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_document_black.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable/ic_document_white.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_email_white.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable/ic_get_direction_white.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable/ic_history_fragment.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_instagram_black.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_instagram_new.xml" value="0.3619791666666667" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3564102564102564" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.3564102564102564" />
+        <entry key="app/src/main/res/drawable/ic_linkedin_new.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_location_new.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_mail_white.xml" value="0.3619791666666667" />
         <entry key="app/src/main/res/drawable/ic_next_gray_and_white.xml" value="0.37435897435897436" />
+        <entry key="app/src/main/res/drawable/ic_phone_new.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_premium_new.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_privacy_policy_new.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_rate_us_new.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_save_white.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable/ic_scan_qr_fragment.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_search_new.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_search_white.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable/ic_settings_fragment.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_share_settings_new.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_share_white.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable/ic_show_map_white.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable/ic_sms_new.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_sms_white.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable/ic_sound_new.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_twitter_new.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_vibration_new.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_vibration_news.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_web.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_web_url_news.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_web_url_white.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_whatsapp_new.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_wifi_new.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/ic_wifi_white.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable/ic_youtube_new.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/item_bottom.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/item_middle.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/item_top.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/item_top_bottom.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/premium_subscribe_top_border_white.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/shape_bottom_sheet.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/shape_radius_16_caribbean_green.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/shape_radius_16_gray.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/shape_radius_16_green.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable/shape_radius_24_green.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/drawable/shape_recyclerview.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/shape_subscribe_selected.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/drawable/shape_subscribe_unselected.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/layout/activity_detail.xml" value="0.35846153846153844" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3490740740740741" />
-        <entry key="app/src/main/res/layout/fragment_create_qr.xml" value="0.35846153846153844" />
-        <entry key="app/src/main/res/layout/fragment_premium_subscribe.xml" value="0.2265625" />
-        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.35555555555555557" />
-        <entry key="app/src/main/res/layout/item_contact.xml" value="0.33240740740740743" />
+        <entry key="app/src/main/res/layout/fragment_create_qr.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/fragment_history.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/fragment_premium_subscribe.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_scan_qr.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.5364647713226205" />
+        <entry key="app/src/main/res/layout/item_contact.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/item_document.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/item_email.xml" value="0.35846153846153844" />
         <entry key="app/src/main/res/layout/item_history.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/item_location.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/item_phone.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/item_sms.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/item_web_url.xml" value="0.35846153846153844" />
         <entry key="app/src/main/res/layout/item_wifi.xml" value="0.35555555555555557" />
-        <entry key="app/src/main/res/layout/layout_contact.xml" value="0.35555555555555557" />
-        <entry key="app/src/main/res/layout/layout_dialog_create_qr.xml" value="0.30833333333333335" />
+        <entry key="app/src/main/res/layout/layout_calendar.xml" value="0.3640625" />
+        <entry key="app/src/main/res/layout/layout_contact.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/layout_default.xml" value="0.3640625" />
+        <entry key="app/src/main/res/layout/layout_dialog_create_qr.xml" value="0.5" />
         <entry key="app/src/main/res/layout/layout_dialog_result_scan_qr.xml" value="0.3527777777777778" />
+        <entry key="app/src/main/res/layout/layout_document.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/layout_email.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/layout_instagram.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/layout_linkedin.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/layout_location.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/layout_phone.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/layout_sms.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/layout_spinner.xml" value="0.35846153846153844" />
         <entry key="app/src/main/res/layout/layout_toolbar.xml" value="0.21041666666666667" />
+        <entry key="app/src/main/res/layout/layout_twitter.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/layout_web_url.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/layout_whatsapp.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/layout_wifi.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/layout/layout_youtube.xml" value="0.35846153846153844" />
+        <entry key="app/src/main/res/menu/bottom_main_menu.xml" value="0.19166666666666668" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3564102564102564" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3564102564102564" />
       </map>

@@ -8,5 +8,6 @@
     android:paddingTop="@dimen/material_8dp"
     android:paddingBottom="@dimen/material_8dp"
     android:singleLine="true"
+    android:fontFamily="@font/montserrat_medium"
     android:textColor="@color/black" />
 

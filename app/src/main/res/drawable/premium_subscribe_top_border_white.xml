@@ -6,7 +6,7 @@
         android:topRightRadius="@dimen/material_12dp" />
 
     <stroke
-        android:width="1dp"
+        android:width="@dimen/material_1dp"
         android:color="@color/white" />
     <solid android:color="@color/white" />
 </shape>

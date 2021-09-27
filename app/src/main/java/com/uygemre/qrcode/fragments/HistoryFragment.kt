@@ -19,7 +19,6 @@ import com.uygemre.qrcode.database.AppDatabase
 import com.uygemre.qrcode.database.QRCodeDTO
 import com.uygemre.qrcode.database.QRCodeDao
 import com.uygemre.qrcode.dialog.DialogResultScanQR
-import com.uygemre.qrcode.helpers.AdHelper
 import com.uygemre.qrcode.helpers.LocalPrefManager
 import com.uygemre.qrcode.recyclerview.OnItemClickListener
 import com.uygemre.qrcode.recyclerview.RecyclerViewAdapter
@@ -45,7 +44,9 @@ class HistoryFragment : Fragment(), OnItemClickListener {
 
         localPrefManager = LocalPrefManager(requireContext())
         qrCodeDao = AppDatabase.getInstance(requireContext())?.qrCodeDao()!!
-        loadInterstitialAd()
+
+        if (!localPrefManager.isPremium())
+            loadInterstitialAd()
 
         recyclerViewAdapter = RecyclerViewAdapter(qrCodeDao.getAll().reversed(), this)
         rv_history.layoutManager = LinearLayoutManager(requireContext())
@@ -65,7 +66,10 @@ class HistoryFragment : Fragment(), OnItemClickListener {
             mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent()
-                    openDialog(text = qrCodeDTO.text ?: "", barcodeFormat = qrCodeDTO.barcodeFormat ?: "")
+                    openDialog(
+                        text = qrCodeDTO.text ?: "",
+                        barcodeFormat = qrCodeDTO.barcodeFormat ?: ""
+                    )
                 }
             }
         } else {
@@ -91,9 +95,9 @@ class HistoryFragment : Fragment(), OnItemClickListener {
             object : InterstitialAdLoadCallback() {
                 override fun onAdLoaded(p0: InterstitialAd) {
                     mInterstitialAd = p0
-                    if (!localPrefManager.isPremium())
-                        mInterstitialAd?.show(requireActivity())
+                    mInterstitialAd?.show(requireActivity())
                 }
+
                 override fun onAdFailedToLoad(p0: LoadAdError) {
                     mInterstitialAd = null
                 }

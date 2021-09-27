@@ -40,12 +40,12 @@ import java.util.*
 
 class DetailFragment : Fragment() {
 
+    lateinit var localPrefManager: LocalPrefManager
+
     private var contentView: String? = ""
     private var isHidden: Boolean? = false
     private var wifiAuthentication: String? = ""
     private var mInterstitialAd: InterstitialAd? = null
-
-    lateinit var localPrefManager: LocalPrefManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -389,9 +389,7 @@ class DetailFragment : Fragment() {
                 }
             }
         }
-        btn_back.setOnClickListener {
-            requireActivity().onBackPressed()
-        }
+        btn_back.setOnClickListener { requireActivity().onBackPressed() }
     }
 
     private fun checkTwitterRadioButton() {
@@ -436,7 +434,7 @@ class DetailFragment : Fragment() {
                 img_toolbar.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_web_url
+                        R.drawable.ic_web_url_white
                     )
                 )
             }
@@ -445,7 +443,7 @@ class DetailFragment : Fragment() {
                 img_toolbar.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_document
+                        R.drawable.ic_document_white
                     )
                 )
             }
@@ -454,7 +452,7 @@ class DetailFragment : Fragment() {
                 img_toolbar.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_contact
+                        R.drawable.ic_contact_black
                     )
                 )
             }
@@ -463,7 +461,7 @@ class DetailFragment : Fragment() {
                 img_toolbar.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_email
+                        R.drawable.ic_mail_white
                     )
                 )
             }
@@ -472,7 +470,7 @@ class DetailFragment : Fragment() {
                 img_toolbar.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_sms
+                        R.drawable.ic_sms_new
                     )
                 )
             }
@@ -481,7 +479,7 @@ class DetailFragment : Fragment() {
                 img_toolbar.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_location
+                        R.drawable.ic_location_new
                     )
                 )
             }
@@ -490,7 +488,7 @@ class DetailFragment : Fragment() {
                 img_toolbar.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_phone
+                        R.drawable.ic_phone_new
                     )
                 )
             }
@@ -499,7 +497,7 @@ class DetailFragment : Fragment() {
                 img_toolbar.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_wifi
+                        R.drawable.ic_wifi_new
                     )
                 )
             }
@@ -508,7 +506,7 @@ class DetailFragment : Fragment() {
                 img_toolbar.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_twitter
+                        R.drawable.ic_twitter_new
                     )
                 )
             }
@@ -517,7 +515,7 @@ class DetailFragment : Fragment() {
                 img_toolbar.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_whatsapp
+                        R.drawable.ic_whatsapp_new
                     )
                 )
             }
@@ -526,7 +524,7 @@ class DetailFragment : Fragment() {
                 img_toolbar.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_linkedin
+                        R.drawable.ic_linkedin_new
                     )
                 )
             }
@@ -535,7 +533,7 @@ class DetailFragment : Fragment() {
                 img_toolbar.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_youtube
+                        R.drawable.ic_youtube_new
                     )
                 )
             }
@@ -544,7 +542,7 @@ class DetailFragment : Fragment() {
                 img_toolbar.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_instagram
+                        R.drawable.ic_instagram_new
                     )
                 )
             }
@@ -572,289 +570,6 @@ class DetailFragment : Fragment() {
         setToolbarTitleAndImage()
         checkTwitterRadioButton()
         checkYouTubeRadioButton()
-
-        view?.btn_create?.setOnClickListener {
-            val dialog = DialogCreateQR()
-            val bundle = Bundle()
-            var isNull = false
-            val list = mutableListOf<TextInputEditText>()
-
-            when (contentView) {
-                IntentBundleKeyEnum.DETAIL_WEB_URL.toString() -> {
-                    bundle.putString(
-                        PrefConstants.PREF_WEB_URL,
-                        edt_web_url.text.toString().lowercase(Locale.ROOT)
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_CONTENT_VIEW,
-                        IntentBundleKeyEnum.DETAIL_WEB_URL.toString()
-                    )
-
-                    isNull = edt_web_url.checkNull(til_web_url)
-                }
-                IntentBundleKeyEnum.DETAIL_DOCUMENT.toString() -> {
-                    bundle.putString(
-                        PrefConstants.PREF_DOCUMENT,
-                        edt_document.text.toString().lowercase()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_CONTENT_VIEW,
-                        IntentBundleKeyEnum.DETAIL_DOCUMENT.toString()
-                    )
-
-                    isNull = edt_document.checkNull(til_document)
-                }
-                IntentBundleKeyEnum.DETAIL_EMAIL.toString() -> {
-                    bundle.putString(
-                        PrefConstants.PREF_EMAIL,
-                        edt_email.text.toString().lowercase(Locale.getDefault())
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_EMAIL_SUBJECT,
-                        edt_subject.text.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_EMAIL_MESSAGE,
-                        edt_message.text.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_CONTENT_VIEW,
-                        IntentBundleKeyEnum.DETAIL_EMAIL.toString()
-                    )
-
-                    isNull = edt_email.checkNull(til_email)
-                }
-                IntentBundleKeyEnum.DETAIL_CONTACT.toString() -> {
-                    bundle.putString(
-                        PrefConstants.PREF_CONTACT_NOTES,
-                        edt_contact_notes.text.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_CONTACT_ADDRESS,
-                        edt_contact_address.text.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_CONTACT_COMPANY,
-                        edt_contact_company.text.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_CONTACT_NAME,
-                        edt_contact_name.text.toString().lowercase(Locale.getDefault())
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_CONTACT_EMAIL,
-                        edt_contact_email.text.toString().lowercase(Locale.getDefault())
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_CONTACT_TELEPHONE,
-                        edt_contact_telephone.text.toString().lowercase(Locale.getDefault())
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_CONTENT_VIEW,
-                        IntentBundleKeyEnum.DETAIL_CONTACT.toString()
-                    )
-
-                    isNull = edt_contact_name.checkNull(til_contact_name)
-                }
-                IntentBundleKeyEnum.DETAIL_SMS.toString() -> {
-                    bundle.putString(
-                        PrefConstants.PREF_CONTENT_VIEW,
-                        IntentBundleKeyEnum.DETAIL_SMS.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_SMS_SUBJECT,
-                        edt_sms.text.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_SMS_PHONE,
-                        edt_sms_phone.text.toString()
-                    )
-
-                    isNull = edt_sms_phone.checkNull(til_sms_phone)
-                }
-                IntentBundleKeyEnum.DETAIL_LOCATION.toString() -> {
-                    bundle.putString(
-                        PrefConstants.PREF_CONTENT_VIEW,
-                        IntentBundleKeyEnum.DETAIL_LOCATION.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_LOCATION_LATITUDE,
-                        edt_latitude.text.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_LOCATION_LONGITUDE,
-                        edt_longitude.text.toString()
-                    )
-
-                    list.add(edt_latitude)
-                    list.add(edt_longitude)
-
-                    isNull = list.multipleInputEditText(til_latitude, til_longitude)
-                }
-                IntentBundleKeyEnum.DETAIL_PHONE.toString() -> {
-                    bundle.putString(
-                        PrefConstants.PREF_CONTENT_VIEW,
-                        IntentBundleKeyEnum.DETAIL_PHONE.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_PHONE,
-                        edt_phone.text.toString().lowercase(Locale.getDefault())
-                    )
-
-                    isNull = edt_phone.checkNull(til_phone)
-                }
-                IntentBundleKeyEnum.DETAIL_WIFI.toString() -> {
-                    setWifiAuthenticationAndHidden()
-
-                    bundle.putString(
-                        PrefConstants.PREF_CONTENT_VIEW,
-                        IntentBundleKeyEnum.DETAIL_WIFI.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_WIFI_NETWORK_NAME,
-                        edt_ssid.text.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_WIFI_PASSWORD,
-                        edt_password.text.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_WIFI_AUTHENTICATION,
-                        wifiAuthentication
-                    )
-                    bundle.putBoolean(
-                        PrefConstants.PREF_WIFI_IS_HIDDEN,
-                        isHidden ?: false
-                    )
-
-                    list.add(edt_ssid)
-                    list.add(edt_password)
-                    isNull = list.multipleInputEditText(til_ssid, til_password)
-                }
-                IntentBundleKeyEnum.DETAIL_TWITTER.toString() -> {
-                    var isProfile = true
-                    when (rg_twitter?.checkedRadioButtonId) {
-                        R.id.rb_twitter_profile -> {
-                            isProfile = true
-                        }
-                        R.id.rb_twitter_tweet -> {
-                            isProfile = false
-                        }
-                    }
-                    if (isProfile) {
-                        bundle.putBoolean(
-                            PrefConstants.PREF_IS_PROFILE,
-                            true
-                        )
-                    } else {
-                        bundle.putBoolean(
-                            PrefConstants.PREF_IS_PROFILE,
-                            false
-                        )
-                    }
-                    bundle.putString(
-                        PrefConstants.PREF_CONTENT_VIEW,
-                        IntentBundleKeyEnum.DETAIL_TWITTER.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_TWITTER,
-                        edt_twitter.text.toString()
-                    )
-
-                    isNull = edt_twitter.checkNull(til_twitter)
-                }
-                IntentBundleKeyEnum.DETAIL_WHATSAPP.toString() -> {
-                    bundle.putString(
-                        PrefConstants.PREF_CONTENT_VIEW,
-                        IntentBundleKeyEnum.DETAIL_WHATSAPP.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_WHATSAPP_MESSAGE,
-                        edt_whatsapp_message.text.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_WHATSAPP_PHONE,
-                        edt_whatsapp_phone_number.text.toString()
-                    )
-
-                    isNull = edt_whatsapp_phone_number.checkNull(til_whatsapp_phone_number)
-                }
-                IntentBundleKeyEnum.DETAIL_LINKEDIN.toString() -> {
-                    bundle.putString(
-                        PrefConstants.PREF_CONTENT_VIEW,
-                        IntentBundleKeyEnum.DETAIL_LINKEDIN.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_LINKEDIN,
-                        edt_linkedin.text.toString()
-                    )
-
-                    isNull = edt_linkedin.checkNull(til_linkedin)
-                }
-                IntentBundleKeyEnum.DETAIL_YOUTUBE.toString() -> {
-                    var isVideoId = true
-                    when (rg_youtube?.checkedRadioButtonId) {
-                        R.id.rb_youtube_video_id -> {
-                            isVideoId = true
-
-                        }
-                        R.id.rb_youtube_video_url -> {
-                            isVideoId = false
-                        }
-                    }
-
-                    if (isVideoId) {
-                        bundle.putBoolean(
-                            PrefConstants.PREF_YOUTUBE_VIDEO_ID,
-                            true
-                        )
-                    } else {
-                        bundle.putBoolean(
-                            PrefConstants.PREF_YOUTUBE_VIDEO_ID,
-                            false
-                        )
-                    }
-
-                    bundle.putString(
-                        PrefConstants.PREF_CONTENT_VIEW,
-                        IntentBundleKeyEnum.DETAIL_YOUTUBE.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_YOUTUBE,
-                        edt_youtube.text.toString()
-                    )
-
-                    isNull = edt_youtube.checkNull(til_youtube)
-                }
-                IntentBundleKeyEnum.DETAIL_INSTAGRAM.toString() -> {
-                    bundle.putString(
-                        PrefConstants.PREF_CONTENT_VIEW,
-                        IntentBundleKeyEnum.DETAIL_INSTAGRAM.toString()
-                    )
-                    bundle.putString(
-                        PrefConstants.PREF_INSTAGRAM,
-                        edt_instagram.text.toString()
-                    )
-
-                    isNull = edt_instagram.checkNull(til_instagram)
-                }
-            }
-
-            if (isNull) {
-                mInterstitialAd?.show(requireActivity())
-                mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
-                    override fun onAdDismissedFullScreenContent() {
-                        super.onAdDismissedFullScreenContent()
-                        dialog.arguments = bundle
-                        dialog.show(childFragmentManager, "dialog")
-                        list.clear()
-                    }
-                }
-            }
-        }
-        btn_back.setOnClickListener {
-            requireActivity().onBackPressed()
-        }
     }
 
     companion object {

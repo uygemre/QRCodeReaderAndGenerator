@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="@dimen/material_16dp"
-        android:fontFamily="sans-serif-condensed"
+        android:fontFamily="@font/montserrat_regular"
         android:gravity="center"
         android:text="@string/create_qr_description"
         android:textColor="@color/black"
@@ -39,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_web_url" />
+                    android:src="@drawable/ic_web_url_white" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -47,6 +47,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_8dp"
                     android:layout_toEndOf="@+id/img_web_url"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/webUrl"
                     android:textColor="@color/black"
                     android:textSize="@dimen/material_typography_subheading" />
@@ -81,7 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_document" />
+                    android:src="@drawable/ic_document_white" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -89,6 +90,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_8dp"
                     android:layout_toEndOf="@id/img_document"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/document"
                     android:textColor="@color/black"
                     android:textSize="@dimen/material_typography_subheading" />
@@ -123,7 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_contact" />
+                    android:src="@drawable/ic_contact_black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -131,6 +133,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_8dp"
                     android:layout_toEndOf="@id/img_contact"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/contact"
                     android:textColor="@color/black"
                     android:textSize="@dimen/material_16dp" />
@@ -165,7 +168,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_email" />
+                    android:src="@drawable/ic_mail_white" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -173,6 +176,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_8dp"
                     android:layout_toEndOf="@id/img_email"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/email"
                     android:textColor="@color/black"
                     android:textSize="@dimen/material_typography_subheading" />
@@ -207,7 +211,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_sms" />
+                    android:src="@drawable/ic_sms_new" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -215,6 +219,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_8dp"
                     android:layout_toEndOf="@id/img_sms"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/sms"
                     android:textColor="@color/black"
                     android:textSize="@dimen/material_typography_subheading" />
@@ -249,7 +254,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_location" />
+                    android:src="@drawable/ic_location_new" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -257,6 +262,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_8dp"
                     android:layout_toEndOf="@id/img_location"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/location"
                     android:textColor="@color/black"
                     android:textSize="@dimen/material_typography_subheading" />
@@ -290,7 +296,7 @@
                     android:id="@+id/img_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_phone" />
+                    android:src="@drawable/ic_phone_new" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -298,6 +304,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_8dp"
                     android:layout_toEndOf="@id/img_phone"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/phone"
                     android:textColor="@color/black"
                     android:textSize="@dimen/material_typography_subheading" />
@@ -331,7 +338,7 @@
                     android:id="@+id/img_wifi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_wifi" />
+                    android:src="@drawable/ic_wifi_new" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -339,6 +346,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_8dp"
                     android:layout_toEndOf="@id/img_wifi"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/wifi"
                     android:textColor="@color/black"
                     android:textSize="@dimen/material_typography_subheading" />
@@ -372,7 +380,7 @@
                     android:id="@+id/img_twitter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_twitter" />
+                    android:src="@drawable/ic_twitter_new" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -380,6 +388,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_8dp"
                     android:layout_toEndOf="@id/img_twitter"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/twitter"
                     android:textColor="@color/black"
                     android:textSize="@dimen/material_typography_subheading" />
@@ -398,7 +407,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_premium" />
+                    android:src="@drawable/ic_premium_new" />
 
             </RelativeLayout>
 
@@ -422,7 +431,7 @@
                     android:id="@+id/img_whatsapp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_whatsapp" />
+                    android:src="@drawable/ic_whatsapp_new" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -430,6 +439,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_8dp"
                     android:layout_toEndOf="@id/img_whatsapp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/whatsapp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/material_typography_subheading" />
@@ -448,7 +458,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_premium" />
+                    android:src="@drawable/ic_premium_new" />
 
             </RelativeLayout>
 
@@ -472,7 +482,7 @@
                     android:id="@+id/img_linkedin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_linkedin" />
+                    android:src="@drawable/ic_linkedin_new" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -480,6 +490,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_8dp"
                     android:layout_toEndOf="@id/img_linkedin"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/linkedin"
                     android:textColor="@color/black"
                     android:textSize="@dimen/material_typography_subheading" />
@@ -498,7 +509,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_premium" />
+                    android:src="@drawable/ic_premium_new" />
 
             </RelativeLayout>
 
@@ -522,7 +533,7 @@
                     android:id="@+id/img_youtube"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_youtube" />
+                    android:src="@drawable/ic_youtube_new" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -530,6 +541,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_8dp"
                     android:layout_toEndOf="@id/img_youtube"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/youtube"
                     android:textColor="@color/black"
                     android:textSize="@dimen/material_typography_subheading" />
@@ -548,7 +560,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_premium" />
+                    android:src="@drawable/ic_premium_new" />
 
             </RelativeLayout>
 
@@ -572,7 +584,7 @@
                     android:id="@+id/img_instagram"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_instagram" />
+                    android:src="@drawable/ic_instagram_new" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -580,6 +592,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/material_8dp"
                     android:layout_toEndOf="@id/img_instagram"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/instagram"
                     android:textColor="@color/black"
                     android:textSize="@dimen/material_typography_subheading" />
@@ -598,7 +611,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_premium" />
+                    android:src="@drawable/ic_premium_new" />
 
             </RelativeLayout>
 

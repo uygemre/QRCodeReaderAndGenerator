@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/rootBottoSheet"
+    android:id="@+id/rootBottomSheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -27,6 +27,8 @@
                 android:layout_marginEnd="@dimen/material_16dp"
                 android:gravity="center"
                 android:text="@string/result"
+                android:textSize="16sp"
+                android:fontFamily="@font/montserrat_bold"
                 android:textColor="@color/black" />
 
             <ImageView
@@ -41,13 +43,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:fontFamily="@font/montserrat_medium"
                 android:layout_marginStart="@dimen/material_32dp"
                 android:layout_marginEnd="@dimen/material_32dp"
                 android:layout_marginBottom="@dimen/material_8dp"
                 android:gravity="start"
                 android:text="@string/description"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <include
                 android:id="@+id/layout_web_url"

@@ -41,11 +41,14 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         localPrefManager = LocalPrefManager(requireContext())
-        AdHelper.loadAndShowInterstitialAd(
-            requireContext(),
-            requireActivity(),
-            localPrefManager.isPremium()
-        )
+        if (!localPrefManager.isPremium()) {
+            AdHelper.loadAndShowInterstitialAd(
+                requireContext(),
+                requireActivity(),
+                localPrefManager.isPremium()
+            )
+        }
+
         switchOnCheckedChanged()
         switchIsChecked()
         setupSwitchText()

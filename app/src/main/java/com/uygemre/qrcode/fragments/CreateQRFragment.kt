@@ -31,37 +31,14 @@ class CreateQRFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         localPrefManager = LocalPrefManager(requireContext())
-        MobileAds.initialize(requireContext())
-        AdHelper.loadAndShowInterstitialAd(
-            requireContext(),
-            requireActivity(),
-            localPrefManager.isPremium()
-        )
-    }
-
-    private fun changePremiumIcon() {
-        if (LocalPrefManager(requireContext()).isPremium()) {
-            iv_instagram.setImageResource(R.drawable.ic_next_gray_and_white)
-            iv_linkedIn.setImageResource(R.drawable.ic_next_gray_and_white)
-            iv_twitter.setImageResource(R.drawable.ic_next_gray_and_white)
-            iv_whatsapp.setImageResource(R.drawable.ic_next_gray_and_white)
-            iv_youtube.setImageResource(R.drawable.ic_next_gray_and_white)
-        }
-    }
-
-    private fun gotoDetailPage(detailPage: String?) {
-        requireActivity().openActivity(DetailActivity::class.java, Bundle().apply {
-            putString(
-                IntentBundleKeyEnum.DETAIL_KEY.toString(),
-                detailPage
+        if (!localPrefManager.isPremium()) {
+            MobileAds.initialize(requireContext())
+            AdHelper.loadAndShowInterstitialAd(
+                requireContext(),
+                requireActivity(),
+                localPrefManager.isPremium()
             )
-            putString(PrefConstants.PREF_CONTENT_VIEW, detailPage)
-        })
-    }
-
-    override fun onResume() {
-        super.onResume()
-        changePremiumIcon()
+        }
 
         rl_web_url.setOnClickListener {
             gotoDetailPage(IntentBundleKeyEnum.DETAIL_WEB_URL.toString())
@@ -117,5 +94,30 @@ class CreateQRFragment : Fragment() {
             else
                 gotoDetailPage(IntentBundleKeyEnum.DETAIL_PREMIUM_SUBSCRIBE.toString())
         }
+    }
+
+    private fun changePremiumIcon() {
+        if (LocalPrefManager(requireContext()).isPremium()) {
+            iv_instagram.setImageResource(R.drawable.ic_next_gray_and_white)
+            iv_linkedIn.setImageResource(R.drawable.ic_next_gray_and_white)
+            iv_twitter.setImageResource(R.drawable.ic_next_gray_and_white)
+            iv_whatsapp.setImageResource(R.drawable.ic_next_gray_and_white)
+            iv_youtube.setImageResource(R.drawable.ic_next_gray_and_white)
+        }
+    }
+
+    private fun gotoDetailPage(detailPage: String?) {
+        requireActivity().openActivity(DetailActivity::class.java, Bundle().apply {
+            putString(
+                IntentBundleKeyEnum.DETAIL_KEY.toString(),
+                detailPage
+            )
+            putString(PrefConstants.PREF_CONTENT_VIEW, detailPage)
+        })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        changePremiumIcon()
     }
 }

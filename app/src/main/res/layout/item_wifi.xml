@@ -14,7 +14,7 @@
         android:layout_width="@dimen/material_32dp"
         android:layout_height="@dimen/material_72dp"
         android:layout_weight="1"
-        android:background="@drawable/shape_radius_16_green"
+        android:background="@drawable/shape_radius_8_forest_green"
         android:orientation="vertical">
 
         <ImageView
@@ -24,7 +24,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/material_4dp"
             android:padding="@dimen/material_4dp"
-            android:src="@drawable/wifi" />
+            android:src="@drawable/ic_wifi_white" />
 
         <TextView
             android:id="@+id/tv_wifi_connect"
@@ -35,8 +35,9 @@
             android:lines="2"
             android:maxWidth="4dp"
             android:text="@string/connect"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/material_12sp"
+            android:fontFamily="@font/montserrat_semi_bold"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -47,7 +48,7 @@
         android:layout_height="@dimen/material_72dp"
         android:layout_marginStart="@dimen/material_8dp"
         android:layout_weight="1"
-        android:background="@drawable/shape_radius_16_green"
+        android:background="@drawable/shape_radius_8_forest_green"
         android:orientation="vertical">
 
         <ImageView
@@ -57,7 +58,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/material_4dp"
             android:padding="@dimen/material_4dp"
-            android:src="@drawable/copy" />
+            android:src="@drawable/ic_copy_white" />
 
         <TextView
             android:id="@+id/tv_copy_password"
@@ -68,7 +69,8 @@
             android:lines="2"
             android:maxWidth="4dp"
             android:text="@string/copy_password"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
+            android:fontFamily="@font/montserrat_semi_bold"
             android:textSize="@dimen/material_12sp"
             android:textStyle="bold" />
 
@@ -80,7 +82,7 @@
         android:layout_height="@dimen/material_72dp"
         android:layout_marginStart="@dimen/material_8dp"
         android:layout_weight="1"
-        android:background="@drawable/shape_radius_16_green"
+        android:background="@drawable/shape_radius_8_forest_green"
         android:orientation="vertical">
 
         <ImageView
@@ -90,7 +92,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/material_4dp"
             android:padding="@dimen/material_4dp"
-            android:src="@drawable/share" />
+            android:src="@drawable/ic_share_white" />
 
         <TextView
             android:id="@+id/tv_share"
@@ -102,8 +104,9 @@
             android:maxWidth="@dimen/material_24dp"
             android:padding="@dimen/material_4dp"
             android:text="@string/share"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/material_12sp"
+            android:fontFamily="@font/montserrat_semi_bold"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -114,7 +117,7 @@
         android:layout_height="@dimen/material_72dp"
         android:layout_marginStart="@dimen/material_8dp"
         android:layout_weight="1"
-        android:background="@drawable/shape_radius_16_green"
+        android:background="@drawable/shape_radius_8_forest_green"
         android:orientation="vertical">
 
         <ImageView
@@ -124,7 +127,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/material_4dp"
             android:padding="@dimen/material_4dp"
-            android:src="@drawable/copy" />
+            android:src="@drawable/ic_copy_white" />
 
         <TextView
             android:id="@+id/tv_copy"
@@ -134,8 +137,9 @@
             android:gravity="center"
             android:padding="@dimen/material_4dp"
             android:text="@string/copy"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/material_12sp"
+            android:fontFamily="@font/montserrat_semi_bold"
             android:textStyle="bold" />
 
     </LinearLayout>

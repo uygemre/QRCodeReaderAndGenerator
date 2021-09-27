@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ll_phone"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -14,7 +15,7 @@
         android:layout_width="@dimen/material_32dp"
         android:layout_height="@dimen/material_72dp"
         android:layout_weight="1"
-        android:background="@drawable/shape_radius_16_green"
+        android:background="@drawable/shape_radius_8_forest_green"
         android:orientation="vertical">
 
         <ImageView
@@ -24,7 +25,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/material_4dp"
             android:padding="@dimen/material_4dp"
-            android:src="@drawable/call" />
+            android:src="@drawable/ic_call_white" />
 
         <TextView
             android:id="@+id/tv_call"
@@ -34,8 +35,9 @@
             android:gravity="center"
             android:maxWidth="4dp"
             android:text="@string/call"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/material_12sp"
+            android:fontFamily="@font/montserrat_semi_bold"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -46,7 +48,7 @@
         android:layout_height="@dimen/material_72dp"
         android:layout_marginStart="@dimen/material_8dp"
         android:layout_weight="1"
-        android:background="@drawable/shape_radius_16_green"
+        android:background="@drawable/shape_radius_8_forest_green"
         android:orientation="vertical">
 
         <ImageView
@@ -56,7 +58,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/material_4dp"
             android:padding="@dimen/material_4dp"
-            android:src="@drawable/contact" />
+            android:src="@drawable/ic_contact_white" />
 
         <TextView
             android:id="@+id/tv_phone_add_contact"
@@ -65,10 +67,12 @@
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/material_4dp"
             android:gravity="center"
+            android:maxWidth="@dimen/material_24dp"
             android:lines="2"
             android:text="@string/add_contact"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/material_12sp"
+            android:fontFamily="@font/montserrat_semi_bold"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -79,7 +83,7 @@
         android:layout_height="@dimen/material_72dp"
         android:layout_marginStart="@dimen/material_8dp"
         android:layout_weight="1"
-        android:background="@drawable/shape_radius_16_green"
+        android:background="@drawable/shape_radius_8_forest_green"
         android:orientation="vertical">
 
         <ImageView
@@ -89,7 +93,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/material_4dp"
             android:padding="@dimen/material_4dp"
-            android:src="@drawable/share" />
+            android:src="@drawable/ic_share_white" />
 
         <TextView
             android:id="@+id/tv_share"
@@ -101,8 +105,9 @@
             android:maxWidth="@dimen/material_24dp"
             android:padding="@dimen/material_4dp"
             android:text="@string/share"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/material_12sp"
+            android:fontFamily="@font/montserrat_semi_bold"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -113,7 +118,7 @@
         android:layout_height="@dimen/material_72dp"
         android:layout_marginStart="@dimen/material_8dp"
         android:layout_weight="1"
-        android:background="@drawable/shape_radius_16_green"
+        android:background="@drawable/shape_radius_8_forest_green"
         android:orientation="vertical">
 
         <ImageView
@@ -123,7 +128,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/material_4dp"
             android:padding="@dimen/material_4dp"
-            android:src="@drawable/copy" />
+            android:src="@drawable/ic_copy_white" />
 
         <TextView
             android:id="@+id/tv_copy"
@@ -133,8 +138,9 @@
             android:gravity="center"
             android:padding="@dimen/material_4dp"
             android:text="@string/copy"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/material_12sp"
+            android:fontFamily="@font/montserrat_semi_bold"
             android:textStyle="bold" />
 
     </LinearLayout>

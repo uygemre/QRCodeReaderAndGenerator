@@ -4,9 +4,11 @@
     <dimen name="spacing_normal">10dp</dimen>
     <dimen name="spacing_large">20dp</dimen>
 
+    <dimen name="material_1dp">1dp</dimen>
     <dimen name="material_2dp">2dp</dimen>
     <dimen name="material_4dp">4dp</dimen>
     <dimen name="material_8dp">8dp</dimen>
+    <dimen name="material_10dp">10dp</dimen>
     <dimen name="material_12dp">12dp</dimen>
     <dimen name="material_16dp">16dp</dimen>
     <dimen name="material_20dp">20dp</dimen>

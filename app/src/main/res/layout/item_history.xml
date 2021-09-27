@@ -15,7 +15,7 @@
         android:layout_height="@dimen/material_24dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_delete" />
+        android:src="@drawable/ic_delete_new" />
 
     <ImageView
         android:id="@+id/img_qr"
@@ -23,7 +23,7 @@
         android:layout_height="@dimen/material_32dp"
         android:layout_centerVertical="true"
         android:background="@color/white"
-        android:src="@drawable/ic_youtube" />
+        android:src="@drawable/ic_youtube_new" />
 
     <TextView
         android:id="@+id/tv_qr_format"
@@ -32,6 +32,7 @@
         android:layout_marginStart="@dimen/material_12dp"
         android:layout_toStartOf="@id/img_delete"
         android:layout_toEndOf="@id/img_qr"
+        android:fontFamily="@font/montserrat_semi_bold"
         android:textColor="@color/black"
         android:textSize="@dimen/material_typography_subheading"
         android:textStyle="bold"
@@ -45,6 +46,7 @@
         android:layout_marginStart="@dimen/material_12dp"
         android:layout_toStartOf="@id/img_delete"
         android:layout_toEndOf="@id/img_qr"
+        android:fontFamily="@font/montserrat_medium"
         android:textColor="@color/black"
         android:textSize="@dimen/material_typography_body1"
         tools:text="14.01.2021" />
@@ -58,6 +60,7 @@
         android:layout_marginTop="@dimen/material_8dp"
         android:layout_toStartOf="@id/img_delete"
         android:layout_toEndOf="@id/img_qr"
+        android:fontFamily="@font/montserrat_medium"
         android:textColor="@color/black"
         android:textSize="14sp"
         tools:text="5.0" />

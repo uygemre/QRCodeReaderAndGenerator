@@ -38,6 +38,8 @@
         android:textAllCaps="false"
         android:backgroundTint="@color/forest_green"
         android:layout_marginTop="@dimen/material_8dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/white"
         android:text="@string/create"
         android:layout_gravity="center"/>
 

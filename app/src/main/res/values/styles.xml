@@ -60,6 +60,7 @@
         <item name="boxStrokeColor">@color/forest_green</item>
         <item name="hintTextColor">@color/forest_green</item>
         <item name="android:textColor">@color/black</item>
+        <item name="android:theme">@style/TextInputLayoutTheme</item>
     </style>
 
     <style name="SCBSwitch" parent="Theme.AppCompat.Light">
@@ -73,6 +74,16 @@
         <!-- inactive track color (30% transparency) -->
         <item name="android:colorForeground">#42221f1f
         </item>
+    </style>
+
+    <style name="TextInputLayoutTheme">
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="SpinnerTheme">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
 </resources>

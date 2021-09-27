@@ -40,10 +40,12 @@ import net.glxn.qrgen.android.QRCode
 import net.glxn.qrgen.core.scheme.*
 import java.io.*
 import androidx.core.content.FileProvider
+import com.uygemre.qrcode.helpers.LocalPrefManager
 
 class DialogCreateQR : BottomSheetDialogFragment() {
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
+    private lateinit var localPrefManager: LocalPrefManager
     private var sharedLastClickTime = 0L
     private var contentView: String? = ""
 
@@ -62,8 +64,10 @@ class DialogCreateQR : BottomSheetDialogFragment() {
             contentView = it?.getString(PrefConstants.PREF_CONTENT_VIEW)
         }
 
+        localPrefManager = LocalPrefManager(requireContext())
         MobileAds.initialize(requireContext())
-        adView.loadAd(AdRequest.Builder().build())
+        if (!localPrefManager.isPremium())
+            adView.loadAd(AdRequest.Builder().build())
         setupView()
         saveQRCode()
         btn_share.setOnClickListener {

@@ -142,7 +142,7 @@ class PremiumSubscribeFragment : Fragment() {
         tv_title.text = resources.getString(R.string.premium)
         tv_premium_description.text = getString(R.string.premium_description)
         tv_premium_subtext.text = getString(R.string.premium_subtext)
-        img_toolbar.setImageResource(R.drawable.ic_premium)
+        img_toolbar.setImageResource(R.drawable.ic_premium_new)
         btn_back.setOnClickListener { requireActivity().onBackPressed() }
 
         btn_subscribe.setOnClickListener {

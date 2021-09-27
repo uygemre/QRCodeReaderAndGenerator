@@ -24,6 +24,7 @@ import com.uygemre.qrcode.constants.PrefConstants
 import com.uygemre.qrcode.dialog.DialogResultScanQR
 import com.uygemre.qrcode.helpers.LocalPrefManager
 import kotlinx.android.synthetic.main.fragment_scan_qr.*
+import kotlinx.android.synthetic.main.layout_dialog_create_qr.*
 
 class ScanQRFragment : Fragment() {
 

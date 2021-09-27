@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/rootBottoSheet"
+    android:id="@+id/rootBottomSheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -23,7 +23,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="@string/qr_code"
+                android:textSize="@dimen/material_typography_subheading"
                 android:textColor="@color/black" />
 
             <ImageView
@@ -32,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center" />
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -47,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/material_12dp"
-                    android:background="@drawable/shape_radius_16_green"
+                    android:background="@drawable/shape_radius_8_forest_green"
                     android:drawableTop="@drawable/ic_share"
                     android:foregroundGravity="center"
                     android:gravity="center"
@@ -60,21 +62,92 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/material_12dp"
-                    android:background="@drawable/shape_radius_16_green"
+                    android:background="@drawable/shape_radius_8_forest_green"
                     android:drawableTop="@drawable/ic_save"
                     android:padding="@dimen/material_12dp"
                     android:text="@string/save"
                     android:textAllCaps="false"
                     android:visibility="visible" />
 
-            </LinearLayout>
+            </LinearLayout>-->
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="6">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/btn_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_radius_8_forest_green"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/material_4dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/material_4dp"
+                        android:src="@drawable/ic_share_white" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/material_8dp"
+                        android:layout_marginBottom="@dimen/material_4dp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:gravity="center"
+                        android:text="@string/share"
+                        android:textColor="@color/white" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/btn_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/material_12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_radius_8_forest_green"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/material_4dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/material_4dp"
+                        android:src="@drawable/ic_save_white" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/material_8dp"
+                        android:layout_marginBottom="@dimen/material_4dp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:gravity="center"
+                        android:text="@string/save"
+                        android:textColor="@color/white" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <com.google.android.gms.ads.AdView
                 android:id="@+id/adView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/material_8dp"
+                android:layout_marginTop="@dimen/material_16dp"
                 ads:adSize="LARGE_BANNER"
                 ads:adUnitId="ca-app-pub-7295215165419770/7278173573" />
 

@@ -36,6 +36,7 @@
                 android:layout_marginTop="@dimen/material_16dp"
                 android:layout_marginEnd="@dimen/material_16dp"
                 android:layout_marginBottom="@dimen/material_8dp"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="@string/premium_description"
                 android:textColor="@color/black" />
 
@@ -45,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:weightSum="8">
+                android:weightSum="4">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cv_monthly"
@@ -67,6 +68,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@color/caribbean_green"
+                            android:fontFamily="@font/montserrat_semi_bold"
                             android:gravity="center"
                             android:paddingStart="@dimen/material_16dp"
                             android:paddingTop="@dimen/material_8dp"
@@ -83,6 +85,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/material_8dp"
+                            android:fontFamily="@font/montserrat_bold"
                             android:gravity="center"
                             android:paddingTop="@dimen/material_8dp"
                             android:text="1,50$"
@@ -94,6 +97,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginBottom="@dimen/material_4dp"
+                            android:fontFamily="@font/montserrat_medium"
                             android:gravity="center"
                             android:text="@string/per_month"
                             android:textSize="14sp" />
@@ -108,7 +112,9 @@
                             android:layout_marginEnd="@dimen/material_8dp"
                             android:layout_marginBottom="@dimen/material_8dp"
                             android:background="@drawable/shape_subscribe_selected"
+                            android:fontFamily="@font/montserrat_semi_bold"
                             android:gravity="center"
+                            android:padding="@dimen/material_4dp"
                             android:text="@string/unselect"
                             android:textAllCaps="false"
                             android:textColor="@color/white" />
@@ -137,6 +143,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@color/caribbean_green"
+                            android:fontFamily="@font/montserrat_semi_bold"
                             android:gravity="center"
                             android:paddingStart="@dimen/material_16dp"
                             android:paddingTop="@dimen/material_8dp"
@@ -153,6 +160,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/material_8dp"
+                            android:fontFamily="@font/montserrat_bold"
                             android:gravity="center"
                             android:paddingTop="@dimen/material_8dp"
                             android:text="10,00$"
@@ -164,6 +172,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginBottom="@dimen/material_4dp"
+                            android:fontFamily="@font/montserrat_medium"
                             android:gravity="center"
                             android:text="@string/per_years"
                             android:textSize="14sp" />
@@ -178,6 +187,8 @@
                             android:layout_marginEnd="@dimen/material_8dp"
                             android:layout_marginBottom="@dimen/material_8dp"
                             android:background="@drawable/shape_subscribe_unselected"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            android:padding="@dimen/material_4dp"
                             android:text="@string/select"
                             android:textAllCaps="false"
                             android:textColor="@color/caribbean_green" />
@@ -202,7 +213,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/material_8dp"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_radius_16_caribbean_green"
+                    android:background="@drawable/shape_radius_24_premium_color"
+                    android:fontFamily="@font/montserrat_semi_bold"
                     android:padding="@dimen/material_12dp"
                     android:text="@string/subscribe"
                     android:textAllCaps="false"
@@ -214,7 +226,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/material_8dp"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_radius_16_gray"
+                    android:background="@drawable/shape_radius_24_white"
+                    android:fontFamily="@font/montserrat_semi_bold"
                     android:padding="@dimen/material_12dp"
                     android:text="@string/restore"
                     android:textAllCaps="false"
@@ -227,9 +240,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/material_8dp"
+                android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
-                android:textSize="12sp"
-                android:text="@string/premium_subtext" />
+                android:text="@string/premium_subtext"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
